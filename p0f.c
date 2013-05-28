@@ -312,8 +312,7 @@ void start_observation(char* keyword, u8 field_cnt, u8 to_srv,
   if (obs_fields) FATAL("Premature end of observation.");
 
   if (!daemon_mode) {
-    SAYF("Si sono bravo\n");
-    SAYF("Ho trovato il modo e dove prendere i dati\n");
+
     SAYF(".-[ %s/%u -> ", addr_to_str(f->client->addr, f->client->ip_ver),
          f->cli_port);
     SAYF("%s/%u (%s) ]-\n|\n", addr_to_str(f->server->addr, f->client->ip_ver),
