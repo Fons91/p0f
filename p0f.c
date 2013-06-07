@@ -102,6 +102,14 @@ u32 hash_seed;                          /* Hash seed                          */
 
 static u8 obs_fields;                   /* No of pending observation fields   */
 
+/*funzione di prova che ritorna "ciao"*/
+
+char ciao(){
+    char a ='a';
+    return a;
+}
+
+
 /* Memory allocator data: */
 
 #ifdef DEBUG_BUILD
@@ -1233,3 +1241,5 @@ int main(int argc, char** argv) {
   return 0;
 
 }
+
+

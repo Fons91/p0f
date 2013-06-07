@@ -23,6 +23,8 @@ void start_observation(char* keyword, u8 field_cnt, u8 to_srv,
 
 void add_observation_field(char* key, u8* value);
 
+char ciao();
+
 #define OBSERVF(_key, _fmt...) do { \
     u8* _val; \
     _val = alloc_printf(_fmt); \
