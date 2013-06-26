@@ -31,11 +31,7 @@ HEADERS  += guip0f.h \
     readfp.h \
     fp_tcp.h \
     fp_mtu.h \
-    fp_http. \
     api.h \
-    tools/p0f-sendsyn6.h \
-    tools/p0f-sendsyn.h \
-    tools/p0f-client.h \
     alloc-inl.h \
     types.h \
     tcp.h \
