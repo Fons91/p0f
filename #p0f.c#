@@ -7,7 +7,7 @@
    Distributed under the terms and conditions of GNU LGPL.
 
  */
-//Ciao
+
 #define _GNU_SOURCE
 #define _FROM_P0F
 
@@ -78,7 +78,22 @@ static u32
 u32
   max_conn        = MAX_CONN,           /* Connection entry count limit       */
   max_hosts       = MAX_HOSTS,          /* Host cache entry count limit       */
-  conn_max_age    = CONN_MAX_AGE,       /* Maximum age of a connection entry  */
+  conn_max_age    = CONN_MAX_AGE,       /* Maximum agex_hosts, conn_max_age, host_idle_limit, hash_seed;
+
+void start_observation(char* keyword, u8 field_cnt, u8 to_srv,
+                       struct packet_flow* pf);
+
+void add_observation_field(char* key, u8* value);
+
+#define OBSERVF(_key, _fmt...) do { \
+    u8* _val; \
+    _val = alloc_printf(_fmt); \
+    add_observation_field(_key, _val); \
+    ck_free(_val); \
+  } while (0)
+
+#include "api.h"
+ of a connection entry  */
   host_idle_limit = HOST_IDLE_LIMIT;    /* Host cache idle timeout            */
 
 static struct api_client *api_cl;       /* Array with API client state        */
@@ -102,13 +117,35 @@ u32 hash_seed;                          /* Hash seed                          */
 
 static u8 obs_fields;                   /* No of pending observation fields   */
 
-/*funzione di prova che ritorna "ciao"*/
+/* Memory allocator data: */
 
-char[] ciao(){
-    char[5] ciao = "ciao"
-  return ciao;
-}
+#ifdef DEBUG_BUILD
+struct TRK_obj* TRK[ALLOC_BUCKETS];
+u32 TRK_cnt[ALLOC_BUCKETS];
+#endif /* DEt_promisc;                  /* Use promiscuous mode?              */
+         t_promisc;                  /* Use promiscuous mode?              */
+         
+static pcap_t *pt;                      /* PCAP capture thingy                */
 
+s32 link_type;                          /* PCAP link type                     */
+
+u32 hash_seed;                          /* Hash seed                          */
+
+static u8 obs_fields;                   /* No of pending observation fields   */
+
+/* Memory allocator data: */
+
+#ifdef DEBUG_BUILD
+struct TRK_obj* TRK[ALLOC_BUCKETS];
+u32 TRK_cnt[ALLOC_BUCKETS];
+#endif /* DE
+static pcap_t *pt;                      /* PCAP capture thingy                */
+
+s32 link_type;                          /* PCAP link type                     */
+
+u32 hash_seed;                          /* Hash seed                          */
+
+static u8 obs_fields;                   /* No of pending observation fields   */
 
 /* Memory allocator data: */
 
@@ -346,7 +383,187 @@ void start_observation(char* keyword, u8 field_cnt, u8 to_srv,
          f->client->ip_ver), f->cli_port);
 
     LOGF("srv=%s/%u|subj=%s", addr_to_str(f->server->addr, f->server->ip_ver),
+         f->srv_port, to_srv
+
+    u8 tmp[64];
+
+    time_t ut = get_unix_time();
+    struct tm* lt = localtime(&ut);
+
+    strftime((char*)tmp, 64, "%Y/%m/%d %H:%M:%S", lt);
+
+    LOGF("[%s] mod=%s|cli=%s/%u|",tmp, keyword, addr_to_str(f->client->addr,
+         f->client->ip_ver), f->cli_port);
+
+    LOGF("srv=%s/%u|subj=%s", addr_to_str(f->server->addr, f->server->ip_ver),
          f->srv_port, to_srv ? "cli" : "srv");
+
+  }
+
+  obs_fields = field_cnt;
+
+
+    u8 tmp[64];
+
+    time_t ut = get_unix_time();
+    struct tm* lt = localtime(&ut);
+
+    strftime((char*)tmp, 64, "%Y/%m/%d %H:%M:%S", lt);
+
+    LOGF("[%s] mod=%s|cli=%s/%u|",tmp, keyword, addr_to_str(f->client->addr,
+         f->client->ip_ver), f->cli_port);
+
+    LOGF("srv=%s/%u|subj=%s", addr_to_str(f->server->addr, f->server->ip_ver),
+         f->srv_port, to_srv ? "cli" : "srv");
+
+  }
+
+  obs_fields = field_cnt;
+
+
+    u8 tmp[64];
+
+    time_t ut = get_unix_time();
+    struct tm* lt = localtime(&ut);
+
+    strftime((char*)tmp, 64, "%Y/%m/%d %H:%M:%S", lt);
+
+    LOGF("[%s] mod=%s|cli=%s/%u|",tmp, keyword, addr_to_str(f->client->addr,
+         f->client->ip_ver), f->cli_port);
+
+    LOGF("srv=%s/%u|subj=%s", addr_to_str(f->server->addr, f->server->ip_ver),
+         f->srv_port, to_srv ? "cli" : "srv");
+
+  }
+
+  obs_fields = field_cnt;
+
+
+    u8 tmp[64];
+
+    time_t ut = get_unix_time();
+    struct tm* lt = localtime(&ut);
+
+    strftime((char*)tmp, 64, "%Y/%m/%d %H:%M:%S", lt);
+
+    LOGF("[%s] mod=%s|cli=%s/%u|",tmp, keyword, addr_to_str(f->client->addr,
+         f->client->ip_ver), f->cli_port);
+
+    LOGF("srv=%s/%u|subj=%s", addr_to_str(f->server->addr, f->server->ip_ver),
+         f->srv_port, to_srv ? "cli" : "srv");
+
+  }
+
+  obs_fields = field_cnt;
+
+
+    u8 tmp[64];
+
+    time_t ut = get_unix_time();
+    struct tm* lt = localtime(&ut);
+
+    strftime((char*)tmp, 64, "%Y/%m/%d %H:%M:%S", lt);
+
+    LOGF("[%s] mod=%s|cli=%s/%u|",tmp, keyword, addr_to_str(f->client->addr,
+         f->client->ip_ver), f->cli_port);
+
+    LOGF("srv=%s/%u|subj=%s", addr_to_str(f->server->addr, f->server->ip_ver),
+         f->srv_port, to_srv ? "cli" : "srv");
+
+  }
+
+  obs_fields = field_cnt;
+
+
+    u8 tmp[64];
+
+    time_t ut = get_unix_time();
+    struct tm* lt = localtime(&ut);
+
+    strftime((char*)tmp, 64, "%Y/%m/%d %H:%M:%S", lt);
+
+    LOGF("[%s] mod=%s|cli=%s/%u|",tmp, keyword, addr_to_str(f->client->addr,
+         f->client->ip_ver), f->cli_port);
+
+    LOGF("srv=%s/%u|subj=%s", addr_to_str(f->server->addr, f->server->ip_ver),
+         f->srv_port, to_srv ? "cli" : "srv");
+
+  }
+
+  obs_fields = field_cnt;
+
+
+    u8 tmp[64];
+
+    time_t ut = get_unix_time();
+    struct tm* lt = localtime(&ut);
+
+    strftime((char*)tmp, 64, "%Y/%m/%d %H:%M:%S", lt);
+
+    LOGF("[%s] mod=%s|cli=%s/%u|",tmp, keyword, addr_to_str(f->client->addr,
+         f->client->ip_ver), f->cli_port);
+
+    LOGF("srv=%s/%u|subj=%s", addr_to_str(f->server->addr, f->server->ip_ver),
+         f->srv_port, to_srv ? "cli" : "srv");
+
+  }
+
+  obs_fields = field_cnt;
+
+
+    u8 tmp[64];
+
+    time_t ut = get_unix_time();
+    struct tm* lt = localtime(&ut);
+
+    strftime((char*)tmp, 64, "%Y/%m/%d %H:%M:%S", lt);
+
+    LOGF("[%s] mod=%s|cli=%s/%u|",tmp, keyword, addr_to_str(f->client->addr,
+         f->client->ip_ver), f->cli_port);
+
+    LOGF("srv=%s/%u|subj=%s", addr_to_str(f->server->addr, f->server->ip_ver),
+         f->srv_port, to_srv ? "cli" : "srv");
+
+  }
+
+  obs_fields = field_cnt;
+
+
+    u8 tmp[64];
+
+    time_t ut = get_unix_time();
+    struct tm* lt = localtime(&ut);
+
+    strftime((char*)tmp, 64, "%Y/%m/%d %H:%M:%S", lt);
+
+    LOGF("[%s] mod=%s|cli=%s/%u|",tmp, keyword, addr_to_str(f->client->addr,
+         f->client->ip_ver), f->cli_port);
+
+    LOGF("srv=%s/%u|subj=%s", addr_to_str(f->server->addr, f->server->ip_ver),
+         f->srv_port, to_srv ? "cli" : "srv");
+
+  }
+
+  obs_fields = field_cnt;
+
+
+    u8 tmp[64];
+
+    time_t ut = get_unix_time();
+    struct tm* lt = localtime(&ut);
+
+    strftime((char*)tmp, 64, "%Y/%m/%d %H:%M:%S", lt);
+
+    LOGF("[%s] mod=%s|cli=%s/%u|",tmp, keyword, addr_to_str(f->client->addr,
+         f->client->ip_ver), f->cli_port);
+
+    LOGF("srv=%s/%u|subj=%s", addr_to_str(f->server->addr, f->server->ip_ver),
+         f->srv_port, to_srv ? "cli" : "srv");
+
+  }
+
+  obs_fields = field_cnt;
+ ? "cli" : "srv");
 
   }
 
@@ -376,7 +593,37 @@ void add_observation_field(char* key, u8* value) {
 
   }
 
-}
+}%s", addr_to_str(f->serv%s", addr_to_str(f->server->addr, f->server->ip_ver),
+         f->srv_port, to_srv ? "cli" : "srv");
+
+  }
+
+  obs_fields = field_cnt;
+
+
+    u8 tmp[64];
+
+    time_t ut = get_unix_time();
+    struct tm* lt = localtime(&ut);
+
+    strftime((char*)tmp, 64, "%Y/%m/%d %H:%M:%S", lt);
+
+    LOGF("[%s] mod=%s|clier->addr, f->server->ip_ver),
+         f->srv_port, to_srv ? "cli" : "srv");
+
+  }
+
+  obs_fields = field_cnt;
+
+
+    u8 tmp[64];
+
+    time_t ut = get_unix_time();
+    struct tm* lt = localtime(&ut);
+
+    strftime((char*)tmp, 64, "%Y/%m/%d %H:%M:%S", lt);
+
+    LOGF("[%s] mod=%s|cli
 
 
 /* Show PCAP interface list */
@@ -656,7 +903,7 @@ static void drop_privs(void) {
 
   if (!access("/proc/", F_OK) || !access("/sys/", F_OK))
     FATAL("User '%s' must have a dedicated home directory.", switch_user);
-
+ 
   if (setgid(pw->pw_gid))
     PFATAL("setgid(%u) failed.", pw->pw_gid);
 
@@ -1241,5 +1488,3 @@ int main(int argc, char** argv) {
   return 0;
 
 }
-
-

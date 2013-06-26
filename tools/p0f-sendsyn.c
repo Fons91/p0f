@@ -118,7 +118,7 @@ static u8 opt_combos[8][24] = {
 
 };
 
-
+/*
 int main(int argc, char** argv) {
 
   static struct sockaddr_in sin;
@@ -182,4 +182,4 @@ int main(int argc, char** argv) {
   return 0;
 
 }
-
+*/

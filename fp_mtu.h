@@ -11,6 +11,7 @@
 #ifndef _HAVE_FP_MTU_H
 #define _HAVE_FP_MTU_H
 
+#include "config.h"
 #include "types.h"
 
 /* Record for a TCP signature read from p0f.fp: */

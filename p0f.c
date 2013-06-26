@@ -381,7 +381,7 @@ void add_observation_field(char* key, u8* value) {
 
 /* Show PCAP interface list */
 
-static void list_interfaces(void) {
+void list_interfaces(void) {
 
   char pcap_err[PCAP_ERRBUF_SIZE];
   pcap_if_t *dev;
@@ -1018,14 +1018,14 @@ static void offline_event_loop(void) {
 
 
 /* Main entry point */
-
+/*
 int main(int argc, char** argv) {
 
   s32 r;
 
   setlinebuf(stdout);
 
-  SAYF("--- p0f " VERSION " by Michal Zalewski <lcamtuf@coredump.cx> ---\n\n");
+  SAYF("--- p0f  by Michal Zalewski <lcamtuf@coredump.cx> ---\n\n");
 
   if (getuid() != geteuid())
     FATAL("Please don't make me setuid. See README for more.\n");
@@ -1057,7 +1057,7 @@ int main(int argc, char** argv) {
 
 #endif /* ^__CYGWIN__ */
 
-
+/*
     case 'd':
 
       if (daemon_mode)
@@ -1137,7 +1137,7 @@ int main(int argc, char** argv) {
       break;
 
 #endif /* ^__CYGWIN__ */
-
+/*
     case 't':
 
       if (conn_max_age != CONN_MAX_AGE || host_idle_limit != HOST_IDLE_LIMIT)
@@ -1195,7 +1195,7 @@ int main(int argc, char** argv) {
       SAYF("[!] Consider specifying -u in daemon mode (see README).\n");
 
 #endif /* ^__CYGWIN__ */
-
+/*
   }
 
   tzset();
@@ -1237,9 +1237,9 @@ int main(int argc, char** argv) {
   destroy_all_hosts();
   TRK_report();
 #endif /* DEBUG_BUILD */
-
+/*
   return 0;
 
 }
 
-
+*/

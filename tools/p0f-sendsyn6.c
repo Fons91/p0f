@@ -131,7 +131,7 @@ static u8 opt_combos[8][24] = {
   { MSS(SPECIAL_MSS), WS(5), SOK,  TS(1337, 0), NOP, EOL }  /* 22 */
 
 };
-
+/*
 int main(int argc, char** argv) {
 
   static struct sockaddr_in6 sin;
@@ -195,4 +195,4 @@ int main(int argc, char** argv) {
   return 0;
 
 }
-
+*/

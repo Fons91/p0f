@@ -8,10 +8,12 @@
 
  */
 
+
 #ifndef _HAVE_PROCESS_H
 #define _HAVE_PROCESS_H
 
 #include <pcap.h>
+#include "config.h"
 
 #include "types.h"
 #include "fp_tcp.h"

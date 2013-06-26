@@ -25,6 +25,29 @@ SOURCES += main.cpp\
     tools/p0f-sendsyn.c \
     tools/p0f-client.c
 
-HEADERS  += guip0f.h
+HEADERS  += guip0f.h \
+    p0f.h \
+    process.h \
+    readfp.h \
+    fp_tcp.h \
+    fp_mtu.h \
+    fp_http. \
+    api.h \
+    tools/p0f-sendsyn6.h \
+    tools/p0f-sendsyn.h \
+    tools/p0f-client.h \
+    alloc-inl.h \
+    types.h \
+    tcp.h \
+    languages.h \
+    hash.h \
+    fp_http.h \
+    debug.h \
+    config.h
 
 FORMS    += guip0f.ui
+
+
+
+LIBS += -lpcap
+

@@ -80,7 +80,7 @@ static void parse_addr6(char* str, u8* ret) {
 
 }
 
-
+/*
 int main(int argc, char** argv) {
 
   u8 tmp[128];
@@ -213,3 +213,4 @@ int main(int argc, char** argv) {
 
 }
 
+*/

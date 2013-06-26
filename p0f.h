@@ -21,6 +21,8 @@ extern u32 max_conn, max_hosts, conn_max_age, host_idle_limit, hash_seed;
 void start_observation(char* keyword, u8 field_cnt, u8 to_srv,
                        struct packet_flow* pf);
 
+void list_interfaces(void);
+
 void add_observation_field(char* key, u8* value);
 
 char ciao();
