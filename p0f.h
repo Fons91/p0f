@@ -25,7 +25,7 @@ void list_interfaces(void);
 
 void add_observation_field(char* key, u8* value);
 
-char ciao();
+void set_up_iface(u8* iface_choose);
 
 #define OBSERVF(_key, _fmt...) do { \
     u8* _val; \

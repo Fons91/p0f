@@ -20,8 +20,11 @@ int main(int argc, char *argv[])
     printf("%d\n",setuid(0));
 
     printf("%d",getuid());
+    char stringa[10]="wlan0";
+    u8* iface=(u8*)stringa;
 
-  // list_interfaces();
+    set_up_iface(iface);
+   // list_interfaces();
     w.show();
     
     return a.exec();

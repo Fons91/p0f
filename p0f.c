@@ -102,13 +102,14 @@ u32 hash_seed;                          /* Hash seed                          */
 
 static u8 obs_fields;                   /* No of pending observation fields   */
 
-/*funzione di prova che ritorna "ciao"*/
 
-char ciao(){
-    char a ='a';
-    return a;
+/*Function called by  P0f to set up interface*/
+
+void set_up_iface(u8* iface_choose){
+    use_iface=iface_choose;
+    printf("%s",use_iface);
+    printf("%u8",use_iface);
 }
-
 
 /* Memory allocator data: */
 
