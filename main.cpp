@@ -3,6 +3,10 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/types.h>
+#include "QtNetwork/qnetworkinterface.h"
+#include "QtNetwork/QNetworkInterface"
+#include "QList"
+#include "qlist.h"
 
 extern "C"{
 #include "p0f.h"
@@ -17,7 +21,7 @@ int main(int argc, char *argv[])
 
     printf("%d",getuid());
 
-   list_interfaces();
+  // list_interfaces();
     w.show();
     
     return a.exec();
