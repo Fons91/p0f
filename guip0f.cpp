@@ -1,5 +1,7 @@
 #include "guip0f.h"
 #include "ui_guip0f.h"
+#include <QDebug>
+
 
 
 GUIp0f::GUIp0f(QWidget *parent) :
@@ -10,11 +12,12 @@ GUIp0f::GUIp0f(QWidget *parent) :
     ui->setupUi(this);
 }
 
-void GUIp0f::create_list(){
+QString GUIp0f::set_name_interface(){
 
-        ui->create_list_interface();
-
+   qDebug()<< QString(ui->list_interface->currentText());
+   return ui->list_interface->currentText();
 }
+
 
 GUIp0f::~GUIp0f()
 {

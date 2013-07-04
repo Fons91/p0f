@@ -16,7 +16,8 @@ class GUIp0f : public QMainWindow
 public:
     explicit GUIp0f(QWidget *parent = 0);
     ~GUIp0f();
-    void create_list();
+public slots:
+    QString set_name_interface();
 
 private:
     Ui::GUIp0f *ui;

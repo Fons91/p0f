@@ -14,21 +14,11 @@
    <string>GUIp0f</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="Q3ComboBox" name="Prova">
-    <property name="geometry">
-     <rect>
-      <x>150</x>
-      <y>110</y>
-      <width>93</width>
-      <height>24</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>280</x>
-      <y>110</y>
+      <x>150</x>
+      <y>190</y>
       <width>80</width>
       <height>26</height>
      </rect>
@@ -37,16 +27,16 @@
      <string>PushButton</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>400</width>
-     <height>23</height>
-    </rect>
-   </property>
+   <widget class="QComboBox" name="list_interface">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>110</y>
+      <width>78</width>
+      <height>24</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -59,20 +49,13 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>Q3ComboBox</class>
-   <extends>QWidget</extends>
-   <header>Qt3Support/Q3ComboBox</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>
    <sender>pushButton</sender>
    <signal>clicked()</signal>
    <receiver>GUIp0f</receiver>
-   <slot>update()</slot>
+   <slot>setFocus()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>199</x>

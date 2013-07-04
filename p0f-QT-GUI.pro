@@ -39,7 +39,8 @@ HEADERS  += guip0f.h \
     hash.h \
     fp_http.h \
     debug.h \
-    config.h
+    config.h \
+    ../build-p0f-QT-GUI-Desktop-Debug/ui_guip0f.h
 
 FORMS    += guip0f.ui
 
