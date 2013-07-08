@@ -17,7 +17,7 @@ public:
     explicit GUIp0f(QWidget *parent = 0);
     ~GUIp0f();
 public slots:
-    QString set_name_interface();
+    void set_name_interface();
 
 private:
     Ui::GUIp0f *ui;

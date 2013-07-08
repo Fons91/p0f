@@ -2,7 +2,9 @@
 #include "ui_guip0f.h"
 #include <QDebug>
 #include <QNetworkInterface>
-
+extern "C" {
+#include "p0f.h"
+}
 
 
 GUIp0f::GUIp0f(QWidget *parent) :
@@ -14,10 +16,14 @@ GUIp0f::GUIp0f(QWidget *parent) :
     create_list_interface();
 }
 
-QString GUIp0f::set_name_interface(){
+void GUIp0f::set_name_interface(){
 
    qDebug()<< QString(ui->list_interface->currentText());
-   return ui->list_interface->currentText();
+   QString name_interface =QString(ui->list_interface->currentText());
+   QByteArray ba = name_interface.toLatin1();
+   char *char_interface = ba.data();
+   set_up_iface(char_interface);
+   init();
 }
 
 void GUIp0f::create_list_interface(){

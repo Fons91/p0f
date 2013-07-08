@@ -47,16 +47,6 @@ int main(int argc, char *argv[])
 
     printf("%d",getuid());
 
-
-    printf("%d\n",setuid(0));
-
-    printf("%d",getuid());
-    char stringa[10]="eth0";
-
-
-
-    printf("Prova passando array caratteri");
-    set_up_iface(stringa);
    // list_interfaces();
     w.show();
     
