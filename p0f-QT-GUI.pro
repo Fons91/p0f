@@ -39,8 +39,7 @@ HEADERS  += guip0f.h \
     hash.h \
     fp_http.h \
     debug.h \
-    config.h \
-    ui_guip0f.h
+    config.h
 
 FORMS    += guip0f.ui
 

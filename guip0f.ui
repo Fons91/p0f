@@ -55,17 +55,20 @@
    <sender>pushButton</sender>
    <signal>clicked()</signal>
    <receiver>GUIp0f</receiver>
-   <slot>setFocus()</slot>
+   <slot>set_name_interface()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>199</x>
-     <y>256</y>
+     <x>204</x>
+     <y>207</y>
     </hint>
     <hint type="destinationlabel">
-     <x>199</x>
-     <y>149</y>
+     <x>364</x>
+     <y>277</y>
     </hint>
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>set_name_interface()</slot>
+ </slots>
 </ui>
