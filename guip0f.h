@@ -21,6 +21,7 @@ public slots:
 
 private:
     Ui::GUIp0f *ui;
+    void create_list_interface();
 };
 
 #endif // GUIP0F_H
