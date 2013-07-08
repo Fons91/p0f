@@ -39,6 +39,6 @@ Thumbs.db
 
 # Add by me #
 *.user
-*.pro
 *~
 p0f-QT-GUI.pro.user.eb388d7
+*.origin
