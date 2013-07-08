@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -39,7 +39,8 @@ HEADERS  += guip0f.h \
     hash.h \
     fp_http.h \
     debug.h \
-    config.h
+    config.h \
+    ui_guip0f.h
 
 FORMS    += guip0f.ui
 
