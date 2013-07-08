@@ -1018,6 +1018,84 @@ static void offline_event_loop(void) {
 
 }
 
+void init(){
+    if (optind < argc) {
+
+      if (optind + 1 == argc) orig_rule = (u8*)argv[optind];
+      else FATAL("Filter rule must be a single parameter (use quotes).");
+
+    }
+
+    if (read_file && api_sock)
+      FATAL("API mode looks down on ofline captures.");
+
+    if (!api_sock && api_max_conn != API_MAX_CONN)
+      FATAL("Option -S makes sense only with -s.");
+
+    if (daemon_mode) {
+
+      if (read_file)
+        FATAL("Daemon mode and offline captures don't mix.");
+
+      if (!log_file && !api_sock)
+        FATAL("Daemon mode requires -o or -s.");
+
+  #ifdef __CYGWIN__
+
+      if (switch_user)
+        SAYF("[!] Note: under cygwin, -u is largely useless.\n");
+
+  #else
+
+      if (!switch_user)
+        SAYF("[!] Consider specifying -u in daemon mode (see README).\n");
+
+  #endif /* ^__CYGWIN__ */
+
+   }
+
+    tzset();
+    setlocale(LC_TIME, "C");
+
+    close_spare_fds();
+
+    get_hash_seed();
+
+    http_init();
+
+    read_config(fp_file ? fp_file : (u8*)FP_FILE);
+
+    prepare_pcap();
+    prepare_bpf();
+
+    if (log_file) open_log();
+    if (api_sock) open_api();
+
+    if (daemon_mode) {
+      null_fd = open("/dev/null", O_RDONLY);
+      if (null_fd < 0) PFATAL("Cannot open '/dev/null'.");
+    }
+
+    if (switch_user) drop_privs();
+
+    if (daemon_mode) fork_off();
+
+    signal(SIGHUP, daemon_mode ? SIG_IGN : abort_handler);
+    signal(SIGINT, abort_handler);
+    signal(SIGTERM, abort_handler);
+
+    if (read_file) offline_event_loop(); else live_event_loop();
+
+    if (!daemon_mode)
+      SAYF("\nAll done. Processed %llu packets.\n", packet_cnt);
+
+  #ifdef DEBUG_BUILD
+    destroy_all_hosts();
+    TRK_report();
+  #endif /* DEBUG_BUILD */
+
+}
+
 
 /* Main entry point */
 /*
