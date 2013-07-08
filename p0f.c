@@ -105,12 +105,13 @@ static u8 obs_fields;                   /* No of pending observation fields   */
 
 /*Function called by  P0f to set up interface*/
 
-void set_up_iface(u8* iface_choose){
-    use_iface=iface_choose;
-    printf("%s",use_iface);
-    printf("%u8",use_iface);
-}
 
+
+void set_up_iface(char iface_choose[]){
+    use_iface=(u8*)iface_choose;
+    printf("\nuse iface to string: %s",use_iface);
+    printf("\nuse iface u8: %u",*use_iface);
+}
 /* Memory allocator data: */
 
 #ifdef DEBUG_BUILD
