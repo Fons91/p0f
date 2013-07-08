@@ -11,6 +11,7 @@ GUIp0f::GUIp0f(QWidget *parent) :
 {
 
     ui->setupUi(this);
+    create_list_interface();
 }
 
 QString GUIp0f::set_name_interface(){
