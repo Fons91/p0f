@@ -23,9 +23,14 @@ void start_observation(char* keyword, u8 field_cnt, u8 to_srv,
 
 void list_interfaces(void);
 
+
+
 void add_observation_field(char* key, u8* value);
 
 void set_up_iface(char iface_choose[]);
+
+/*add by me for testing*/
+void init();
 
 #define OBSERVF(_key, _fmt...) do { \
     u8* _val; \
