@@ -389,6 +389,7 @@ void read_config(u8* fname) {
   u8  *data, *cur;
 
   f = open((char*)fname, O_RDONLY);
+  printf("%s\n",(char*)fname);
   if (f < 0) PFATAL("Cannot open '%s' for reading.", fname);
 
   if (fstat(f, &st)) PFATAL("fstat() on '%s' failed.", fname);
