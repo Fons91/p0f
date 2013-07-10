@@ -24,6 +24,8 @@ void GUIp0f::set_name_interface(){
    char *char_interface = ba.data();
    set_up_iface(char_interface);
    init();
+   qDebug()<< "end set name interface";
+   exit(0);
 }
 
 void GUIp0f::create_list_interface(){

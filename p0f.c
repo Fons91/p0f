@@ -1069,6 +1069,7 @@ void init(){
     prepare_bpf();
 
     if (log_file) open_log();
+
     if (api_sock) open_api();
 
     if (daemon_mode) {

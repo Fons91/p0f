@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
          QMessageBox::information(NULL,"Network Interfaces..",strNetworkInterfaces);
 
     printf("%d\n",setuid(0));
+    printf("%d",getuid());
 
     printf("%d",getuid());
 
