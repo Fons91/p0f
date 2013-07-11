@@ -23,7 +23,9 @@ SOURCES += main.cpp\
     api.c \
     tools/p0f-sendsyn6.c \
     tools/p0f-sendsyn.c \
-    tools/p0f-client.c
+    tools/p0f-client.c \
+    p0f_auditor.cpp \
+    p0f_info.cpp
 
 HEADERS  += guip0f.h \
     p0f.h \
@@ -39,7 +41,9 @@ HEADERS  += guip0f.h \
     hash.h \
     fp_http.h \
     debug.h \
-    config.h
+    config.h \
+    p0f_auditor.h \
+    p0f_info.h
 
 FORMS    += guip0f.ui
 
