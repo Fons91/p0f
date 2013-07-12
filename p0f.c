@@ -7,9 +7,12 @@
    Distributed under the terms and conditions of GNU LGPL.
 
  */
-//Ciao
+
 #define _GNU_SOURCE
 #define _FROM_P0F
+
+//Add by me
+#include "p0f_auditor.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -334,7 +337,10 @@ void start_observation(char* keyword, u8 field_cnt, u8 to_srv,
          to_srv ? f->cli_port : f->srv_port);
 
   }
-
+  char client[100];
+  strcpy(client,(char*)addr_to_str(f->client->addr, f->client->ip_ver));
+  char* server = addr_to_str(f->server->addr, f->server->ip_ver);
+  create_packet(client, f->cli_port, server, f->srv_port, keyword);
   if (log_file) {
 
     u8 tmp[64];
