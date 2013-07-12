@@ -5,6 +5,7 @@
 #include <sys/types.h>
 #include <QNetworkInterface>
 #include <QMessageBox>
+#include <p0f_info.h>
 
 #include "qlist.h"
 
@@ -17,7 +18,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     GUIp0f w;
 
-    QNetworkInterface* network = new QNetworkInterface();
+  /*  QNetworkInterface* network = new QNetworkInterface();
     QString strNetworkInterfaces;
 
     foreach(QNetworkInterface interface,network->allInterfaces())
@@ -44,9 +45,11 @@ int main(int argc, char *argv[])
          QMessageBox::information(NULL,"Network Interfaces..",strNetworkInterfaces);
 
     printf("%d\n",setuid(0));
-
     printf("%d",getuid());
 
+    printf("%d",getuid());
+*/
+    test();
    // list_interfaces();
     w.show();
     

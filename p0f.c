@@ -7,9 +7,14 @@
    Distributed under the terms and conditions of GNU LGPL.
 
  */
-//Ciao
+
 #define _GNU_SOURCE
 #define _FROM_P0F
+
+
+//Add by me
+#include "p0f_auditor.h"
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -328,13 +333,16 @@ void start_observation(char* keyword, u8 field_cnt, u8 to_srv,
     SAYF("%s/%u (%s) ]-\n|\n", addr_to_str(f->server->addr, f->client->ip_ver),
          f->srv_port, keyword);
 
-    SAYF("| %-8s = %s/%u\n", to_srv ? "client" : "server", 
+    SAYF("| %-8s = %s/%u\n", to_srv ? "client" : "server",
          addr_to_str(to_srv ? f->client->addr :
          f->server->addr, f->client->ip_ver),
          to_srv ? f->cli_port : f->srv_port);
 
   }
 
+  char* host = addr_to_str(to_srv ? f->client->addr : f->server->addr, f->client->ip_ver);
+
+  create_packet(host, to_srv, keyword);
   if (log_file) {
 
     u8 tmp[64];
@@ -369,6 +377,8 @@ void add_observation_field(char* key, u8* value) {
   if (log_file) LOGF("|%s=%s", key, value ? value : (u8*)"???");
 
   obs_fields--;
+
+  add_info(key,(char*)value);
 
   if (!obs_fields) {
 
@@ -1025,7 +1035,6 @@ void init(){
       else FATAL("Filter rule must be a single parameter (use quotes).");
 
     }*/
-
     if (read_file && api_sock)
       FATAL("API mode looks down on ofline captures.");
 
@@ -1069,6 +1078,7 @@ void init(){
     prepare_bpf();
 
     if (log_file) open_log();
+
     if (api_sock) open_api();
 
     if (daemon_mode) {
