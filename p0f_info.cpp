@@ -22,13 +22,13 @@ p0f_info *p0f_info_factory::new_p0f_info(p0f_info_factory::info_type type,MAP in
     }
 
 int test(){
-    map<string,string> mp;
+    map<QString,QString> mp;
     mp["os"]="Linux";
     mp["params"]="niente";
     mp["dist"]="dadas";
     mp["raw_sig"]="raw";
     syn_info* info = (syn_info*) p0f_info_factory::new_p0f_info(p0f_info_factory::SYN,mp);
-    qDebug()<< QString::fromUtf8( info->get_os().c_str() );
+    qDebug()<<  info->get_os();
 
 
 

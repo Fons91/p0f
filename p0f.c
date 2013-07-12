@@ -11,6 +11,7 @@
 #define _GNU_SOURCE
 #define _FROM_P0F
 
+#include "p0f_auditor.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -328,11 +329,11 @@ void start_observation(char* keyword, u8 field_cnt, u8 to_srv,
     SAYF("%s/%u (%s) ]-\n|\n", addr_to_str(f->server->addr, f->client->ip_ver),
          f->srv_port, keyword);
 
-    SAYF("| %-8s = %s/%u\n", to_srv ? "client" : "server", 
+    SAYF("| %-8s = %s/%u\n", to_srv ? "client" : "server",
          addr_to_str(to_srv ? f->client->addr :
          f->server->addr, f->client->ip_ver),
          to_srv ? f->cli_port : f->srv_port);
-
+    create_info(addr_to_str(f->client->addr, f->client->ip_ver),f->cli_port,addr_to_str(f->server->addr, f->client->ip_ver),f->srv_port,keyword);
   }
 
   if (log_file) {

@@ -1,6 +1,6 @@
 #include <map>
 #include <time.h>
-#include <string>
+#include <QString>
 #ifndef P0F_PACKET_H
 #define P0F_PACKET_H
 
@@ -9,7 +9,7 @@ using namespace std;
 
 
 
-typedef std::map<std::string, std::string>MAP;
+typedef std::map<QString, QString>MAP;
 class p0f_info
 {
 public:
@@ -27,47 +27,47 @@ private:
 
 class uptime_info : public p0f_info{
 private:
-    time_t uptime;
+    QString uptime;
 
-    string raw_freq;
+    QString raw_freq;
 public:
-    uptime_info(time_t time, string freq){
+    uptime_info(QString time, QString freq){
         uptime=time;
         raw_freq= freq;
     }
-   time_t  get_uptime(){
+   QString  get_uptime(){
         return uptime;
     }
-    string get_raw_freq(){
+    QString get_raw_freq(){
         return raw_freq;
     }
 };
 
 class mtu_info :public p0f_info{
 private:
-    string link;
-    string raw_mtu;
+    QString link;
+    QString raw_mtu;
 public:
-    mtu_info(string l,string mtu){
+    mtu_info(QString l,QString mtu){
         link=l;
         mtu=raw_mtu;
     }
-    string get_link(){
+    QString get_link(){
         return link;
     }
-     string get_raw_mtu(){
+     QString get_raw_mtu(){
         return raw_mtu;
     }
 };
 
 class syn_info :public p0f_info{
 private:
-    string os;
-    string dist;
-    string params;
-    string raw_sig;
+    QString os;
+    QString dist;
+    QString params;
+    QString raw_sig;
 public:
-    syn_info(string SO,string distance,string parameters,string sig){
+    syn_info(QString SO,QString distance,QString parameters,QString sig){
         os=SO;
         dist=distance;
         params=parameters;
@@ -75,42 +75,42 @@ public:
 
     }
 
-    string get_os(){
+    QString get_os(){
         return os;
     }
-    string get_dist(){
+    QString get_dist(){
         return dist;
     }
-    string get_params(){
+    QString get_params(){
         return params;
     }
-    string get_raw_sig(){
+    QString get_raw_sig(){
         return raw_sig;
     }
 };
 class http_response_info :public p0f_info{
 private:
-    string app;
-    string lang;
-    string param;
-    string raw_sig;
+    QString app;
+    QString lang;
+    QString param;
+    QString raw_sig;
 public:
-    http_response_info(string application,string language,string parameters,string sig){
+    http_response_info(QString application,QString language,QString parameters,QString sig){
         app=application;
         lang = language;
         param= parameters;
         raw_sig = sig;
     }
-    string get_app(){
+    QString get_app(){
         return app;
     }
-    string get_lang(){
+    QString get_lang(){
         return lang;
     }
-    string get_param(){
+    QString get_param(){
         return param;
     }
-    string get_raw_sig(){
+    QString get_raw_sig(){
         return raw_sig;
     }
 
