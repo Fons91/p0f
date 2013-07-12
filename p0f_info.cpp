@@ -14,8 +14,8 @@ using namespace std;
 p0f_info *p0f_info_factory::new_p0f_info(p0f_info_factory::info_type type,QString machine_addr){
 
     p0f_info *info=0;
-    if(type==HTTP_RESPONSE){
-         info = new http_response_info(machine_addr);
+    if(type==HTTP_INFO){
+         info = new http_info(machine_addr);
     }
     else if(type==SYN){
          info = new syn_info(machine_addr);

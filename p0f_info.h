@@ -108,15 +108,15 @@ public:
         raw_sig=sig;
     }
 };
-class http_response_info :public p0f_info{
+class http_info :public p0f_info{
 private:
     QString app;
     QString lang;
     QString param;
     QString raw_sig;
 public:
-    http_response_info(QString server) :p0f_info(server){}
-    http_response_info(QString server,int own) : p0f_info(server,own){}
+    http_info(QString server) :p0f_info(server){}
+    http_info(QString server,int own) : p0f_info(server,own){}
 
     QString get_app(){
         return app;
@@ -134,6 +134,7 @@ public:
         app=application;
     }
     void set_lang(QString language){
+
         lang=language;
     }
     void set_param(QString parameters){
@@ -148,7 +149,7 @@ public:
 class p0f_info_factory{
 public:
     enum info_type{
-        HTTP_RESPONSE,
+        HTTP_INFO,
         SYN,
         MTU,
         UPTIME
@@ -156,6 +157,8 @@ public:
     static p0f_info *new_p0f_info(p0f_info_factory::info_type type,QString machine_addr);
 
 };
+
+
 
 
 int test();
