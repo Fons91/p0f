@@ -9,26 +9,23 @@
 class p0f_info
 {
 public:
-    enum owner{
-        SERVER,
-        CLIENT
-    };
+
     p0f_info(QString server){//I create 2 constuctor because the owner field is optional
         server_address=server;
     }
-    p0f_info(QString server,owner own){
+    p0f_info(QString server,int type){
         server_address=server;
-        subject=own;
+        is_client=type;
     }
-    owner get_subject(){
-        return subject;
+    int isclient(){
+        return is_client;
     }
     QString get_address(){
         return server_address;
     }
 protected:
    QString server_address; //address of the computer which we are trying to identify
-   owner subject;          //CLIENT means our machine(not so interesting this info) SERVER means another machine in the network
+   int is_client;         //0 indicates server 1 indicates client
 };
 
 
@@ -39,7 +36,7 @@ private:
     QString raw_freq;
 public:
    uptime_info(QString server) :p0f_info(server){}
-   uptime_info(QString server,p0f_info::owner own) : p0f_info(server,own){}
+   uptime_info(QString server,int own) : p0f_info(server,own){}
    QString  get_uptime(){
         return uptime;
     }
@@ -60,7 +57,7 @@ private:
     QString raw_mtu;
 public:
     mtu_info(QString server) :p0f_info(server){}
-    mtu_info(QString server,p0f_info::owner own) : p0f_info(server,own){}
+    mtu_info(QString server,int own) : p0f_info(server,own){}
     QString get_link(){
         return link;
     }
@@ -72,6 +69,7 @@ public:
      }
      void set_raw_mtu(QString mtu){
          raw_mtu=mtu;
+
      }
 };
 
@@ -83,7 +81,7 @@ private:
     QString raw_sig;
 public:
     syn_info(QString server) :p0f_info(server){}
-    syn_info(QString server,p0f_info::owner own) : p0f_info(server,own){}
+    syn_info(QString server,int own) : p0f_info(server,own){}
 
     QString get_os(){
         return os;
@@ -118,7 +116,7 @@ private:
     QString raw_sig;
 public:
     http_response_info(QString server) :p0f_info(server){}
-    http_response_info(QString server,p0f_info::owner own) : p0f_info(server,own){}
+    http_response_info(QString server,int own) : p0f_info(server,own){}
 
     QString get_app(){
         return app;
