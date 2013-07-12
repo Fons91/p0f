@@ -337,7 +337,7 @@ void start_observation(char* keyword, u8 field_cnt, u8 to_srv,
          to_srv ? f->cli_port : f->srv_port);
 
   }
-  char client[100];
+  char client[128];
   strcpy(client,(char*)addr_to_str(f->client->addr, f->client->ip_ver));
   char* server = addr_to_str(f->server->addr, f->server->ip_ver);
   create_packet(client, f->cli_port, server, f->srv_port, keyword);
@@ -1031,7 +1031,6 @@ void init(){
       else FATAL("Filter rule must be a single parameter (use quotes).");
 
     }*/
-
     if (read_file && api_sock)
       FATAL("API mode looks down on ofline captures.");
 
