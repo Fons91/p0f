@@ -11,7 +11,7 @@
 #define _GNU_SOURCE
 #define _FROM_P0F
 
-<<<<<<< HEAD
+
 //Add by me
 #include "p0f_auditor.h"
 

@@ -1,16 +1,13 @@
 #include "p0f_auditor.h"
->>>>>>>>>>>>>>>>>>>> File 1
+
 #include "QDebug"
 #include <stdio.h>
 #include "p0f_info.h"
->>>>>>>>>>>>>>>>>>>> File 2
->>>>>>>>>>>>>>>>>>>> File 3
+
 #include "QString"
 #include "stdio.h"
 #include "QDebug"
-<<<<<<<<<<<<<<<<<<<<
 
->>>>>>>>>>>>>>>>>>>> File 1
 
 
 p0f_info* packet;
@@ -66,7 +63,4 @@ p0f_auditor::p0f_auditor()
 }
 >>>>>>>>>>>>>>>>>>>> File 1
 */
->>>>>>>>>>>>>>>>>>>> File 2
->>>>>>>>>>>>>>>>>>>> File 3
-*/
-<<<<<<<<<<<<<<<<<<<<
+
