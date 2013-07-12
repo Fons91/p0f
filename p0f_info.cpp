@@ -5,30 +5,38 @@
 
 
 using namespace std;
+//p0f_info
 
-p0f_info::p0f_info(){}
 
-p0f_info *p0f_info_factory::new_p0f_info(p0f_info_factory::info_type type,MAP info_field){
+
+//factory method which recives the info_type TYPE of the info to be created and the ip addr (QString) MACHINE_ADDR of the machine which the info refers to
+//It returns a p0f_info object
+p0f_info *p0f_info_factory::new_p0f_info(p0f_info_factory::info_type type,QString machine_addr){
 
     p0f_info *info=0;
     if(type==HTTP_RESPONSE){
-         info = new http_response_info(info_field["app"],info_field["lang"],info_field["param"],info_field["raw_sig"]);
+         info = new http_response_info(machine_addr);
     }
     else if(type==SYN){
-         info = new syn_info(info_field["os"],info_field["dist"],info_field["params"],info_field["raw_sig"]);
+         info = new syn_info(machine_addr);
     }
-
+    else if(type==MTU){
+        info = new mtu_info(machine_addr);
+    }
+    else if(type==UPTIME){
+        info = new uptime_info(machine_addr);
+    }
     return info;
     }
 
 int test(){
-    map<QString,QString> mp;
-    mp["os"]="Linux";
-    mp["params"]="niente";
-    mp["dist"]="dadas";
-    mp["raw_sig"]="raw";
-    syn_info* info = (syn_info*) p0f_info_factory::new_p0f_info(p0f_info_factory::SYN,mp);
+    QString addr= "192.168.0.100";
+    syn_info* info = (syn_info*) p0f_info_factory::new_p0f_info(p0f_info_factory::SYN,addr);
+    info->set_os("Window");
     qDebug()<<  info->get_os();
+    qDebug()<<  info->get_address();
+    qDebug()<< info->get_raw_sig();
+
 
 
 
