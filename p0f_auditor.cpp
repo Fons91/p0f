@@ -1,8 +1,16 @@
 #include "p0f_auditor.h"
+>>>>>>>>>>>>>>>>>>>> File 1
 #include "QDebug"
 #include <stdio.h>
 #include "p0f_info.h"
+>>>>>>>>>>>>>>>>>>>> File 2
+>>>>>>>>>>>>>>>>>>>> File 3
+#include "QString"
+#include "stdio.h"
+#include "QDebug"
+<<<<<<<<<<<<<<<<<<<<
 
+>>>>>>>>>>>>>>>>>>>> File 1
 
 
 p0f_info* packet;
@@ -40,6 +48,25 @@ void end_packet(){
 }
 
 /*p0f_auditor::p0f_auditor()
+>>>>>>>>>>>>>>>>>>>> File 2
+p0f_auditor::p0f_auditor()
+>>>>>>>>>>>>>>>>>>>> File 3
+void create_info(char* client,int portclient,char* server, int serverport,char* key){
+    QString str = QString::fromUtf8( client );
+
+    qDebug()<<"Client "<<str;
+
+    printf("dawdawdwadas");
+
+}
+/*
+p0f_auditor::p0f_auditor()
+<<<<<<<<<<<<<<<<<<<<
 {
 }
+>>>>>>>>>>>>>>>>>>>> File 1
 */
+>>>>>>>>>>>>>>>>>>>> File 2
+>>>>>>>>>>>>>>>>>>>> File 3
+*/
+<<<<<<<<<<<<<<<<<<<<

@@ -1,15 +1,11 @@
 #include <map>
 #include <time.h>
-#include <string>
+#include <QString>
 #ifndef P0F_PACKET_H
 #define P0F_PACKET_H
 
 //Abstract class
-using namespace std;
 
-
-
-typedef std::map<std::string, std::string>MAP;
 class p0f_info
 {
 public:
@@ -17,101 +13,136 @@ public:
         SERVER,
         CLIENT
     };
-    p0f_info();
-   owner  get_subject(){
+    p0f_info(QString server){//I create 2 constuctor because the owner field is optional
+        server_address=server;
+    }
+    p0f_info(QString server,owner own){
+        server_address=server;
+        subject=own;
+    }
+    owner get_subject(){
         return subject;
     }
-private:
-    owner subject;
+    QString get_address(){
+        return server_address;
+    }
+protected:
+   QString server_address; //address of the computer which we are trying to identify
+   owner subject;          //CLIENT means our machine(not so interesting this info) SERVER means another machine in the network
 };
+
+
 
 class uptime_info : public p0f_info{
 private:
-    time_t uptime;
-
-    string raw_freq;
+    QString uptime;
+    QString raw_freq;
 public:
-    uptime_info(time_t time, string freq){
-        uptime=time;
-        raw_freq= freq;
-    }
-   time_t  get_uptime(){
+   uptime_info(QString server) :p0f_info(server){}
+   uptime_info(QString server,p0f_info::owner own) : p0f_info(server,own){}
+   QString  get_uptime(){
         return uptime;
     }
-    string get_raw_freq(){
+    QString get_raw_freq(){
         return raw_freq;
+    }
+    void set_uptime(QString up_time){
+        uptime=up_time;
+    }
+    void set_raw_freq(QString rawfreq){
+        raw_freq=rawfreq;
     }
 };
 
 class mtu_info :public p0f_info{
 private:
-    string link;
-    string raw_mtu;
+    QString link;
+    QString raw_mtu;
 public:
-    mtu_info(string l,string mtu){
-        link=l;
-        mtu=raw_mtu;
-    }
-    string get_link(){
+    mtu_info(QString server) :p0f_info(server){}
+    mtu_info(QString server,p0f_info::owner own) : p0f_info(server,own){}
+    QString get_link(){
         return link;
     }
-     string get_raw_mtu(){
+     QString get_raw_mtu(){
         return raw_mtu;
     }
+     void set_link(QString mtu_link){
+         link= mtu_link;
+     }
+     void set_raw_mtu(QString mtu){
+         raw_mtu=mtu;
+     }
 };
 
 class syn_info :public p0f_info{
 private:
-    string os;
-    string dist;
-    string params;
-    string raw_sig;
+    QString os;
+    QString dist;
+    QString params;
+    QString raw_sig;
 public:
-    syn_info(string SO,string distance,string parameters,string sig){
-        os=SO;
-        dist=distance;
-        params=parameters;
-        raw_sig=sig;
+    syn_info(QString server) :p0f_info(server){}
+    syn_info(QString server,p0f_info::owner own) : p0f_info(server,own){}
 
-    }
-
-    string get_os(){
+    QString get_os(){
         return os;
     }
-    string get_dist(){
+    QString get_dist(){
         return dist;
     }
-    string get_params(){
+    QString get_params(){
         return params;
     }
-    string get_raw_sig(){
+    QString get_raw_sig(){
         return raw_sig;
+    }
+    void set_os(QString SO){
+       os=SO;
+    }
+    void set_dist(QString distance){
+        dist=distance;
+    }
+    void set_params(QString parameters){
+        params=parameters;
+    }
+    void set_raw_sig(QString sig){
+        raw_sig=sig;
     }
 };
 class http_response_info :public p0f_info{
 private:
-    string app;
-    string lang;
-    string param;
-    string raw_sig;
+    QString app;
+    QString lang;
+    QString param;
+    QString raw_sig;
 public:
-    http_response_info(string application,string language,string parameters,string sig){
-        app=application;
-        lang = language;
-        param= parameters;
-        raw_sig = sig;
-    }
-    string get_app(){
+    http_response_info(QString server) :p0f_info(server){}
+    http_response_info(QString server,p0f_info::owner own) : p0f_info(server,own){}
+
+    QString get_app(){
         return app;
     }
-    string get_lang(){
+    QString get_lang(){
         return lang;
     }
-    string get_param(){
+    QString get_param(){
         return param;
     }
-    string get_raw_sig(){
+    QString get_raw_sig(){
         return raw_sig;
+    }
+    void set_app(QString application){
+        app=application;
+    }
+    void set_lang(QString language){
+        lang=language;
+    }
+    void set_param(QString parameters){
+        param=parameters;
+    }
+    void set_raw_sig(QString sig){
+        raw_sig=sig;
     }
 
 };
@@ -124,7 +155,7 @@ public:
         MTU,
         UPTIME
     };
-    static p0f_info *new_p0f_info(p0f_info_factory::info_type type,MAP info_field);
+    static p0f_info *new_p0f_info(p0f_info_factory::info_type type,QString machine_addr);
 
 };
 
