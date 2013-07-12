@@ -24,7 +24,7 @@ p0f_info *p0f_info_factory::new_p0f_info(p0f_info_factory::info_type type,QStrin
         info = new mtu_info(machine_addr);
     }
     else if(type==UPTIME){
-        info = new uptime_info(machine_addr);
+        info = new uptime_info(machine_addr );
     }
     return info;
     }
@@ -32,10 +32,15 @@ p0f_info *p0f_info_factory::new_p0f_info(p0f_info_factory::info_type type,QStrin
 int test(){
     QString addr= "192.168.0.100";
     syn_info* info = (syn_info*) p0f_info_factory::new_p0f_info(p0f_info_factory::SYN,addr);
+    mtu_info* info2= new mtu_info("dasdsad",1);
+    info2->set_link("dsadsa");
+    qDebug()<<info2->isclient();
     info->set_os("Window");
     qDebug()<<  info->get_os();
     qDebug()<<  info->get_address();
     qDebug()<< info->get_raw_sig();
+
+
 
 
 
