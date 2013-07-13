@@ -1,26 +1,27 @@
 #include "p0f_auditor.h"
-
 #include "QDebug"
 #include <stdio.h>
 #include "p0f_info.h"
-
 #include "QString"
 #include "stdio.h"
 #include "QDebug"
 
-
+/*Functions called to add information to packets*/
 void add_info_mtu(QString key, QString value);
-void add_info_http_response(QString key, QString value);
+void add_info_http_packet(QString key, QString value);
 void add_info_syn(QString key, QString value);
 void add_info_uptime(QString key, QString value);
 
+//pointers to packets
 mtu_info* mtu_packet;
 http_info* http_info_packet;
 syn_info* syn_packet;
 uptime_info* uptime_packet;
 
+//type of packet
 p0f_info_factory::info_type packet_type;
 
+//the method creates a new packet looking at the keyword that identifies the packet's type
 void create_packet(char* host, int to_srv, char *keyword){
     qDebug()<<host;
 
@@ -44,14 +45,9 @@ void create_packet(char* host, int to_srv, char *keyword){
         packet_type = p0f_info_factory::UPTIME;
         uptime_packet = new uptime_info(qClient, to_srv);
     }
-
-
-
-
-
 }
 
-//choose type of packet
+//add information to packet
 void add_info(char *key, char *value){
     QString qKey = QString::fromUtf8(key);
     QString qValue = QString::fromUtf8(value);
@@ -59,7 +55,7 @@ void add_info(char *key, char *value){
         add_info_mtu(qKey,qValue);
     }
     else if(packet_type == p0f_info_factory::HTTP_INFO){
-        add_info_http_response(qKey,qValue);
+        add_info_http_packet(qKey,qValue);
     }
     else if(packet_type == p0f_info_factory::SYN){
         add_info_syn(qKey,qValue);
@@ -69,7 +65,7 @@ void add_info(char *key, char *value){
     }
 }
 
-//methods to add information to packets
+//add info to mtu packet
 void add_info_mtu(QString key, QString value){
 
     qDebug()<<"add information to mtu_packet";
@@ -84,7 +80,8 @@ void add_info_mtu(QString key, QString value){
     qDebug()<<mtu_packet->get_raw_mtu();
 }
 
-void add_info_http_response(QString key, QString value){
+//add info to http response or request packet
+void add_info_http_packet(QString key, QString value){
     if(key.compare("app") == 0){
         http_info_packet->set_app(value);
     }
@@ -103,6 +100,7 @@ void add_info_http_response(QString key, QString value){
     qDebug()<<http_info_packet->get_raw_sig();
 }
 
+//add info to syn or syn+ack packet
 void add_info_syn(QString key, QString value){
     if(key.compare("dist") == 0){
         syn_packet->set_dist(value);
@@ -122,6 +120,7 @@ void add_info_syn(QString key, QString value){
     qDebug()<<syn_packet->get_raw_sig();
 }
 
+//add info to uptime packet
 void add_info_uptime(QString key, QString value){
     if(key.compare("uptime") == 0){
         uptime_packet->set_uptime(value);
@@ -132,6 +131,7 @@ void add_info_uptime(QString key, QString value){
     qDebug()<<uptime_packet->get_uptime();
     qDebug()<<uptime_packet->get_raw_freq();
 }
+
 
 void end_packet(){
 

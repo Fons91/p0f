@@ -26,7 +26,7 @@ SOURCES += main.cpp\
     tools/p0f-client.c \
     p0f_auditor.cpp \
     p0f_info.cpp \
-    network_db.cpp\
+    network_db.cpp \
     host.cpp
 
 HEADERS  += guip0f.h \
@@ -46,7 +46,7 @@ HEADERS  += guip0f.h \
     config.h \
     p0f_auditor.h \
     p0f_info.h \
-    network_db.h\
+    network_db.h \
     host.h
 
 FORMS    += guip0f.ui

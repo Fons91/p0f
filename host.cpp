@@ -13,29 +13,30 @@ http_info* host::get_http_packet(){
 }
 
 mtu_info* host::get_mtu_packet(){
-   return mtu_packet;
+    return mtu_packet;
 }
 
-syn_info* host::get_mtu_packet(){
-   return syn_packet;
+syn_info* host::get_syn_packet(){
+    return syn_packet;
 }
 
-uptime_info* host::get_mtu_packet(){
-   return uptime_packet();
+uptime_info* host::get_uptime_packet(){
+    return uptime_packet;
 }
 
-void host::set_http_packet(http_packet *packet){
+
+void host::set_http_packet(http_info *packet){
     http_packet = packet;
 }
 
-void host::set_mtu_packet(mtu_packet *packet){
+void host::set_mtu_packet(mtu_info *packet){
     mtu_packet = packet;
 }
 
-void host::set_syn_packet(syn_packet *packet){
+void host::set_syn_packet(syn_info *packet){
     syn_packet = packet;
 }
 
-void host::set_uptime_packet(uptime_packet *packet){
+void host::set_uptime_packet(uptime_info *packet){
     uptime_packet = packet;
 }
