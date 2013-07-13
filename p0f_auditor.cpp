@@ -5,6 +5,7 @@
 #include "QString"
 #include "stdio.h"
 #include "QDebug"
+#include "network_db.h"
 
 /*Functions called to add information to packets*/
 void add_info_mtu(QString key, QString value);
@@ -134,7 +135,18 @@ void add_info_uptime(QString key, QString value){
 
 
 void end_packet(){
-
+    if(packet_type==p0f_info_factory::SYN){
+        network_db::add_info_network(syn_packet,p0f_info_factory::SYN);
+    }
+    else  if(packet_type==p0f_info_factory::MTU){
+        network_db::add_info_network(mtu_packet,p0f_info_factory::MTU);
+    }
+    else  if(packet_type==p0f_info_factory::UPTIME){
+        network_db::add_info_network(uptime_packet,p0f_info_factory::UPTIME);
+    }
+    else  if(packet_type==p0f_info_factory::HTTP_INFO){
+        network_db::add_info_network(http_info_packet,p0f_info_factory::HTTP_INFO);
+    }
 }
 
 

@@ -381,7 +381,7 @@ void add_observation_field(char* key, u8* value) {
   add_info(key,(char*)value);
 
   if (!obs_fields) {
-
+    end_packet();
     if (!daemon_mode) SAYF("|\n`----\n\n");
 
     if (log_file) LOGF("\n");
