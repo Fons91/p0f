@@ -1,6 +1,7 @@
 #include <map>
 #include <time.h>
 #include <QString>
+#include "QDebug"
 #ifndef P0F_PACKET_H
 #define P0F_PACKET_H
 
@@ -9,7 +10,7 @@
 class p0f_info
 {
 public:
-
+    void print_info(){}
     p0f_info(QString server){//I create 2 constuctor because the owner field is optional
         server_address=server;
     }
@@ -56,6 +57,9 @@ private:
     QString link;
     QString raw_mtu;
 public:
+    void print_info(){
+        qDebug()<<"MTU PACKET\n"<<"link:"<<link<<"\nraw_mtu:"<<raw_mtu;
+    }
     mtu_info(QString server) :p0f_info(server){}
     mtu_info(QString server,int own) : p0f_info(server,own){}
     QString get_link(){
