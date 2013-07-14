@@ -39,7 +39,8 @@ void create_packet(char* host, int to_srv, char *keyword){
         packet_type = p0f_info_factory::SYN;
         syn_packet = new syn_info(qClient, to_srv);
     }
-    else if(strcmp(keyword,"http_response") == 0){
+    else if(strcmp(keyword,"http response") == 0||strcmp(keyword,"http request")==0){
+        qDebug()<<"creating httpInfo";
         packet_type = p0f_info_factory::HTTP_INFO;
         http_info_packet = new http_info(qClient, to_srv);
     }
