@@ -21,10 +21,10 @@ public:
 
 private:
     QString ip_host;
-    mtu_info* mtu_packet=0;
-    syn_info* syn_packet=0;
-    http_info* http_packet=0;
-    uptime_info* uptime_packet=0;
+    mtu_info* mtu_packet;
+    syn_info* syn_packet;
+    http_info* http_packet;
+    uptime_info* uptime_packet;
 };
 
 #endif // HOST_H

@@ -2,6 +2,10 @@
 
 host::host(QString ip){
     ip_host = ip;
+    mtu_packet=0;
+    syn_packet=0;
+    http_packet=0;
+    uptime_packet=0;
 }
 
 QString host::get_ip(){
