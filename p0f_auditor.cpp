@@ -12,7 +12,7 @@ void add_info_mtu(QString key, QString value);
 void add_info_http_packet(QString key, QString value);
 void add_info_syn(QString key, QString value);
 void add_info_uptime(QString key, QString value);
-
+network_db nt=network_db::get_istance();
 //pointers to packets
 mtu_info* mtu_packet;
 http_info* http_info_packet;
@@ -21,6 +21,8 @@ uptime_info* uptime_packet;
 
 //type of packet
 p0f_info_factory::info_type packet_type;
+
+
 
 //the method creates a new packet looking at the keyword that identifies the packet's type
 void create_packet(char* host, int to_srv, char *keyword){
@@ -32,7 +34,6 @@ void create_packet(char* host, int to_srv, char *keyword){
     if(strcmp(keyword,"mtu") == 0){
         packet_type = p0f_info_factory::MTU;
         mtu_packet = new mtu_info(qClient, to_srv);
-        qDebug()<<"Created a mtu_packet";
     }
     else if(strcmp(keyword,"syn") == 0 || strcmp(keyword,"syn+ack") == 0){
         packet_type = p0f_info_factory::SYN;
@@ -136,18 +137,21 @@ void add_info_uptime(QString key, QString value){
 
 void end_packet(){
     if(packet_type==p0f_info_factory::SYN){
-        network_db::add_info_network(syn_packet,p0f_info_factory::SYN);
+        nt.add_info_network(syn_packet,p0f_info_factory::SYN);
     }
     else  if(packet_type==p0f_info_factory::MTU){
-        network_db::add_info_network(mtu_packet,p0f_info_factory::MTU);
+        qDebug()<<"sent a mtu_packet"<<"Address"<<mtu_packet->get_address();
+        nt.add_info_network(mtu_packet,p0f_info_factory::MTU);
     }
     else  if(packet_type==p0f_info_factory::UPTIME){
-        network_db::add_info_network(uptime_packet,p0f_info_factory::UPTIME);
+        nt.add_info_network(uptime_packet,p0f_info_factory::UPTIME);
     }
     else  if(packet_type==p0f_info_factory::HTTP_INFO){
-        network_db::add_info_network(http_info_packet,p0f_info_factory::HTTP_INFO);
+        nt.add_info_network(http_info_packet,p0f_info_factory::HTTP_INFO);
     }
 }
 
 
-
+void print_network(){
+     nt.show_network();
+}

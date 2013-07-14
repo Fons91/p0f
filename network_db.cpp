@@ -1,4 +1,5 @@
 #include "network_db.h"
+#include "QDebug"
 
 network_db::network_db()
 {   
@@ -12,14 +13,15 @@ host* network_db::find_host(QString addr){
 }
 
 void  network_db::add_info_network(p0f_info *packet,p0f_info_factory::info_type info_type){
-    host* old_host=find_host(packet->get_address());
+    host* old_host=network_db::find_host(packet->get_address());
     if (old_host==NULL){
+        qDebug()<<"CREATING HOST WITH IP"<<packet->get_address();
         host *new_host = new host(packet->get_address());
-        add_packet_host(packet,info_type,new_host);
+        network_db::add_packet_host(packet,info_type,new_host);
         network.append(new_host);
     }
     else{
-            add_packet_host(packet,info_type,old_host);
+            network_db::add_packet_host(packet,info_type,old_host);
         }
 
     }
@@ -41,8 +43,14 @@ void  network_db::add_packet_host(p0f_info *packet,p0f_info_factory::info_type i
 }
 
 void  network_db::show_network(){
+    qDebug()<<"SHOWING NETWORK"<<network.size();
+
     for (int i=0;i<network.size();i++){
-        network[i]->get_mtu_packet()->print_info();
+        qDebug()<<"<--------------------------------------------------------------------------->";
+        qDebug()<<"host n "<<i<<" ip "<<network[i]->get_ip();
+        network[i]->print_packets();
+
+
 
     }
 }

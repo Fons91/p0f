@@ -1,6 +1,7 @@
 #ifndef HOST_H
 #define HOST_H
 #include "p0f_info.h"
+#include "QDebug"
 
 class host
 {
@@ -15,13 +16,15 @@ public:
     syn_info* get_syn_packet();
     uptime_info* get_uptime_packet();
     http_info* get_http_packet();
+    void print_packets();
+
 
 private:
     QString ip_host;
-    mtu_info* mtu_packet;
-    syn_info* syn_packet;
-    http_info* http_packet;
-    uptime_info* uptime_packet;
+    mtu_info* mtu_packet=0;
+    syn_info* syn_packet=0;
+    http_info* http_packet=0;
+    uptime_info* uptime_packet=0;
 };
 
 #endif // HOST_H

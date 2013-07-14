@@ -40,3 +40,19 @@ void host::set_syn_packet(syn_info *packet){
 void host::set_uptime_packet(uptime_info *packet){
     uptime_packet = packet;
 }
+void host::print_packets(){
+    if (mtu_packet!=0){
+        mtu_packet->print_info();
+    }
+    if (uptime_packet!=0){
+        uptime_packet->print_info();
+    }
+    if (syn_packet!=0){
+         syn_packet->print_info();
+    }
+    if (http_packet!=0){
+        http_packet->print_info();
+    }
+
+}
+

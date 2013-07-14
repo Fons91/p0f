@@ -10,7 +10,9 @@
 class p0f_info
 {
 public:
-    void print_info(){}
+    void print(){
+        qDebug()<<"ADDRESS "<<server_address<<"\nIS_CLIENT "<<is_client;
+    }
     p0f_info(QString server){//I create 2 constuctor because the owner field is optional
         server_address=server;
     }
@@ -38,6 +40,10 @@ private:
 public:
    uptime_info(QString server) :p0f_info(server){}
    uptime_info(QString server,int own) : p0f_info(server,own){}
+   void print_info(){
+       p0f_info::print();
+       qDebug()<<"UPTIME PACKET\n"<<"uptime:"<<uptime<<"\nraw_sig "<<raw_freq;
+   }
    QString  get_uptime(){
         return uptime;
     }
@@ -58,6 +64,7 @@ private:
     QString raw_mtu;
 public:
     void print_info(){
+        p0f_info::print();
         qDebug()<<"MTU PACKET\n"<<"link:"<<link<<"\nraw_mtu:"<<raw_mtu;
     }
     mtu_info(QString server) :p0f_info(server){}
@@ -86,6 +93,10 @@ private:
 public:
     syn_info(QString server) :p0f_info(server){}
     syn_info(QString server,int own) : p0f_info(server,own){}
+    void print_info(){
+        p0f_info::print();
+        qDebug()<<"SYN PACKET\n os:"<<os<<"\ndist:"<<dist<<"\nparams "<<params<<"\nraw_sig "<<raw_sig;
+    }
 
     QString get_os(){
         return os;
@@ -121,7 +132,10 @@ private:
 public:
     http_info(QString server) :p0f_info(server){}
     http_info(QString server,int own) : p0f_info(server,own){}
-
+    void print_info(){
+        p0f_info::print();
+        qDebug() << "HTTP PACKET\n"<<"app:"<<app<<"\nlang:"<<lang<<"\nparams "<<param<<"\nraw_sig "<<raw_sig;
+    }
     QString get_app(){
         return app;
     }
