@@ -209,14 +209,19 @@ static void close_spare_fds(void) {
 
   if (!d) {
     /* Best we could do... */
-    for (i = 3; i < 256; i++) 
-      if (!close(i)) closed++;
+    for (i = 3; i < 256; i++)
+
+      if (!close(i)){
+          SAYF("______%u",i);
+          closed++;
+      }
+
     return;
   }
 
   while ((de = readdir(d))) {
     i = atol(de->d_name);
-    if (i > 2 && !close(i)) closed++;
+    if (i > 5 && !close(i)){SAYF("______%u",i); closed++;}
   }
 
   closedir(d);
