@@ -19,6 +19,7 @@ public:
     ~GUIp0f();
 public slots:
     void set_name_interface();
+    void stop_p0f();
 
 private:
     Ui::GUIp0f *ui;

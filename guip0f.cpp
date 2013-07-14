@@ -35,6 +35,10 @@ void GUIp0f::create_list_interface(){
         ui->list_interface->addItem(interface.humanReadableName());
 }
 
+void GUIp0f::stop_p0f(){
+    my.terminate();
+}
+
 
 GUIp0f::~GUIp0f()
 {
