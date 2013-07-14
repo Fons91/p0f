@@ -2,6 +2,8 @@
 #include "ui_guip0f.h"
 #include <QDebug>
 #include <QNetworkInterface>
+#include "p0f_auditor.h"
+#include "network_db.h"
 extern "C" {
 #include "p0f.h"
 }
@@ -14,6 +16,12 @@ GUIp0f::GUIp0f(QWidget *parent) :
 
     ui->setupUi(this);
     create_list_interface();
+    timer_update = new QTimer(this);
+    connect(timer_update,SIGNAL(timeout()),this,SLOT(update_gui()));
+    if(!timer_update->isActive()){
+        timer_update->start(10000);
+    }
+
 }
 
 void GUIp0f::set_name_interface(){
@@ -23,8 +31,10 @@ void GUIp0f::set_name_interface(){
    QByteArray ba = name_interface.toLatin1();
    char *char_interface = ba.data();
    set_up_iface(char_interface);
-   init();
+   //go();
+   my.start();
    qDebug()<< "end set name interface";
+  // exit(0);
 }
 
 void GUIp0f::create_list_interface(){
@@ -34,8 +44,20 @@ void GUIp0f::create_list_interface(){
 }
 
 void GUIp0f::stop_p0f(){
-    p0fstop();
+    my.terminate();
+    timer_update->stop();
 }
+
+void GUIp0f::update_gui(){
+    qDebug()<<"timer running timeout";
+    network_db data = network_db::get_istance();
+
+
+
+
+
+}
+
 
 
 GUIp0f::~GUIp0f()
