@@ -11,6 +11,7 @@ class p0f_info
 {
 public:
     void print(){
+        qDebug()<<">>>>>>>>>PACKET<<<<<<<<<<<";
         qDebug()<<"ADDRESS "<<server_address<<"\nIS_CLIENT "<<is_client;
     }
     p0f_info(QString server){//I create 2 constuctor because the owner field is optional

@@ -6,21 +6,27 @@ network_db::network_db()
 }
 host* network_db::find_host(QString addr){
     for(int i=0;i<network.size();i++){
-        if (addr.compare(network[i]->get_ip()))
+        qDebug()<<"Comparing "<<addr<<"   "<<network[i]->get_ip();
+        if (addr.compare(network[i]->get_ip())==0){
+            qDebug()<<"is equal "<<addr<<"   "<<network[i]->get_ip();
             return network[i];
+        }
     }
-    return NULL;
+    return 0;
 }
 
 void  network_db::add_info_network(p0f_info *packet,p0f_info_factory::info_type info_type){
+    qDebug()<<"NETwork recived packed"<<packet->get_address();
+
     host* old_host=network_db::find_host(packet->get_address());
-    if (old_host==NULL){
+    if (old_host==0){
         qDebug()<<"CREATING HOST WITH IP"<<packet->get_address();
         host *new_host = new host(packet->get_address());
         network_db::add_packet_host(packet,info_type,new_host);
         network.append(new_host);
     }
     else{
+        qDebug()<<"Adding packet";
             network_db::add_packet_host(packet,info_type,old_host);
         }
 
