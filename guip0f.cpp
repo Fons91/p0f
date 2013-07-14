@@ -51,15 +51,7 @@ void GUIp0f::stop_p0f(){
 void GUIp0f::update_gui(){
     qDebug()<<"timer running timeout";
     network_db data = network_db::get_istance();
-    qDebug()<<data.network.size();
-    for (int i=0;i<data.network.size();i++){
-        qDebug()<<"<--------------------------------------------------------------------------->";
-        qDebug()<<"host n "<<i<<" ip "<<data.network[i]->get_ip();
-        data.network[i]->print_packets();
 
-
-
-    }
 
 
 
