@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     p0f_auditor.cpp \
     p0f_info.cpp \
     network_db.cpp \
-    host.cpp
+    host.cpp \
+    mythread.cpp
 
 HEADERS  += guip0f.h \
     p0f.h \
@@ -47,7 +48,8 @@ HEADERS  += guip0f.h \
     p0f_auditor.h \
     p0f_info.h \
     network_db.h \
-    host.h
+    host.h \
+    mythread.h
 
 FORMS    += guip0f.ui
 

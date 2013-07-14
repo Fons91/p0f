@@ -30,7 +30,7 @@ void add_observation_field(char* key, u8* value);
 void set_up_iface(char iface_choose[]);
 
 /*add by me for testing*/
-void init();
+void go();
 
 #define OBSERVF(_key, _fmt...) do { \
     u8* _val; \

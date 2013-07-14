@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QComboBox>
 #include <ui_guip0f.h>
+#include "mythread.h"
 
 namespace Ui {
 class GUIp0f;
@@ -22,6 +23,7 @@ public slots:
 private:
     Ui::GUIp0f *ui;
     void create_list_interface();
+    MyThread my;
 };
 
 #endif // GUIP0F_H

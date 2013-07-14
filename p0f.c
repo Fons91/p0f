@@ -209,14 +209,14 @@ static void close_spare_fds(void) {
 
   if (!d) {
     /* Best we could do... */
-    for (i = 3; i < 256; i++) 
+    for (i = 10; i < 256; i++)
       if (!close(i)) closed++;
     return;
   }
 
   while ((de = readdir(d))) {
     i = atol(de->d_name);
-    if (i > 2 && !close(i)) closed++;
+    if (i > 10 && !close(i)) closed++;
   }
 
   closedir(d);
@@ -1029,7 +1029,7 @@ static void offline_event_loop(void) {
 
 }
 
-void init(){
+void go(){
    /* if (optind < argc) {
 
       if (optind + 1 == argc) orig_rule = (u8*)argv[optind];
