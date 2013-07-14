@@ -5,6 +5,8 @@
 #include <QComboBox>
 #include <ui_guip0f.h>
 #include "mythread.h"
+#include "network_db.h"
+#include <QTimer>
 
 namespace Ui {
 class GUIp0f;
@@ -20,11 +22,16 @@ public:
 public slots:
     void set_name_interface();
     void stop_p0f();
+    void update_gui();
 
 private:
     Ui::GUIp0f *ui;
     void create_list_interface();
     MyThread my;
+    QTimer* timer_update;
+
+
+
 };
 
 #endif // GUIP0F_H
