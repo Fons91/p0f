@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Start</string>
     </property>
    </widget>
    <widget class="QComboBox" name="list_interface">
@@ -35,6 +35,19 @@
       <width>78</width>
       <height>24</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>190</y>
+      <width>80</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stop</string>
     </property>
    </widget>
   </widget>
@@ -67,8 +80,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>GUIp0f</receiver>
+   <slot>stop_p0f()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>306</x>
+     <y>217</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>360</x>
+     <y>132</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>set_name_interface()</slot>
+  <slot>stop_p0f()</slot>
  </slots>
 </ui>

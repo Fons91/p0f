@@ -746,6 +746,12 @@ static void abort_handler(int sig) {
   print_network();
 }
 
+ void p0fstop() {
+  if (stop_soon) exit(1);
+  stop_soon = 1;
+  print_network();
+}
+
 
 #ifndef __CYGWIN__
 

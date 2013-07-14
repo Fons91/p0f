@@ -25,13 +25,16 @@ void GUIp0f::set_name_interface(){
    set_up_iface(char_interface);
    init();
    qDebug()<< "end set name interface";
-   exit(0);
 }
 
 void GUIp0f::create_list_interface(){
     QNetworkInterface* network = new QNetworkInterface();
     foreach(QNetworkInterface interface,network->allInterfaces())
         ui->list_interface->addItem(interface.humanReadableName());
+}
+
+void GUIp0f::stop_p0f(){
+    p0fstop();
 }
 
 

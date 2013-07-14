@@ -55,6 +55,7 @@ FORMS    += guip0f.ui
 
 LIBS += -lpcap
 
+DEFINES += QT_NO_DEBUG_OUTPUT QT_NO_WARNING_OUTPUT
 OTHER_FILES += \
     p0f.fp
 
