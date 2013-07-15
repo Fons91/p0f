@@ -25,6 +25,7 @@ public slots:
     void update_gui();
 
 private:
+    void set_list_ip();
     Ui::GUIp0f *ui;
     void create_list_interface();
     MyThread my;

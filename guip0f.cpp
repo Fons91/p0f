@@ -4,6 +4,8 @@
 #include <QNetworkInterface>
 #include "p0f_auditor.h"
 #include "network_db.h"
+#include <QLayout>
+#include <QGroupBox>
 extern "C" {
 #include "p0f.h"
 }
@@ -21,6 +23,9 @@ GUIp0f::GUIp0f(QWidget *parent) :
     if(!timer_update->isActive()){
         timer_update->start(10000);
     }
+
+    ui->groupBox->setLayout(ui->gridLayout);
+
 
 }
 
@@ -49,6 +54,7 @@ void GUIp0f::stop_p0f(){
     print_network();
     network_db* data = network_db::get_istance();
     data->show_network();
+    set_list_ip();
     qDebug()<<data->get_hosts().size()<<" in gui";
 }
 
@@ -57,7 +63,42 @@ void GUIp0f::update_gui(){
     print_network();
     network_db* data = network_db::get_istance();
     data->show_network();
-   ui->label_3->setText(data->get_hosts()[0]->get_ip());
+    set_list_ip();
+
+/*
+    QString prova = "ciao";
+    QLabel* ciao = new QLabel(prova,ui->frame);
+    ciao->setVisible(true);
+    QLabel* ciao1 = new QLabel(prova,ui->frame);
+    ciao1->setVisible(true);
+    QLabel* ciao2 = new QLabel(prova,ui->frame);
+    ciao2->setVisible(true);
+    QLabel* ciao3 = new QLabel(prova,ui->frame);
+    ciao3->setVisible(true);
+    ui->gridLayout->addWidget(ciao,0,0);
+    ui->gridLayout->addWidget(ciao1,1,1);
+    ui->gridLayout->addWidget(ciao2,2,2);
+    ui->gridLayout->addWidget(ciao3,3,3);
+
+*/
+
+}
+
+void GUIp0f::set_list_ip(){
+    network_db* data = network_db::get_istance();
+    if(data->get_hosts().size()>0){
+        ui->listWidget->clear();
+
+        for(int i=0,row=0,column=0;i<data->get_hosts().size();i++,column++){
+            ui->listWidget->addItem(data->get_hosts()[i]->get_ip());
+            QLabel* prova = new QLabel(data->get_hosts()[i]->get_ip(),this);
+            if(column==5){
+                row++;
+                column=0;
+            }
+            ui->gridLayout->addWidget(prova,row,column);
+        }
+    }
 }
 
 
