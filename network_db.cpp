@@ -1,5 +1,6 @@
 #include "network_db.h"
 #include "QDebug"
+network_db* network_db::istance =NULL;
 
 network_db::network_db()
 {   
@@ -60,3 +61,10 @@ void  network_db::show_network(){
 
     }
 }
+
+ network_db* network_db::get_istance(){
+    if(!istance) istance = new network_db();
+    return istance;
+}
+
+

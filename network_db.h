@@ -12,15 +12,16 @@ private:
      void add_packet_host(p0f_info *packet,p0f_info_factory::info_type info_type,host* new_host);
      host*  find_host(QString addr);
      QVector<host*> network;
+     static network_db* istance;
 
 public:
-     static network_db& get_istance(){
-         static network_db istance;
-         return istance;
-     }
+     static network_db* get_istance();
 
      void  show_network();
      void   add_info_network(p0f_info *packet,p0f_info_factory::info_type type);
+     QVector<host*> get_hosts(){
+         return network;
+     }
 
 
 

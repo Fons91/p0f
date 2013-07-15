@@ -12,7 +12,7 @@ void add_info_mtu(QString key, QString value);
 void add_info_http_packet(QString key, QString value);
 void add_info_syn(QString key, QString value);
 void add_info_uptime(QString key, QString value);
-network_db nt=network_db::get_istance();
+network_db* nt=network_db::get_istance();
 //pointers to packets
 mtu_info* mtu_packet;
 http_info* http_info_packet;
@@ -138,21 +138,22 @@ void add_info_uptime(QString key, QString value){
 
 void end_packet(){
     if(packet_type==p0f_info_factory::SYN){
-        nt.add_info_network(syn_packet,p0f_info_factory::SYN);
+        nt->add_info_network(syn_packet,p0f_info_factory::SYN);
     }
     else  if(packet_type==p0f_info_factory::MTU){
         qDebug()<<"sent a mtu_packet"<<"Address"<<mtu_packet->get_address();
-        nt.add_info_network(mtu_packet,p0f_info_factory::MTU);
+        nt->add_info_network(mtu_packet,p0f_info_factory::MTU);
     }
     else  if(packet_type==p0f_info_factory::UPTIME){
-        nt.add_info_network(uptime_packet,p0f_info_factory::UPTIME);
+        nt->add_info_network(uptime_packet,p0f_info_factory::UPTIME);
     }
     else  if(packet_type==p0f_info_factory::HTTP_INFO){
-        nt.add_info_network(http_info_packet,p0f_info_factory::HTTP_INFO);
+        nt->add_info_network(http_info_packet,p0f_info_factory::HTTP_INFO);
     }
 }
 
 
 void print_network(){
-     nt.show_network();
+   nt->show_network();
+   qDebug()<<nt->get_hosts().size()<<" in auditor";
 }

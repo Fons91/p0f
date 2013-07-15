@@ -47,11 +47,17 @@ void GUIp0f::stop_p0f(){
     my.terminate();
     timer_update->stop();
     print_network();
+    network_db* data = network_db::get_istance();
+    data->show_network();
+    qDebug()<<data->get_hosts().size()<<" in gui";
 }
 
 void GUIp0f::update_gui(){
     qDebug()<<"timer running timeout";
     print_network();
+    network_db* data = network_db::get_istance();
+    data->show_network();
+   ui->label_3->setText(data->get_hosts()[0]->get_ip());
 }
 
 

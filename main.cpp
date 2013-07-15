@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     GUIp0f w;
-    network_db nt=network_db::get_istance();
+    //network_db nt=network_db::get_istance();
 
   /*  QNetworkInterface* network = new QNetworkInterface();
     QString strNetworkInterfaces;
