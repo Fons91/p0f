@@ -46,16 +46,12 @@ void GUIp0f::create_list_interface(){
 void GUIp0f::stop_p0f(){
     my.terminate();
     timer_update->stop();
+    print_network();
 }
 
 void GUIp0f::update_gui(){
     qDebug()<<"timer running timeout";
-    network_db data = network_db::get_istance();
-
-
-
-
-
+    print_network();
 }
 
 
