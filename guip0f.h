@@ -23,6 +23,7 @@ public slots:
     void set_name_interface();
     void stop_p0f();
     void update_gui();
+    void see_info_host();
 
 private:
     void set_list_ip();
@@ -30,6 +31,7 @@ private:
     void create_list_interface();
     MyThread my;
     QTimer* timer_update;
+
 
 
 

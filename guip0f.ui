@@ -39,7 +39,7 @@
       </rect>
      </property>
      <property name="title">
-      <string>GroupBox</string>
+      <string>Host Network</string>
      </property>
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
@@ -69,7 +69,7 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="start_button">
      <property name="geometry">
       <rect>
        <x>100</x>
@@ -105,7 +105,7 @@
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Select an interface&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;to listen&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="stop_button">
      <property name="geometry">
       <rect>
        <x>100</x>
@@ -137,8 +137,8 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>20</y>
+       <x>70</x>
+       <y>10</y>
        <width>71</width>
        <height>16</height>
       </rect>
@@ -150,11 +150,24 @@
     <widget class="QListWidget" name="listWidget">
      <property name="geometry">
       <rect>
-       <x>15</x>
-       <y>41</y>
-       <width>171</width>
-       <height>371</height>
+       <x>10</x>
+       <y>30</y>
+       <width>181</width>
+       <height>351</height>
       </rect>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="info_button">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>390</y>
+       <width>80</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>See Info</string>
      </property>
     </widget>
    </widget>
@@ -173,7 +186,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton</sender>
+   <sender>start_button</sender>
    <signal>clicked()</signal>
    <receiver>GUIp0f</receiver>
    <slot>set_name_interface()</slot>
@@ -189,7 +202,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>pushButton_2</sender>
+   <sender>stop_button</sender>
    <signal>clicked()</signal>
    <receiver>GUIp0f</receiver>
    <slot>stop_p0f()</slot>
@@ -204,9 +217,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>info_button</sender>
+   <signal>clicked()</signal>
+   <receiver>GUIp0f</receiver>
+   <slot>see_info_host()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>118</x>
+     <y>579</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-10</x>
+     <y>564</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>set_name_interface()</slot>
   <slot>stop_p0f()</slot>
+  <slot>see_info_host()</slot>
  </slots>
 </ui>

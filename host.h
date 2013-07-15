@@ -16,7 +16,7 @@ public:
     syn_info* get_syn_packet();
     uptime_info* get_uptime_packet();
     http_info* get_http_packet();
-    void print_packets();
+    QString print_packets();
 
 
 private:

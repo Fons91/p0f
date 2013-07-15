@@ -6,6 +6,7 @@
 #include "network_db.h"
 #include <QLayout>
 #include <QGroupBox>
+#include <QMessageBox>
 extern "C" {
 #include "p0f.h"
 }
@@ -87,11 +88,17 @@ void GUIp0f::update_gui(){
 void GUIp0f::set_list_ip(){
     network_db* data = network_db::get_istance();
     if(data->get_hosts().size()>0){
+        //clear list host
         ui->listWidget->clear();
+        QLayoutItem* eliminate;
+        while((eliminate = ui->gridLayout->takeAt(0))!=0){
+            delete eliminate->widget();
+        }
 
+        //add image host
         for(int i=0,row=0,column=0;i<data->get_hosts().size();i++,column++){
             ui->listWidget->addItem(data->get_hosts()[i]->get_ip());
-            QLabel* prova = new QLabel(data->get_hosts()[i]->get_ip(),this);
+            QLabel* prova = new QLabel(data->get_hosts()[i]->get_ip(),ui->groupBox);
             if(column==5){
                 row++;
                 column=0;
@@ -99,6 +106,20 @@ void GUIp0f::set_list_ip(){
             ui->gridLayout->addWidget(prova,row,column);
         }
     }
+
+}
+
+void GUIp0f::see_info_host(){
+    network_db* data = network_db::get_istance();
+    QString host = ui->listWidget->currentItem()->text();
+    for(int i=0;i<data->get_hosts().size();i++){
+        if(data->get_hosts()[i]->get_ip().compare(host)==0){
+            QString info = "IP host = "+data->get_hosts()[i]->get_ip()+
+                    "\n ";
+            QMessageBox::information(NULL,"Host Information",info+"\n"+data->get_hosts()[i]->print_packets());
+        }
+    }
+
 }
 
 
