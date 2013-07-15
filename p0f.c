@@ -209,14 +209,14 @@ static void close_spare_fds(void) {
 
   if (!d) {
     /* Best we could do... */
-    for (i = 3; i < 256; i++) 
+    for (i = 10; i < 256; i++)
       if (!close(i)) closed++;
     return;
   }
 
   while ((de = readdir(d))) {
     i = atol(de->d_name);
-    if (i > 2 && !close(i)) closed++;
+    if (i > 10 && !close(i)) closed++;
   }
 
   closedir(d);
@@ -381,7 +381,7 @@ void add_observation_field(char* key, u8* value) {
   add_info(key,(char*)value);
 
   if (!obs_fields) {
-
+    end_packet();
     if (!daemon_mode) SAYF("|\n`----\n\n");
 
     if (log_file) LOGF("\n");
@@ -743,6 +743,7 @@ static void fork_off(void) {
 static void abort_handler(int sig) {
   if (stop_soon) exit(1);
   stop_soon = 1;
+  print_network();
 }
 
 
@@ -1028,7 +1029,7 @@ static void offline_event_loop(void) {
 
 }
 
-void init(){
+void go(){
    /* if (optind < argc) {
 
       if (optind + 1 == argc) orig_rule = (u8*)argv[optind];

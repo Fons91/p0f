@@ -21,7 +21,7 @@ p0f_info *p0f_info_factory::new_p0f_info(p0f_info_factory::info_type type,QStrin
          info = new syn_info(machine_addr);
     }
     else if(type==MTU){
-        info = new mtu_info(machine_addr);
+        info= new mtu_info(machine_addr);
     }
     else if(type==UPTIME){
         info = new uptime_info(machine_addr );

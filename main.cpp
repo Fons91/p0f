@@ -6,6 +6,7 @@
 #include <QNetworkInterface>
 #include <QMessageBox>
 #include <p0f_info.h>
+#include "network_db.h"
 
 #include "qlist.h"
 
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     GUIp0f w;
+    network_db nt=network_db::get_istance();
 
   /*  QNetworkInterface* network = new QNetworkInterface();
     QString strNetworkInterfaces;
@@ -33,7 +35,7 @@ int main(int argc, char *argv[])
          }
 
        strNetworkInterfaces  = strNetworkInterfaces +
-       "\nHardware Address: " +interface.hardwareAddress()+
+       "\nHnetwork_dbardware Address: " +interface.hardwareAddress()+
        "\nIs UP:"+(interface.flags().testFlag(QNetworkInterface::IsUp)?"YES":"NO")+
        "\nIs Running:"+(interface.flags().testFlag(QNetworkInterface::IsRunning)?"YES":"NO")+
        "\nCan Broadcast:"+(interface.flags().testFlag(QNetworkInterface::CanBroadcast)?"YES":"NO")+
@@ -52,6 +54,7 @@ int main(int argc, char *argv[])
     test();
    // list_interfaces();
     w.show();
-    
+
     return a.exec();
 }
+

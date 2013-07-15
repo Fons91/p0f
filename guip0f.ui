@@ -6,36 +6,123 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>404</width>
-    <height>318</height>
+    <width>999</width>
+    <height>625</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>GUIp0f</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>190</y>
-      <width>80</width>
-      <height>26</height>
+      <x>200</x>
+      <y>0</y>
+      <width>791</width>
+      <height>591</height>
      </rect>
     </property>
-    <property name="text">
-     <string>PushButton</string>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
     </property>
    </widget>
-   <widget class="QComboBox" name="list_interface">
+   <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>110</y>
-      <width>78</width>
-      <height>24</height>
+      <x>0</x>
+      <y>0</y>
+      <width>201</width>
+      <height>161</height>
      </rect>
     </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="pushButton">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>80</y>
+       <width>91</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Start</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="list_interface">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>78</width>
+       <height>24</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>20</y>
+       <width>121</width>
+       <height>51</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Select an interface&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;to listen&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_2">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>110</y>
+       <width>91</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Stop Listening</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>160</y>
+      <width>201</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>20</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Host       List</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
@@ -58,8 +145,8 @@
    <slot>set_name_interface()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>204</x>
-     <y>207</y>
+     <x>154</x>
+     <y>108</y>
     </hint>
     <hint type="destinationlabel">
      <x>364</x>
@@ -67,8 +154,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>GUIp0f</receiver>
+   <slot>stop_p0f()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>133</x>
+     <y>132</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>191</x>
+     <y>-13</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>set_name_interface()</slot>
+  <slot>stop_p0f()</slot>
  </slots>
 </ui>
