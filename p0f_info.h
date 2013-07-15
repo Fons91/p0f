@@ -44,7 +44,7 @@ public:
    uptime_info(QString server) :p0f_info(server){}
    uptime_info(QString server,int own) : p0f_info(server,own){}
    QString print_info(){
-       QString info = p0f_info::print()+"\nUPTIME PACKET\n uptime "+uptime+"\nraw_sig "+raw_freq+"\n";
+       QString info ="\nUPTIME PACKET\n uptime "+uptime+"\nraw_sig "+raw_freq+"\n";
        //print to debug
        p0f_info::print();
        qDebug()<<"UPTIME PACKET\n"<<"uptime:"<<uptime<<"\nraw_sig "<<raw_freq;
@@ -70,7 +70,7 @@ private:
     QString raw_mtu;
 public:
     QString print_info(){
-       QString info =  p0f_info::print()+"\nMTU PACKET\nlink:"+link+"\nraw_mtu:"+raw_mtu+"\n";
+       QString info = "\nMTU PACKET\nlink:"+link+"\nraw_mtu:"+raw_mtu+"\n";
        //print to debug
        p0f_info::print();
        qDebug()<<"MTU PACKET\n"<<"link:"<<link<<"\nraw_mtu:"<<raw_mtu;
@@ -103,7 +103,7 @@ public:
     syn_info(QString server) :p0f_info(server){}
     syn_info(QString server,int own) : p0f_info(server,own){}
     QString print_info(){
-        QString info = p0f_info::print()+"\nSYN PACKET\n os:"+os+"\ndist:"+dist+"\nparams "+params+"\nraw_sig "+raw_sig+"\n";
+        QString info = "\nSYN PACKET\n os:"+os+"\ndist:"+dist+"\nparams "+params+"\nraw_sig "+raw_sig+"\n";
         //print to debug
         p0f_info::print();
         qDebug()<<"SYN PACKET\n os:"<<os<<"\ndist:"<<dist<<"\nparams "<<params<<"\nraw_sig "<<raw_sig;
@@ -145,7 +145,7 @@ public:
     http_info(QString server) :p0f_info(server){}
     http_info(QString server,int own) : p0f_info(server,own){}
     QString print_info(){
-        QString info = p0f_info::print()+"\nHTTP PACKET\napp:"+app+"\nlang:"+lang+"\nparams "+param+"\nraw_sig "+raw_sig+"\n";
+        QString info ="\nHTTP PACKET\napp:"+app+"\nlang:"+lang+"\nparams "+param+"\nraw_sig "+raw_sig+"\n";
         //print to debug
         p0f_info::print();
         qDebug() << "HTTP PACKET\n"<<"app:"<<app<<"\nlang:"<<lang<<"\nparams "<<param<<"\nraw_sig "<<raw_sig;

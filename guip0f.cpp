@@ -7,6 +7,7 @@
 #include <QLayout>
 #include <QGroupBox>
 #include <QMessageBox>
+#include <QPixmap>
 extern "C" {
 #include "p0f.h"
 }
@@ -19,12 +20,6 @@ GUIp0f::GUIp0f(QWidget *parent) :
 
     ui->setupUi(this);
     create_list_interface();
-    timer_update = new QTimer(this);
-    connect(timer_update,SIGNAL(timeout()),this,SLOT(update_gui()));
-    if(!timer_update->isActive()){
-        timer_update->start(10000);
-    }
-
     ui->groupBox->setLayout(ui->gridLayout);
 
 
@@ -37,6 +32,11 @@ void GUIp0f::set_name_interface(){
    QByteArray ba = name_interface.toLatin1();
    char *char_interface = ba.data();
    set_up_iface(char_interface);
+   timer_update = new QTimer(this);
+   connect(timer_update,SIGNAL(timeout()),this,SLOT(update_gui()));
+   if(!timer_update->isActive()){
+       timer_update->start(10000);
+   }
    //go();
    my.start();
    qDebug()<< "end set name interface";
@@ -99,6 +99,10 @@ void GUIp0f::set_list_ip(){
         for(int i=0,row=0,column=0;i<data->get_hosts().size();i++,column++){
             ui->listWidget->addItem(data->get_hosts()[i]->get_ip());
             QLabel* prova = new QLabel(data->get_hosts()[i]->get_ip(),ui->groupBox);
+            QPixmap mypix (":/windows.png");
+
+           prova->setPixmap(mypix);
+           prova->show();
             if(column==5){
                 row++;
                 column=0;

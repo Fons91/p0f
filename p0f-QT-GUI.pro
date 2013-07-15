@@ -58,5 +58,6 @@ FORMS    += guip0f.ui
 LIBS += -lpcap
 
 OTHER_FILES += \
-    p0f.fp
+    p0f.fp \
+    windows.png
 
