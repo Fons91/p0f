@@ -99,7 +99,7 @@ void GUIp0f::set_list_ip(){
         for(int i=0,row=0,column=0;i<data->get_hosts().size();i++,column++){
             ui->listWidget->addItem(data->get_hosts()[i]->get_ip());
             QLabel* prova = new QLabel(data->get_hosts()[i]->get_ip(),ui->groupBox);
-            QPixmap mypix (":/windows.png");
+            QPixmap mypix ("windows.png");
 
            prova->setPixmap(mypix);
            prova->show();
