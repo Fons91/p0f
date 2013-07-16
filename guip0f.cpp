@@ -161,27 +161,58 @@ void GUIp0f::see_info_host(QString host_ip){
               QMessageBox::information(NULL,"Host Information",info+"\n"+data->get_hosts()[i]->print_packets());
          }
      }
-    this->signal_buttons->removeEventFilter(this);
+  //  this->signal_buttons->removeEventFilter(this);
 
 }
 
-void GUIp0f::see_info_host(){
+void GUIp0f::search_host(){
     network_db* data = network_db::get_istance();
-    QListWidgetItem* current_host = ui->listWidget->currentItem();
-    qDebug()<<"print info ip";
-    if(current_host!=NULL)
-    {
-        QString host = current_host->text();
-        for(int i=0;i<data->get_hosts().size();i++){
-            if(data->get_hosts()[i]->get_ip().compare(host)==0){
-                QHostInfo *info_host =new QHostInfo(QHostInfo::fromName(data->get_hosts()[i]->get_ip()));
-                 QString info = "IP HOST = "+data->get_hosts()[i]->get_ip()+
-                        "\nDOMAIN NAME ="+info_host->hostName()+"\n";
-                QMessageBox::information(NULL,"Host Information",info+"\n"+data->get_hosts()[i]->print_packets());
-            }
+    if(data->get_hosts().size()>0){
+        //clear list host
+        ui->listWidget->clear();
+        QLayoutItem* eliminate;
+        while((eliminate = ui->gridLayout->takeAt(0))!=0){
+            delete eliminate->widget();
         }
+        signal_buttons = new QSignalMapper(this);
+        for(int i=0,row=0,column=0;i<data->get_hosts().size();i++,column++){
+            QString host_ip = data->get_hosts()[i]->get_ip();
+             qDebug()<<ui->lineEdit->text().indexOf(host_ip);
+            if(host_ip.indexOf(ui->lineEdit->text())!=-1){
+
+                ui->listWidget->addItem(data->get_hosts()[i]->get_ip());
+
+                QLabel *host_image=get_image_host(data->get_hosts()[i]);
+                host_image->setFixedHeight(100);
+                host_image->setFixedWidth(100);
+                QPushButton *host_name=new QPushButton(host_ip);
+                host_name->setFixedHeight(20);
+                host_name->setFixedWidth(120);
+                QFont font( "Arial", 11, QFont::Bold);
+                host_name->setFont(font);
+                connect(host_name, SIGNAL(clicked()), signal_buttons, SLOT(map()));
+                signal_buttons->setMapping(host_name, host_ip);
+
+                QGroupBox *my_group=new QGroupBox(ui->widget);
+                QVBoxLayout *vbox = new QVBoxLayout;
+                vbox->addWidget(host_image);
+                vbox->addWidget(host_name);
+                my_group->setLayout(vbox);
+                my_group->show();
+                my_group->setFixedHeight(130);
+                my_group->setFixedWidth(130);
+                if(column==5){
+                    row++;
+                    column=0;
+                }
+                ui->gridLayout->addWidget(my_group,row,column);
+            }
+         }
+        connect(signal_buttons, SIGNAL(mapped(const QString &)),
+                     this, SIGNAL(clicked(const QString &)));
+
+
     }
-    this->signal_buttons->removeEventFilter(this);
 
 }
 

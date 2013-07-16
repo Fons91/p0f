@@ -29,7 +29,7 @@ public slots:
     void stop_p0f();
     void update_gui();
     void see_info_host(QString host_ip);
-    void see_info_host();
+    void search_host();
 
 private:
     QLabel *get_image_host(host *ip);

@@ -46,8 +46,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>789</width>
-        <height>579</height>
+        <width>787</width>
+        <height>577</height>
        </rect>
       </property>
       <widget class="QWidget" name="widget" native="true">
@@ -190,17 +190,27 @@
       </rect>
      </property>
     </widget>
-    <widget class="QPushButton" name="info_button">
+    <widget class="QPushButton" name="search_button">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>130</x>
        <y>390</y>
-       <width>80</width>
+       <width>61</width>
        <height>26</height>
       </rect>
      </property>
      <property name="text">
-      <string>See Info</string>
+      <string>Search</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>390</y>
+       <width>121</width>
+       <height>25</height>
+      </rect>
      </property>
     </widget>
    </widget>
@@ -226,7 +236,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>154</x>
-     <y>108</y>
+     <y>106</y>
     </hint>
     <hint type="destinationlabel">
      <x>364</x>
@@ -251,18 +261,18 @@
    </hints>
   </connection>
   <connection>
-   <sender>info_button</sender>
+   <sender>search_button</sender>
    <signal>clicked()</signal>
    <receiver>GUIp0f</receiver>
-   <slot>see_info_host()</slot>
+   <slot>search_host()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>118</x>
-     <y>579</y>
+     <x>147</x>
+     <y>575</y>
     </hint>
     <hint type="destinationlabel">
-     <x>-10</x>
-     <y>564</y>
+     <x>-7</x>
+     <y>581</y>
     </hint>
    </hints>
   </connection>
@@ -271,5 +281,6 @@
   <slot>set_name_interface()</slot>
   <slot>stop_p0f()</slot>
   <slot>see_info_host()</slot>
+  <slot>search_host()</slot>
  </slots>
 </ui>
