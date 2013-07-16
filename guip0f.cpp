@@ -27,6 +27,7 @@ GUIp0f::GUIp0f(QWidget *parent) :
     ui->widget =new QWidget();
     ui->widget->setLayout(ui->gridLayout);
     ui->scrollArea->setWidget(ui->widget);
+    connect(this,SIGNAL(clicked(QString)),this,SLOT(see_info_host(QString)));
 
 }
 
@@ -87,8 +88,10 @@ void GUIp0f::set_list_ip(){
         while((eliminate = ui->gridLayout->takeAt(0))!=0){
             delete eliminate->widget();
         }
-
-        //add image host
+        //if(signal_buttons!=NULL){
+          //  delete signal_buttons;
+        //}
+        signal_buttons = new QSignalMapper(this);
         for(int i=0,row=0,column=0;i<data->get_hosts().size();i++,column++){
             ui->listWidget->addItem(data->get_hosts()[i]->get_ip());
 
@@ -96,11 +99,13 @@ void GUIp0f::set_list_ip(){
             host_image->setFixedHeight(100);
             host_image->setFixedWidth(100);
             QString host_ip = data->get_hosts()[i]->get_ip();
-            QLabel *host_name=new QLabel(host_ip);
+            QPushButton *host_name=new QPushButton(host_ip);
             host_name->setFixedHeight(20);
             host_name->setFixedWidth(130);
             QFont font( "Arial", 12, QFont::Bold);
             host_name->setFont(font);
+            connect(host_name, SIGNAL(clicked()), signal_buttons, SLOT(map()));
+            signal_buttons->setMapping(host_name, host_ip);
 
             QGroupBox *my_group=new QGroupBox(ui->widget);
             QVBoxLayout *vbox = new QVBoxLayout;
@@ -116,7 +121,12 @@ void GUIp0f::set_list_ip(){
             }
             ui->gridLayout->addWidget(my_group,row,column);
         }
+        connect(signal_buttons, SIGNAL(mapped(const QString &)),
+                     this, SIGNAL(clicked(const QString &)));
+
+
     }
+
 
 }
 
@@ -143,6 +153,22 @@ QLabel* GUIp0f::get_image_host(host  *myhost){
     return image;
 }
 
+void GUIp0f::see_info_host(QString host_ip){
+    network_db* data = network_db::get_istance();
+
+    qDebug()<<"print info ip"<<host_ip;
+    for(int i=0;i<data->get_hosts().size();i++){
+        if(data->get_hosts()[i]->get_ip().compare(host_ip)==0){
+              QHostInfo *info_host =new QHostInfo(QHostInfo::fromName(data->get_hosts()[i]->get_ip()));
+              QString info = "IP HOST = "+data->get_hosts()[i]->get_ip()+
+                        "\nDOMAIN NAME ="+info_host->hostName()+"\n";
+              QMessageBox::information(NULL,"Host Information",info+"\n"+data->get_hosts()[i]->print_packets());
+         }
+     }
+    this->signal_buttons->removeEventFilter(this);
+
+}
+
 void GUIp0f::see_info_host(){
     network_db* data = network_db::get_istance();
     QListWidgetItem* current_host = ui->listWidget->currentItem();
@@ -159,8 +185,10 @@ void GUIp0f::see_info_host(){
             }
         }
     }
+    this->signal_buttons->removeEventFilter(this);
 
 }
+
 
 
 
