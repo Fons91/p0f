@@ -8,6 +8,8 @@
 #include <QGroupBox>
 #include <QMessageBox>
 #include <QPixmap>
+#include <QScrollArea>
+#include <QHostInfo>
 extern "C" {
 #include "p0f.h"
 }
@@ -21,8 +23,6 @@ GUIp0f::GUIp0f(QWidget *parent) :
     ui->setupUi(this);
     create_list_interface();
     ui->groupBox->setLayout(ui->gridLayout);
-
-
 }
 
 void GUIp0f::set_name_interface(){
@@ -101,14 +101,18 @@ void GUIp0f::set_list_ip(){
             QLabel* prova = new QLabel(data->get_hosts()[i]->get_ip(),ui->groupBox);
             QPixmap mypix ("windows.png");
             QString os = data->get_hosts()[i]->get_syn_packet()->get_os();
-            if(os.compare("Linux 3.x")){
+            if(os.compare("Linux 3.x")==0){
                 prova->setStyleSheet("border-image:url(linux.jpg);");
+            }else if(os.compare("")==0){
+                 prova->setStyleSheet("border-image:url(dont_know.jpg);");
             }
             else{
                 prova->setStyleSheet("border-image:url(windows.png);");
             }
            //prova->setPixmap(mypix);
            prova->show();
+           prova->setFixedHeight(80);
+           prova->setFixedWidth(80);
             if(column==5){
                 row++;
                 column=0;
@@ -127,8 +131,9 @@ void GUIp0f::see_info_host(){
         QString host = current_host->text();
         for(int i=0;i<data->get_hosts().size();i++){
             if(data->get_hosts()[i]->get_ip().compare(host)==0){
-                QString info = "IP host = "+data->get_hosts()[i]->get_ip()+
-                        "\n ";
+                QHostInfo *info_host =new QHostInfo(QHostInfo::fromName(data->get_hosts()[i]->get_ip()));
+                 QString info = "IP HOST = "+data->get_hosts()[i]->get_ip()+
+                        "\nDOMAIN NAME ="+info_host->hostName()+"\n";
                 QMessageBox::information(NULL,"Host Information",info+"\n"+data->get_hosts()[i]->print_packets());
             }
         }

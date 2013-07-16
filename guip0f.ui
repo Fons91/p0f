@@ -32,10 +32,10 @@
     <widget class="QGroupBox" name="groupBox">
      <property name="geometry">
       <rect>
-       <x>20</x>
+       <x>10</x>
        <y>10</y>
-       <width>761</width>
-       <height>561</height>
+       <width>771</width>
+       <height>571</height>
       </rect>
      </property>
      <property name="title">
@@ -46,8 +46,8 @@
        <rect>
         <x>9</x>
         <y>19</y>
-        <width>741</width>
-        <height>531</height>
+        <width>751</width>
+        <height>541</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout" rowstretch="0"/>
