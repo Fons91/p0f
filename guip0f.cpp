@@ -100,8 +100,14 @@ void GUIp0f::set_list_ip(){
             ui->listWidget->addItem(data->get_hosts()[i]->get_ip());
             QLabel* prova = new QLabel(data->get_hosts()[i]->get_ip(),ui->groupBox);
             QPixmap mypix ("windows.png");
-
-           prova->setPixmap(mypix);
+            QString os = data->get_hosts()[i]->get_syn_packet()->get_os();
+            if(os.compare("Linux 3.x")){
+                prova->setStyleSheet("border-image:url(linux.jpg);");
+            }
+            else{
+                prova->setStyleSheet("border-image:url(windows.png);");
+            }
+           //prova->setPixmap(mypix);
            prova->show();
             if(column==5){
                 row++;
@@ -115,12 +121,16 @@ void GUIp0f::set_list_ip(){
 
 void GUIp0f::see_info_host(){
     network_db* data = network_db::get_istance();
-    QString host = ui->listWidget->currentItem()->text();
-    for(int i=0;i<data->get_hosts().size();i++){
-        if(data->get_hosts()[i]->get_ip().compare(host)==0){
-            QString info = "IP host = "+data->get_hosts()[i]->get_ip()+
-                    "\n ";
-            QMessageBox::information(NULL,"Host Information",info+"\n"+data->get_hosts()[i]->print_packets());
+    QListWidgetItem* current_host = ui->listWidget->currentItem();
+    if(current_host!=NULL)
+    {
+        QString host = current_host->text();
+        for(int i=0;i<data->get_hosts().size();i++){
+            if(data->get_hosts()[i]->get_ip().compare(host)==0){
+                QString info = "IP host = "+data->get_hosts()[i]->get_ip()+
+                        "\n ";
+                QMessageBox::information(NULL,"Host Information",info+"\n"+data->get_hosts()[i]->print_packets());
+            }
         }
     }
 

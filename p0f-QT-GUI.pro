@@ -59,5 +59,6 @@ LIBS += -lpcap
 
 OTHER_FILES += \
     p0f.fp \
-    windows.png
+    windows.png \
+    linux.jpg
 
