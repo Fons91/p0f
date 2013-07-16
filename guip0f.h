@@ -8,6 +8,7 @@
 #include "network_db.h"
 #include <QTimer>
 #include "host.h"
+#include <QString>
 
 namespace Ui {
 class GUIp0f;

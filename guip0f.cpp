@@ -28,8 +28,6 @@ GUIp0f::GUIp0f(QWidget *parent) :
     ui->widget->setLayout(ui->gridLayout);
     ui->scrollArea->setWidget(ui->widget);
 
-
-
 }
 
 void GUIp0f::set_name_interface(){
@@ -48,7 +46,6 @@ void GUIp0f::set_name_interface(){
    QTimeLine* line = new QTimeLine(10000,this);
    line->setFrameRange(0,100);
    connect(line,SIGNAL(frameChanged(int)),ui->progressBar,SLOT(setValue(int)));
-   //go();
    line->start();
    my.start();
    qDebug()<< "end set name interface";
@@ -79,23 +76,6 @@ void GUIp0f::update_gui(){
     data->show_network();
     set_list_ip();
 
-/*
-    QString prova = "ciao";
-    QLabel* ciao = new QLabel(prova,ui->frame);
-    ciao->setVisible(true);
-    QLabel* ciao1 = new QLabel(prova,ui->frame);
-    ciao1->setVisible(true);
-    QLabel* ciao2 = new QLabel(prova,ui->frame);
-    ciao2->setVisible(true);
-    QLabel* ciao3 = new QLabel(prova,ui->frame);
-    ciao3->setVisible(true);
-    ui->gridLayout->addWidget(ciao,0,0);
-    ui->gridLayout->addWidget(ciao1,1,1);
-    ui->gridLayout->addWidget(ciao2,2,2);
-    ui->gridLayout->addWidget(ciao3,3,3);
-
-*/
-
 }
 
 void GUIp0f::set_list_ip(){
@@ -115,10 +95,10 @@ void GUIp0f::set_list_ip(){
             QLabel *host_image=get_image_host(data->get_hosts()[i]);
             host_image->setFixedHeight(100);
             host_image->setFixedWidth(100);
-
-            QLabel *host_name=new QLabel(data->get_hosts()[i]->get_ip());
+            QString host_ip = data->get_hosts()[i]->get_ip();
+            QLabel *host_name=new QLabel(host_ip);
             host_name->setFixedHeight(20);
-            host_name->setFixedWidth(100);
+            host_name->setFixedWidth(130);
             QFont font( "Arial", 12, QFont::Bold);
             host_name->setFont(font);
 
@@ -127,11 +107,9 @@ void GUIp0f::set_list_ip(){
             vbox->addWidget(host_image);
             vbox->addWidget(host_name);
             my_group->setLayout(vbox);
-
-
             my_group->show();
             my_group->setFixedHeight(130);
-            my_group->setFixedWidth(110);
+            my_group->setFixedWidth(130);
             if(column==5){
                 row++;
                 column=0;
@@ -143,23 +121,32 @@ void GUIp0f::set_list_ip(){
 }
 
 QLabel* GUIp0f::get_image_host(host  *myhost){
-    QLabel* prova = new QLabel(ui->widget);
+    QLabel* image = new QLabel(ui->widget);
     QString os = myhost->get_syn_packet()->get_os();
 
     if(os.indexOf("Linux")!=-1){
-        prova->setStyleSheet("border-image:url(linux.jpg);");
-    }else if(os.compare("")==0){
-         prova->setStyleSheet("border-image:url(dont_know.jpg);");
+        image->setStyleSheet("border-image:url(linux.jpg);");
+    }else if(os.indexOf("Windows")!=-1){
+         image->setStyleSheet("border-image:url(windows.png);");
+    }else if(os.indexOf("Mac")!=-1) {
+        image->setStyleSheet("border-image:url(mac.jpg);");
+    }else if(os.indexOf("FreeBSD")!=-1) {
+        image->setStyleSheet("border-image:url(dont_know.jpg);");
+    }else if(os.indexOf("OpenBSD")!=-1) {
+        image->setStyleSheet("border-image:url(dont_know.jpg);");
+    }else if(os.indexOf("Solaris")!=-1) {
+        image->setStyleSheet("border-image:url(dont_know.jpg);");
+    }else{
+        image->setStyleSheet("border-image:url(dont_know.jpg);");
     }
-    else{
-        prova->setStyleSheet("border-image:url(windows.png);");
-    }
-    return prova;
+
+    return image;
 }
 
 void GUIp0f::see_info_host(){
     network_db* data = network_db::get_istance();
     QListWidgetItem* current_host = ui->listWidget->currentItem();
+    qDebug()<<"print info ip";
     if(current_host!=NULL)
     {
         QString host = current_host->text();

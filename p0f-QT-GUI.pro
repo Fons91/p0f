@@ -62,5 +62,6 @@ OTHER_FILES += \
     windows.png \
     linux.jpg \
     dont_know.jpg \
-    rete.jpg
+    rete.jpg \
+    mac.jpg
 
