@@ -122,8 +122,8 @@ void GUIp0f::set_list_ip(){
 
 
             my_group->show();
-            my_group->setFixedHeight(80);
-            my_group->setFixedWidth(80);
+            my_group->setFixedHeight(100);
+            my_group->setFixedWidth(100);
             if(column==5){
                 row++;
                 column=0;
@@ -137,7 +137,8 @@ void GUIp0f::set_list_ip(){
 QLabel* GUIp0f::get_image_host(host  *myhost){
     QLabel* prova = new QLabel(ui->widget);
     QString os = myhost->get_syn_packet()->get_os();
-    if(os.compare("Linux 3.x")==0){
+
+    if(os.indexOf("Linux")!=-1){
         prova->setStyleSheet("border-image:url(linux.jpg);");
     }else if(os.compare("")==0){
          prova->setStyleSheet("border-image:url(dont_know.jpg);");
