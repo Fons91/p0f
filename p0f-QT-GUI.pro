@@ -63,5 +63,8 @@ OTHER_FILES += \
     linux.jpg \
     dont_know.jpg \
     rete.jpg \
-    mac.jpg
+    mac.jpg \
+    freebsd.jpg \
+    openbsd.jpg \
+    solaris.jpg
 

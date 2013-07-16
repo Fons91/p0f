@@ -50,7 +50,6 @@ void GUIp0f::set_name_interface(){
    line->start();
    my.start();
    qDebug()<< "end set name interface";
-  // exit(0);
 }
 
 void GUIp0f::create_list_interface(){
@@ -88,9 +87,6 @@ void GUIp0f::set_list_ip(){
         while((eliminate = ui->gridLayout->takeAt(0))!=0){
             delete eliminate->widget();
         }
-        //if(signal_buttons!=NULL){
-          //  delete signal_buttons;
-        //}
         signal_buttons = new QSignalMapper(this);
         for(int i=0,row=0,column=0;i<data->get_hosts().size();i++,column++){
             ui->listWidget->addItem(data->get_hosts()[i]->get_ip());
@@ -101,8 +97,8 @@ void GUIp0f::set_list_ip(){
             QString host_ip = data->get_hosts()[i]->get_ip();
             QPushButton *host_name=new QPushButton(host_ip);
             host_name->setFixedHeight(20);
-            host_name->setFixedWidth(130);
-            QFont font( "Arial", 12, QFont::Bold);
+            host_name->setFixedWidth(120);
+            QFont font( "Arial", 11, QFont::Bold);
             host_name->setFont(font);
             connect(host_name, SIGNAL(clicked()), signal_buttons, SLOT(map()));
             signal_buttons->setMapping(host_name, host_ip);
@@ -141,9 +137,9 @@ QLabel* GUIp0f::get_image_host(host  *myhost){
     }else if(os.indexOf("Mac")!=-1) {
         image->setStyleSheet("border-image:url(mac.jpg);");
     }else if(os.indexOf("FreeBSD")!=-1) {
-        image->setStyleSheet("border-image:url(dont_know.jpg);");
+        image->setStyleSheet("border-image:url(freebsd.jpg);");
     }else if(os.indexOf("OpenBSD")!=-1) {
-        image->setStyleSheet("border-image:url(dont_know.jpg);");
+        image->setStyleSheet("border-image:url(openbsd.jpg);");
     }else if(os.indexOf("Solaris")!=-1) {
         image->setStyleSheet("border-image:url(dont_know.jpg);");
     }else{
