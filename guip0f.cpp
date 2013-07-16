@@ -113,7 +113,15 @@ void GUIp0f::set_list_ip(){
             ui->listWidget->addItem(data->get_hosts()[i]->get_ip());
 
             QLabel *host_image=get_image_host(data->get_hosts()[i]);
+            host_image->setFixedHeight(100);
+            host_image->setFixedWidth(100);
+
             QLabel *host_name=new QLabel(data->get_hosts()[i]->get_ip());
+            host_name->setFixedHeight(20);
+            host_name->setFixedWidth(100);
+            QFont font( "Arial", 12, QFont::Bold);
+            host_name->setFont(font);
+
             QGroupBox *my_group=new QGroupBox(ui->widget);
             QVBoxLayout *vbox = new QVBoxLayout;
             vbox->addWidget(host_image);
@@ -122,8 +130,8 @@ void GUIp0f::set_list_ip(){
 
 
             my_group->show();
-            my_group->setFixedHeight(80);
-            my_group->setFixedWidth(80);
+            my_group->setFixedHeight(130);
+            my_group->setFixedWidth(110);
             if(column==5){
                 row++;
                 column=0;
