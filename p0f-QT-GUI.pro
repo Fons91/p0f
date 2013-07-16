@@ -61,5 +61,6 @@ OTHER_FILES += \
     p0f.fp \
     windows.png \
     linux.jpg \
-    dont_know.jpg
+    dont_know.jpg \
+    rete.jpg
 

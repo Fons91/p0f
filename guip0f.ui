@@ -73,7 +73,7 @@
      <property name="geometry">
       <rect>
        <x>100</x>
-       <y>80</y>
+       <y>70</y>
        <width>91</width>
        <height>26</height>
       </rect>
@@ -86,7 +86,7 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>80</y>
+       <y>70</y>
        <width>78</width>
        <height>24</height>
       </rect>
@@ -109,13 +109,26 @@
      <property name="geometry">
       <rect>
        <x>100</x>
-       <y>110</y>
+       <y>100</y>
        <width>91</width>
        <height>26</height>
       </rect>
      </property>
      <property name="text">
       <string>Stop Listening</string>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>130</y>
+       <width>118</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="value">
+      <number>0</number>
      </property>
     </widget>
    </widget>

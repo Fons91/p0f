@@ -10,6 +10,7 @@
 #include <QPixmap>
 #include <QScrollArea>
 #include <QHostInfo>
+#include <QTimeLine>
 extern "C" {
 #include "p0f.h"
 }
@@ -23,6 +24,7 @@ GUIp0f::GUIp0f(QWidget *parent) :
     ui->setupUi(this);
     create_list_interface();
     ui->groupBox->setLayout(ui->gridLayout);
+    ui->groupBox->setStyleSheet("border-image:url(rete.jpg);");
 }
 
 void GUIp0f::set_name_interface(){
@@ -37,7 +39,12 @@ void GUIp0f::set_name_interface(){
    if(!timer_update->isActive()){
        timer_update->start(10000);
    }
+   ui->progressBar->setRange(0,100);
+   QTimeLine* line = new QTimeLine(10000,this);
+   line->setFrameRange(0,100);
+   connect(line,SIGNAL(frameChanged(int)),ui->progressBar,SLOT(setValue(int)));
    //go();
+   line->start();
    my.start();
    qDebug()<< "end set name interface";
   // exit(0);
@@ -60,6 +67,7 @@ void GUIp0f::stop_p0f(){
 }
 
 void GUIp0f::update_gui(){
+    ui->progressBar->setVisible(false);
     qDebug()<<"timer running timeout";
     print_network();
     network_db* data = network_db::get_istance();
