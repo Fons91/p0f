@@ -177,7 +177,6 @@ void GUIp0f::search_host(){
         signal_buttons = new QSignalMapper(this);
         for(int i=0,row=0,column=0;i<data->get_hosts().size();i++,column++){
             QString host_ip = data->get_hosts()[i]->get_ip();
-             qDebug()<<ui->lineEdit->text().indexOf(host_ip);
             if(host_ip.indexOf(ui->lineEdit->text())!=-1){
 
                 ui->listWidget->addItem(data->get_hosts()[i]->get_ip());
