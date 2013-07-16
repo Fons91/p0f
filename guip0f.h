@@ -7,6 +7,7 @@
 #include "mythread.h"
 #include "network_db.h"
 #include <QTimer>
+#include "host.h"
 
 namespace Ui {
 class GUIp0f;
@@ -26,6 +27,7 @@ public slots:
     void see_info_host();
 
 private:
+    QLabel *get_image_host(host *ip);
     void set_list_ip();
     Ui::GUIp0f *ui;
     void create_list_interface();

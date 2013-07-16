@@ -29,28 +29,48 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QGroupBox" name="groupBox">
+    <widget class="QScrollArea" name="scrollArea">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>10</y>
-       <width>771</width>
-       <height>571</height>
+       <x>0</x>
+       <y>0</y>
+       <width>791</width>
+       <height>581</height>
       </rect>
      </property>
-     <property name="title">
-      <string>Host Network</string>
+     <property name="widgetResizable">
+      <bool>true</bool>
      </property>
-     <widget class="QWidget" name="gridLayoutWidget">
+     <widget class="QWidget" name="scrollAreaWidgetContents">
       <property name="geometry">
        <rect>
-        <x>9</x>
-        <y>19</y>
-        <width>751</width>
-        <height>541</height>
+        <x>0</x>
+        <y>0</y>
+        <width>789</width>
+        <height>579</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout" rowstretch="0"/>
+      <widget class="QWidget" name="widget" native="true">
+       <property name="geometry">
+        <rect>
+         <x>-1</x>
+         <y>-1</y>
+         <width>791</width>
+         <height>581</height>
+        </rect>
+       </property>
+       <widget class="QWidget" name="gridLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>-1</x>
+          <y>0</y>
+          <width>791</width>
+          <height>581</height>
+         </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout"/>
+       </widget>
+      </widget>
      </widget>
     </widget>
    </widget>
