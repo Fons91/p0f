@@ -59,7 +59,7 @@ void GUIp0f::create_list_interface(){
 }
 
 void GUIp0f::stop_p0f(){
-    my.terminate();
+    my.killTimer(0);
     timer_update->stop();
     print_network();
     network_db* data = network_db::get_istance();
