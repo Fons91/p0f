@@ -49,8 +49,13 @@ void GUIp0f::set_name_interface(){
        connect(line,SIGNAL(frameChanged(int)),ui->progressBar,SLOT(setValue(int)));
        line->start();
     }
-   set_up_iface(char_interface);
-   my.start();
+   if(!my.isRunning()){
+       set_up_iface(char_interface);
+       qDebug()<<"start thread";
+       my.start();
+       qDebug()<<"dopo thread";
+   }
+
    ui->start_button->setEnabled(false);
    ui->stop_button->setEnabled(true);
 }
