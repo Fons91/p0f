@@ -110,7 +110,7 @@ QLabel* GUIp0f::get_image_host(host  *myhost){
     QString os = myhost->get_syn_packet()->get_os();
 
     if(os.indexOf("Linux")!=-1){
-        image->setStyleSheet("border-image:url(linux.jpg);");
+        image->setStyleSheet("border-image:url(linux.png);");
     }else if(os.indexOf("Windows")!=-1){
          image->setStyleSheet("border-image:url(windows.png);");
     }else if(os.indexOf("Mac")!=-1) {
@@ -120,9 +120,9 @@ QLabel* GUIp0f::get_image_host(host  *myhost){
     }else if(os.indexOf("OpenBSD")!=-1) {
         image->setStyleSheet("border-image:url(openbsd.jpg);");
     }else if(os.indexOf("Solaris")!=-1) {
-        image->setStyleSheet("border-image:url(dont_know.jpg);");
+        image->setStyleSheet("border-image:url(dont_know.png);");
     }else{
-        image->setStyleSheet("border-image:url(dont_know.jpg);");
+        image->setStyleSheet("border-image:url(dont_know.png);");
     }
 
     return image;
@@ -179,7 +179,7 @@ void GUIp0f::add_item_net(host *current_host, int row, int column){
     host_image->setFixedHeight(100);
     host_image->setFixedWidth(100);
     QPushButton *host_name=new QPushButton(host_ip);
-    host_name->setFixedHeight(20);
+    host_name->setFixedHeight(30);
     host_name->setFixedWidth(120);
     QFont font( "Arial", 11, QFont::Bold);
     host_name->setFont(font);
