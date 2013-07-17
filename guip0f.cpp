@@ -30,6 +30,7 @@ GUIp0f::GUIp0f(QWidget *parent) :
     connect(this,SIGNAL(clicked(QString)),this,SLOT(see_info_host(QString)));
     timer_update = new QTimer(this);
     connect(timer_update,SIGNAL(timeout()),this,SLOT(update_gui()));
+    ui->stop_button->setEnabled(false);
 
 }
 
@@ -50,7 +51,8 @@ void GUIp0f::set_name_interface(){
     }
    set_up_iface(char_interface);
    my.start();
-
+   ui->start_button->setEnabled(false);
+   ui->stop_button->setEnabled(true);
 }
 
 void GUIp0f::create_list_interface(){
@@ -60,11 +62,15 @@ void GUIp0f::create_list_interface(){
 }
 
 void GUIp0f::stop_p0f(){
-    my.killTimer(0);
+   // my.killTimer(0);
     timer_update->stop();
     network_db* data = network_db::get_istance();
     data->show_network();
     set_list_ip();
+    ui->start_button->setText("Restart");
+    ui->start_button->setEnabled(true);
+    ui->stop_button->setEnabled(false);
+
     qDebug()<<data->get_hosts().size()<<" in gui";
 }
 
