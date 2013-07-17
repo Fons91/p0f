@@ -27,7 +27,7 @@ void list_interfaces(void);
 
 void add_observation_field(char* key, u8* value);
 
-void set_up_iface(char iface_choose[]);
+void set_up_iface(char *iface_choose);
 
 /*add by me for testing*/
 void go();

@@ -31,6 +31,7 @@ public slots:
     void see_info_host(QString host_ip);
     void search_host();
 
+
 private:
     bool searched;
     QLabel *get_image_host(host *ip);

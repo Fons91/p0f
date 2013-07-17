@@ -19,7 +19,7 @@ syn_info* syn_packet;
 uptime_info* uptime_packet;
 
 //type of packet
-p0f_info_factory::info_type packet_type;
+info_type packet_type;
 
 
 
@@ -31,20 +31,20 @@ void create_packet(char* host, int to_srv, char *keyword){
 
     QString qClient = QString::fromUtf8(host);
     if(strcmp(keyword,"mtu") == 0){
-        packet_type = p0f_info_factory::MTU;
+        packet_type = MTU;
         mtu_packet = new mtu_info(qClient, to_srv);
     }
     else if(strcmp(keyword,"syn") == 0 || strcmp(keyword,"syn+ack") == 0){
-        packet_type = p0f_info_factory::SYN;
+        packet_type = SYN;
         syn_packet = new syn_info(qClient, to_srv);
     }
     else if(strcmp(keyword,"http response") == 0||strcmp(keyword,"http request")==0){
         qDebug()<<"creating httpInfo";
-        packet_type = p0f_info_factory::HTTP_INFO;
+        packet_type = HTTP_INFO;
         http_info_packet = new http_info(qClient, to_srv);
     }
     else if(strcmp(keyword,"uptime") == 0){
-        packet_type = p0f_info_factory::UPTIME;
+        packet_type = UPTIME;
         uptime_packet = new uptime_info(qClient, to_srv);
     }
 }
@@ -53,16 +53,16 @@ void create_packet(char* host, int to_srv, char *keyword){
 void add_info(char *key, char *value){
     QString qKey = QString::fromUtf8(key);
     QString qValue = QString::fromUtf8(value);
-    if(packet_type == p0f_info_factory::MTU){
+    if(packet_type == MTU){
         add_info_mtu(qKey,qValue);
     }
-    else if(packet_type == p0f_info_factory::HTTP_INFO){
+    else if(packet_type == HTTP_INFO){
         add_info_http_packet(qKey,qValue);
     }
-    else if(packet_type == p0f_info_factory::SYN){
+    else if(packet_type == SYN){
         add_info_syn(qKey,qValue);
     }
-    else if(packet_type == p0f_info_factory::UPTIME){
+    else if(packet_type == UPTIME){
         add_info_uptime(qKey,qValue);
     }
 }
@@ -136,18 +136,18 @@ void add_info_uptime(QString key, QString value){
 
 
 void end_packet(){
-    if(packet_type==p0f_info_factory::SYN){
-        nt->add_info_network(syn_packet,p0f_info_factory::SYN);
+    if(packet_type==SYN){
+        nt->add_info_network(syn_packet,SYN);
     }
-    else  if(packet_type==p0f_info_factory::MTU){
+    else  if(packet_type==MTU){
         qDebug()<<"sent a mtu_packet"<<"Address"<<mtu_packet->get_address();
-        nt->add_info_network(mtu_packet,p0f_info_factory::MTU);
+        nt->add_info_network(mtu_packet,MTU);
     }
-    else  if(packet_type==p0f_info_factory::UPTIME){
-        nt->add_info_network(uptime_packet,p0f_info_factory::UPTIME);
+    else  if(packet_type==UPTIME){
+        nt->add_info_network(uptime_packet,UPTIME);
     }
-    else  if(packet_type==p0f_info_factory::HTTP_INFO){
-        nt->add_info_network(http_info_packet,p0f_info_factory::HTTP_INFO);
+    else  if(packet_type==HTTP_INFO){
+        nt->add_info_network(http_info_packet,HTTP_INFO);
     }
 }
 

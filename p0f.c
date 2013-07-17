@@ -107,13 +107,16 @@ u32 hash_seed;                          /* Hash seed                          */
 
 static u8 obs_fields;                   /* No of pending observation fields   */
 
+char interface_char[10];
+
 
 /*Function called by  P0f to set up interface*/
 
 
 
-void set_up_iface(char iface_choose[]){
-    use_iface=(u8*)iface_choose;
+void set_up_iface(char* iface_choose){
+    strcpy(interface_char,iface_choose);
+    use_iface=(u8*)interface_char;
     printf("\nuse iface to string: %s",use_iface);
     printf("\nuse iface u8: %u",*use_iface);
 }
@@ -1062,18 +1065,24 @@ void go(){
   #endif /* ^__CYGWIN__ */
 
    }
-
+    printf("\n11use iface to string: %s",use_iface);
+    printf("\n11use iface u8: %u",*use_iface);
     tzset();
     setlocale(LC_TIME, "C");
-
+    printf("\n22use iface to string: %s",use_iface);
+    printf("\n22use iface u8: %u",*use_iface);
     close_spare_fds();
-
+    printf("\n33use iface to string: %s",use_iface);
+    printf("\n33use iface u8: %u",*use_iface);
     get_hash_seed();
-
+    printf("\n44use iface to string: %s",use_iface);
+    printf("\n44use iface u8: %u",*use_iface);
     http_init();
-
+    printf("\n55use iface to string: %s",use_iface);
+    printf("\n55use iface u8: %u",*use_iface);
     read_config(fp_file ? fp_file : (u8*)FP_FILE);
-
+    printf("\n66use iface to string: %s",use_iface);
+    printf("\n66use iface u8: %u",*use_iface);
     prepare_pcap();
     prepare_bpf();
 
