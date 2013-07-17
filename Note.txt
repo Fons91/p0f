@@ -1,2 +1,0 @@
-SAYF è una printf definita come define
-packetFlow* è definita in process ed è la variabile usata per stampare, viene stampata in p0f.c metodo void startObservetion
