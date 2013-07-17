@@ -28,6 +28,8 @@ GUIp0f::GUIp0f(QWidget *parent) :
     ui->widget->setLayout(ui->gridLayout);
     ui->scrollArea->setWidget(ui->widget);
     connect(this,SIGNAL(clicked(QString)),this,SLOT(see_info_host(QString)));
+    timer_update = new QTimer(this);
+    connect(timer_update,SIGNAL(timeout()),this,SLOT(update_gui()));
 
 }
 
@@ -38,17 +40,14 @@ void GUIp0f::set_name_interface(){
    ui->list_interface->setEnabled(false);
    QByteArray ba = name_interface.toLatin1();
    char *char_interface = ba.data();
-
-   timer_update = new QTimer(this);
-   connect(timer_update,SIGNAL(timeout()),this,SLOT(update_gui()));
    if(!timer_update->isActive()){
        timer_update->start(10000);
-   }
-   ui->progressBar->setRange(0,100);
-   QTimeLine* line = new QTimeLine(10000,this);
-   line->setFrameRange(0,100);
-   connect(line,SIGNAL(frameChanged(int)),ui->progressBar,SLOT(setValue(int)));
-   line->start();
+       ui->progressBar->setRange(0,100);
+       QTimeLine* line = new QTimeLine(10000,this);
+       line->setFrameRange(0,100);
+       connect(line,SIGNAL(frameChanged(int)),ui->progressBar,SLOT(setValue(int)));
+       line->start();
+    }
    set_up_iface(char_interface);
    my.start();
 
