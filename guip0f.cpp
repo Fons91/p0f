@@ -7,7 +7,6 @@
 #include <QLayout>
 #include <QGroupBox>
 #include <QMessageBox>
-#include <QPixmap>
 #include <QScrollArea>
 #include <QHostInfo>
 #include <QTimeLine>
@@ -35,9 +34,9 @@ void GUIp0f::set_name_interface(){
 
    qDebug()<< QString(ui->list_interface->currentText());
    QString name_interface =QString(ui->list_interface->currentText());
+   ui->list_interface->setEnabled(false);
    QByteArray ba = name_interface.toLatin1();
    char *char_interface = ba.data();
-   set_up_iface(char_interface);
    timer_update = new QTimer(this);
    connect(timer_update,SIGNAL(timeout()),this,SLOT(update_gui()));
    if(!timer_update->isActive()){
@@ -48,7 +47,9 @@ void GUIp0f::set_name_interface(){
    line->setFrameRange(0,100);
    connect(line,SIGNAL(frameChanged(int)),ui->progressBar,SLOT(setValue(int)));
    line->start();
+   set_up_iface(char_interface);
    my.start();
+
    qDebug()<< "end set name interface";
 }
 
@@ -166,8 +167,6 @@ void GUIp0f::see_info_host(QString host_ip){
               QMessageBox::information(NULL,"Host Information",info+"\n"+data->get_hosts()[i]->print_packets());
          }
      }
-  //  this->signal_buttons->removeEventFilter(this);
-
 }
 
 void GUIp0f::search_host(){

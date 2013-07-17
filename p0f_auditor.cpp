@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include "p0f_info.h"
 #include "QString"
-#include "stdio.h"
 #include "QDebug"
 #include "network_db.h"
 
