@@ -746,7 +746,6 @@ static void abort_handler(int sig) {
   print_network();
 }
 
-
 #ifndef __CYGWIN__
 
 /* Regenerate pollfd data for poll() */

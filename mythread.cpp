@@ -10,5 +10,6 @@ MyThread::MyThread()
 }
 
 void MyThread::run(){
+
     go();
 }

@@ -32,6 +32,7 @@ public slots:
     void search_host();
 
 private:
+    bool searched=false;
     QLabel *get_image_host(host *ip);
     void set_list_ip();
     Ui::GUIp0f *ui;

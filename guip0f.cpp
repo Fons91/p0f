@@ -21,7 +21,7 @@ GUIp0f::GUIp0f(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GUIp0f)
 {
-
+    searched=false;
     ui->setupUi(this);
     create_list_interface();
     ui->widget =new QWidget();
@@ -74,7 +74,12 @@ void GUIp0f::update_gui(){
     print_network();
     network_db* data = network_db::get_istance();
     data->show_network();
-    set_list_ip();
+    if (searched==true){
+        search_host();
+    }
+    else{
+        set_list_ip();
+    }
 
 }
 
@@ -166,6 +171,7 @@ void GUIp0f::see_info_host(QString host_ip){
 }
 
 void GUIp0f::search_host(){
+    searched=true;
     network_db* data = network_db::get_istance();
     if(data->get_hosts().size()>0){
         //clear list host
