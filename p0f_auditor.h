@@ -7,7 +7,6 @@ extern "C"{
 void create_packet(char* host, int to_srv, char *keyword);
 void add_info(char* key, char* value);
 void end_packet();
-void print_network();
 }
 #else
 void create_packet(char* host, int to_srv, char *keyword);

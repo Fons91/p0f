@@ -151,8 +151,3 @@ void end_packet(){
     }
 }
 
-
-void print_network(){
-   nt->show_network();
-   qDebug()<<nt->get_hosts().size()<<" in auditor";
-}

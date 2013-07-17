@@ -746,7 +746,6 @@ static void fork_off(void) {
 static void abort_handler(int sig) {
   if (stop_soon) exit(1);
   stop_soon = 1;
-  print_network();
 }
 
 #ifndef __CYGWIN__

@@ -63,7 +63,6 @@ void GUIp0f::create_list_interface(){
 void GUIp0f::stop_p0f(){
     my.killTimer(0);
     timer_update->stop();
-    print_network();
     network_db* data = network_db::get_istance();
     data->show_network();
     set_list_ip();
@@ -73,7 +72,6 @@ void GUIp0f::stop_p0f(){
 void GUIp0f::update_gui(){
     ui->progressBar->setVisible(false);
     qDebug()<<"timer running timeout";
-    print_network();
     network_db* data = network_db::get_istance();
     data->show_network();
     if (searched==true){
