@@ -34,13 +34,16 @@ public slots:
 
 private:
     bool searched;
-    QLabel *get_image_host(host *ip);
-    void set_list_ip();
-    Ui::GUIp0f *ui;
-    void create_list_interface();
     MyThread my;
     QTimer* timer_update;
     QSignalMapper *signal_buttons;
+    Ui::GUIp0f *ui;
+    QLabel *get_image_host(host *ip);
+    void set_list_ip();
+    void create_list_interface();
+    void delete_item();
+    void add_item_net(host* current_host, int row, int column);
+
 
 
 

@@ -49,10 +49,7 @@ void GUIp0f::set_name_interface(){
    line->setFrameRange(0,100);
    connect(line,SIGNAL(frameChanged(int)),ui->progressBar,SLOT(setValue(int)));
    line->start();
-
-
    set_up_iface(char_interface);
-
    my.start();
 
 }
@@ -92,48 +89,20 @@ void GUIp0f::set_list_ip(){
     network_db* data = network_db::get_istance();
     if(data->get_hosts().size()>0){
         //clear list host
-        ui->listWidget->clear();
-        QLayoutItem* eliminate;
-        while((eliminate = ui->gridLayout->takeAt(0))!=0){
-            delete eliminate->widget();
-        }
+        delete_item();
         signal_buttons = new QSignalMapper(this);
-        for(int i=0,row=0,column=0;i<data->get_hosts().size();i++,column++){
-            ui->listWidget->addItem(data->get_hosts()[i]->get_ip());
-
-            QLabel *host_image=get_image_host(data->get_hosts()[i]);
-            host_image->setFixedHeight(100);
-            host_image->setFixedWidth(100);
-            QString host_ip = data->get_hosts()[i]->get_ip();
-            QPushButton *host_name=new QPushButton(host_ip);
-            host_name->setFixedHeight(20);
-            host_name->setFixedWidth(120);
-            QFont font( "Arial", 11, QFont::Bold);
-            host_name->setFont(font);
-            connect(host_name, SIGNAL(clicked()), signal_buttons, SLOT(map()));
-            signal_buttons->setMapping(host_name, host_ip);
-
-            QGroupBox *my_group=new QGroupBox(ui->widget);
-            QVBoxLayout *vbox = new QVBoxLayout;
-            vbox->addWidget(host_image);
-            vbox->addWidget(host_name);
-            my_group->setLayout(vbox);
-            my_group->show();
-            my_group->setFixedHeight(130);
-            my_group->setFixedWidth(130);
-            if(column==5){
+        for(int i=0,row=0,column=0;i<data->get_hosts().size();i++){
+            add_item_net(data->get_hosts()[i],row,column);
+            if(column==4){
                 row++;
                 column=0;
+            }else{
+                column++;
             }
-            ui->gridLayout->addWidget(my_group,row,column);
         }
         connect(signal_buttons, SIGNAL(mapped(const QString &)),
                      this, SIGNAL(clicked(const QString &)));
-
-
     }
-
-
 }
 
 QLabel* GUIp0f::get_image_host(host  *myhost){
@@ -161,8 +130,6 @@ QLabel* GUIp0f::get_image_host(host  *myhost){
 
 void GUIp0f::see_info_host(QString host_ip){
     network_db* data = network_db::get_istance();
-
-    qDebug()<<"print info ip"<<host_ip;
     for(int i=0;i<data->get_hosts().size();i++){
         if(data->get_hosts()[i]->get_ip().compare(host_ip)==0){
               QHostInfo *info_host =new QHostInfo(QHostInfo::fromName(data->get_hosts()[i]->get_ip()));
@@ -177,54 +144,57 @@ void GUIp0f::search_host(){
     searched=true;
     network_db* data = network_db::get_istance();
     if(data->get_hosts().size()>0){
-        //clear list host
-        ui->listWidget->clear();
-        QLayoutItem* eliminate;
-        while((eliminate = ui->gridLayout->takeAt(0))!=0){
-            delete eliminate->widget();
-        }
+        delete_item();
         signal_buttons = new QSignalMapper(this);
-        for(int i=0,row=0,column=0;i<data->get_hosts().size();i++,column++){
+        for(int i=0,row=0,column=0;i<data->get_hosts().size();i++){
             QString host_ip = data->get_hosts()[i]->get_ip();
             if(host_ip.indexOf(ui->lineEdit->text())!=-1){
-
-                ui->listWidget->addItem(data->get_hosts()[i]->get_ip());
-
-                QLabel *host_image=get_image_host(data->get_hosts()[i]);
-                host_image->setFixedHeight(100);
-                host_image->setFixedWidth(100);
-                QPushButton *host_name=new QPushButton(host_ip);
-                host_name->setFixedHeight(20);
-                host_name->setFixedWidth(120);
-                QFont font( "Arial", 11, QFont::Bold);
-                host_name->setFont(font);
-                connect(host_name, SIGNAL(clicked()), signal_buttons, SLOT(map()));
-                signal_buttons->setMapping(host_name, host_ip);
-
-                QGroupBox *my_group=new QGroupBox(ui->widget);
-                QVBoxLayout *vbox = new QVBoxLayout;
-                vbox->addWidget(host_image);
-                vbox->addWidget(host_name);
-                my_group->setLayout(vbox);
-                my_group->show();
-                my_group->setFixedHeight(130);
-                my_group->setFixedWidth(130);
-                if(column==5){
+                add_item_net(data->get_hosts()[i],row,column);
+                if(column==4){
                     row++;
                     column=0;
+                }else{
+                    column++;
                 }
-                ui->gridLayout->addWidget(my_group,row,column);
-            }
+             }
          }
         connect(signal_buttons, SIGNAL(mapped(const QString &)),
                      this, SIGNAL(clicked(const QString &)));
-
-
     }
 
 }
 
+void GUIp0f::delete_item(){
+    ui->listWidget->clear();
+    QLayoutItem* eliminate;
+    while((eliminate = ui->gridLayout->takeAt(0))!=0){
+        delete eliminate->widget();
+    }
+}
 
+void GUIp0f::add_item_net(host *current_host, int row, int column){
+    QString host_ip = current_host->get_ip();
+    ui->listWidget->addItem(current_host->get_ip());
+    QLabel *host_image=get_image_host(current_host);
+    host_image->setFixedHeight(100);
+    host_image->setFixedWidth(100);
+    QPushButton *host_name=new QPushButton(host_ip);
+    host_name->setFixedHeight(20);
+    host_name->setFixedWidth(120);
+    QFont font( "Arial", 11, QFont::Bold);
+    host_name->setFont(font);
+    connect(host_name, SIGNAL(clicked()), signal_buttons, SLOT(map()));
+    signal_buttons->setMapping(host_name, host_ip);
+    QGroupBox *my_group=new QGroupBox(ui->widget);
+    QVBoxLayout *vbox = new QVBoxLayout;
+    vbox->addWidget(host_image);
+    vbox->addWidget(host_name);
+    my_group->setLayout(vbox);
+    my_group->show();
+    my_group->setFixedHeight(130);
+    my_group->setFixedWidth(130);
+    ui->gridLayout->addWidget(my_group,row,column);
+}
 
 
 GUIp0f::~GUIp0f()
