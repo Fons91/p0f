@@ -64,7 +64,13 @@ OTHER_FILES += \
     dont_know.jpg \
     rete.jpg \
     mac.jpg \
-    freebsd.jpg \
     openbsd.jpg \
-    solaris.jpg
+    solaris.jpg \
+    images/windows.png \
+    images/solaris.png \
+    images/openbsd.png \
+    images/mac.png \
+    images/linux.png \
+    images/freebsd.png \
+    images/dont_know.png
 

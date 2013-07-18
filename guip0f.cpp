@@ -118,19 +118,19 @@ QLabel* GUIp0f::get_image_host(host  *myhost){
     QString os = myhost->get_syn_packet()->get_os();
 
     if(os.indexOf("Linux")!=-1){
-        image->setStyleSheet("border-image:url(linux.png);");
+        image->setStyleSheet("border-image:url(images/linux.png);");
     }else if(os.indexOf("Windows")!=-1){
-         image->setStyleSheet("border-image:url(windows.png);");
+         image->setStyleSheet("border-image:url(images/windows.png);");
     }else if(os.indexOf("Mac")!=-1) {
-        image->setStyleSheet("border-image:url(mac.jpg);");
+        image->setStyleSheet("border-image:url(images/mac.png);");
     }else if(os.indexOf("FreeBSD")!=-1) {
-        image->setStyleSheet("border-image:url(freebsd.jpg);");
+        image->setStyleSheet("border-image:url(images/freebsd.png);");
     }else if(os.indexOf("OpenBSD")!=-1) {
-        image->setStyleSheet("border-image:url(openbsd.jpg);");
+        image->setStyleSheet("border-image:url(images/openbsd.png);");
     }else if(os.indexOf("Solaris")!=-1) {
-        image->setStyleSheet("border-image:url(dont_know.png);");
+        image->setStyleSheet("border-image:url(images/solaris.png);");
     }else{
-        image->setStyleSheet("border-image:url(dont_know.png);");
+        image->setStyleSheet("border-image:url(images/dont_know.png);");
     }
 
     return image;
