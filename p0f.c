@@ -109,6 +109,8 @@ static u8 obs_fields;                   /* No of pending observation fields   */
 
 char interface_char[10];
 
+char file_char[500];
+
 
 /*Function called by  Gui-P0f to set up interface*/
 
@@ -118,6 +120,12 @@ void set_up_iface(char* iface_choose){
     strcpy(interface_char,iface_choose);
     use_iface=(u8*)interface_char;
 }
+
+void set_up_file(char* file_choose){
+    strcpy(file_char,file_choose);
+    read_file=(u8*)file_char;
+}
+
 /* Memory allocator data: */
 
 #ifdef DEBUG_BUILD

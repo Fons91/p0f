@@ -11,6 +11,8 @@
 #include <QString>
 #include <QSignalMapper>
 #include <QTimeLine>
+#include <QtGui>
+
 
 namespace Ui {
 class GUIp0f;
@@ -32,6 +34,7 @@ public slots:
     void see_info_host(QString host_ip);
     void search_host();
     void start_timer();
+    void set_name_file();
 
 
 private:
@@ -42,6 +45,7 @@ private:
     Ui::GUIp0f *ui;
     QLabel *get_image_host(host *ip);
     QTimeLine* line;
+    QDirModel* model;
     void set_list_ip();
     void create_list_interface();
     void delete_item();

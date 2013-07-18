@@ -46,8 +46,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>789</width>
-        <height>579</height>
+        <width>787</width>
+        <height>577</height>
        </rect>
       </property>
       <widget class="QWidget" name="widget" native="true">
@@ -156,9 +156,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>160</y>
+      <y>230</y>
       <width>201</width>
-      <height>431</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -170,23 +170,75 @@
     <widget class="QLabel" name="label_2">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>20</x>
        <y>10</y>
-       <width>71</width>
-       <height>16</height>
+       <width>171</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string>Host       List</string>
+      <string>Choose a pcap file to analyze</string>
      </property>
     </widget>
-    <widget class="QListWidget" name="listWidget">
+    <widget class="QPushButton" name="analyze_button">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>330</y>
+       <width>80</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Analyze</string>
+     </property>
+    </widget>
+    <widget class="QTreeView" name="treeView">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>41</y>
+       <width>181</width>
+       <height>281</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame_4">
+    <property name="geometry">
+     <rect>
+      <x>-1</x>
+      <y>160</y>
+      <width>201</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>10</y>
+       <width>81</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Search an host</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="lineEdit">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>30</y>
-       <width>181</width>
-       <height>351</height>
+       <width>121</width>
+       <height>25</height>
       </rect>
      </property>
     </widget>
@@ -194,23 +246,13 @@
      <property name="geometry">
       <rect>
        <x>130</x>
-       <y>390</y>
+       <y>30</y>
        <width>61</width>
        <height>26</height>
       </rect>
      </property>
      <property name="text">
       <string>Search</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="lineEdit">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>390</y>
-       <width>121</width>
-       <height>25</height>
-      </rect>
      </property>
     </widget>
    </widget>
@@ -267,12 +309,28 @@
    <slot>search_host()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>147</x>
-     <y>575</y>
+     <x>146</x>
+     <y>226</y>
     </hint>
     <hint type="destinationlabel">
      <x>-7</x>
      <y>581</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>analyze_button</sender>
+   <signal>clicked()</signal>
+   <receiver>GUIp0f</receiver>
+   <slot>set_name_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>86</x>
+     <y>582</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-8</x>
+     <y>268</y>
     </hint>
    </hints>
   </connection>
@@ -282,5 +340,6 @@
   <slot>stop_p0f()</slot>
   <slot>see_info_host()</slot>
   <slot>search_host()</slot>
+  <slot>set_name_file()</slot>
  </slots>
 </ui>

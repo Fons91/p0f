@@ -10,9 +10,11 @@
 #include <QScrollArea>
 #include <QHostInfo>
 #include "host.h"
+
 extern "C" {
 #include "p0f.h"
 }
+
 
 
 
@@ -39,6 +41,11 @@ GUIp0f::GUIp0f(QWidget *parent) :
 
     connect(this,SIGNAL(clicked(QString)),this,SLOT(see_info_host(QString)));
 
+
+    model = new QDirModel(this);
+    model->setReadOnly(true);
+
+    ui->treeView->setModel(model);
 }
 
 /*
@@ -63,6 +70,30 @@ void GUIp0f::set_name_interface(){
 
    disconnect(ui->start_button,SIGNAL(clicked()),this,SLOT(set_name_interface()));
    connect(ui->start_button,SIGNAL(clicked()),this,SLOT(start_timer()));
+
+   ui->treeView->setEnabled(false);
+   ui->analyze_button->setEnabled(false);
+
+}
+
+void GUIp0f::set_name_file(){
+    QModelIndex index = ui->treeView->currentIndex();
+    if(index.isValid()){
+        QString name_file = model->fileInfo(index).absoluteFilePath();
+        qDebug()<<name_file;
+        int lenght = name_file.length();
+        if(name_file.indexOf(".pcap",lenght-4)){
+            QByteArray ba = name_file.toLatin1();
+            char *char_file = ba.data();
+            set_up_file(char_file);
+            my.start();
+            ui->start_button->setEnabled(false);
+            ui->stop_button->setEnabled(false);
+            ui->list_interface->setEnabled(false);
+            sleep(1);
+            set_list_ip();
+        }
+    }
 
 }
 
@@ -216,7 +247,7 @@ void GUIp0f::search_host(){
 //Deletes previous gui items
 void GUIp0f::delete_item(){
 
-    ui->listWidget->clear();
+    //ui->listWidget->clear();
 
     QLayoutItem* eliminate;
 
@@ -230,7 +261,7 @@ void GUIp0f::delete_item(){
 void GUIp0f::add_item_net(host *current_host, int row, int column){
 
     QString host_ip = current_host->get_ip();
-    ui->listWidget->addItem(current_host->get_ip());
+    //ui->listWidget->addItem(current_host->get_ip());
 
     QLabel *host_image=get_image_host(current_host);
     host_image->setFixedHeight(100);
