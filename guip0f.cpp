@@ -10,7 +10,7 @@
 #include <QScrollArea>
 #include <QHostInfo>
 #include "host.h"
-
+#include <unistd.h>
 extern "C" {
 #include "p0f.h"
 }
