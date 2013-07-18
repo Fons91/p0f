@@ -46,8 +46,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>787</width>
-        <height>577</height>
+        <width>789</width>
+        <height>579</height>
        </rect>
       </property>
       <widget class="QWidget" name="widget" native="true">
@@ -62,7 +62,7 @@
        <widget class="QWidget" name="gridLayoutWidget">
         <property name="geometry">
          <rect>
-          <x>-1</x>
+          <x>0</x>
           <y>0</y>
           <width>791</width>
           <height>581</height>
@@ -141,10 +141,10 @@
     <widget class="QProgressBar" name="progressBar">
      <property name="geometry">
       <rect>
-       <x>80</x>
+       <x>10</x>
        <y>130</y>
-       <width>118</width>
-       <height>23</height>
+       <width>181</width>
+       <height>22</height>
       </rect>
      </property>
      <property name="value">

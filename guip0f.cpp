@@ -115,7 +115,15 @@ void GUIp0f::set_list_ip(){
 
 QLabel* GUIp0f::get_image_host(host  *myhost){
     QLabel* image = new QLabel(ui->widget);
-    QString os = myhost->get_syn_packet()->get_os();
+    qDebug()<<"prima di get os";
+    p0f_info* os1 = myhost->get_packet(SYN_INFO);
+    qDebug()<<"dopo di get os";
+    qDebug()<<os1->get_info();
+    qDebug()<<"dopo get info";
+
+
+    QString os = myhost->get_packet(SYN_INFO)->get_value("os");
+    qDebug()<<"fine";
 
     if(os.indexOf("Linux")!=-1){
         image->setStyleSheet("border-image:url(images/linux.png);");
@@ -137,7 +145,7 @@ QLabel* GUIp0f::get_image_host(host  *myhost){
 }
 
 void GUIp0f::see_info_host(QString host_ip){
-    network_db* data = network_db::get_istance();
+  /*  network_db* data = network_db::get_istance();
     for(int i=0;i<data->get_hosts().size();i++){
         if(data->get_hosts()[i]->get_ip().compare(host_ip)==0){
               QHostInfo *info_host =new QHostInfo(QHostInfo::fromName(data->get_hosts()[i]->get_ip()));
@@ -145,7 +153,7 @@ void GUIp0f::see_info_host(QString host_ip){
                         "\nDOMAIN NAME ="+info_host->hostName()+"\n";
               QMessageBox::information(NULL,"Host Information",info+"\n"+data->get_hosts()[i]->print_packets());
          }
-     }
+     }*/
 }
 
 void GUIp0f::search_host(){
@@ -182,6 +190,7 @@ void GUIp0f::delete_item(){
 
 void GUIp0f::add_item_net(host *current_host, int row, int column){
     QString host_ip = current_host->get_ip();
+
     ui->listWidget->addItem(current_host->get_ip());
     QLabel *host_image=get_image_host(current_host);
     host_image->setFixedHeight(100);

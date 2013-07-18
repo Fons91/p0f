@@ -16,38 +16,30 @@ host* network_db::find_host(QString addr){
     return 0;
 }
 
-void  network_db::add_info_network(p0f_info *packet,info_type Itype){
+
+
+
+void  network_db::add_packet_host(p0f_info *packet, host* new_host){
+    new_host->set_packet(packet);
+}
+
+void  network_db::add_info_network(p0f_info *packet){
     qDebug()<<"NETwork recived packed"<<packet->get_address();
 
     host* old_host=network_db::find_host(packet->get_address());
     if (old_host==0){
         qDebug()<<"CREATING HOST WITH IP"<<packet->get_address();
         host *new_host = new host(packet->get_address());
-        network_db::add_packet_host(packet,Itype,new_host);
+        network_db::add_packet_host(packet,new_host);
         network.append(new_host);
     }
     else{
         qDebug()<<"Adding packet";
-            network_db::add_packet_host(packet,Itype,old_host);
+            network_db::add_packet_host(packet,old_host);
         }
 
     }
 
-
-void  network_db::add_packet_host(p0f_info *packet, info_type Itype, host* new_host){
-    if (Itype==HTTP_INFO){
-        new_host->set_http_packet((http_info*)packet);
-    }
-    else if(Itype==MTU){
-        new_host->set_mtu_packet((mtu_info*)packet);
-    }
-    else if(Itype==SYN){
-        new_host->set_syn_packet((syn_info*)packet);
-    }
-    else if(Itype==UPTIME){
-        new_host->set_uptime_packet((uptime_info*)packet);
-    }
-}
 
 void  network_db::show_network(){
     qDebug()<<"SHOWING NETWORK"<<network.size();
