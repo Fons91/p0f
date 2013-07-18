@@ -54,18 +54,10 @@ HEADERS  += guip0f.h \
 FORMS    += guip0f.ui
 
 
-
 LIBS += -lpcap
 
 OTHER_FILES += \
     p0f.fp \
-    windows.png \
-    linux.jpg \
-    dont_know.jpg \
-    rete.jpg \
-    mac.jpg \
-    openbsd.jpg \
-    solaris.jpg \
     images/windows.png \
     images/solaris.png \
     images/openbsd.png \
