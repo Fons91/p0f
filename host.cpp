@@ -26,7 +26,7 @@ QString host::print_packets(){
     QString info;
     foreach(p0f_info* packet, host_packets){
         info.append(packet->get_info());
-        qDebug()<<    packet->get_info();
+
     }
 
     return info;

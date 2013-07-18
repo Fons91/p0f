@@ -12,14 +12,28 @@ p0f_info::p0f_info(QString ip,info_type packet_type){
 }
 
 QString p0f_info::get_info(){
-    QString info = ">>>>>>>>>PACKET<<<<<<<<<<< \nADDRESS "+ip_address+"\nIS_CLIENT "+type+"\n";
+    QString type_of_info="";
+    if (type==MTU_INFO){
+        type_of_info=" MTU";
+    }
+    else if (type==SYN_INFO){
+        type_of_info=" SYN";
+    }
+    else if (type==HTTP_INFO){
+        type_of_info=" HTTP";
+    }
+    else if (type==UPTIME_INFO){
+        type_of_info=" UPTIME";
+    }
+    QString info = "\n\nPACKET"+type_of_info;
     foreach (QString key,information.keys()){
-        info.append(key+"  "+information.value(key));
+        if (information.value(key)!=""&&information.value(key)!="none"){
+        info.append("\n"+key+": "+information.value(key));
+
         qDebug()<<key<<"  "<<information.value(key);
+        }
 
     }
-    qDebug()<<">>>>>>>>>PACKET<<<<<<<<<<<";
-    qDebug()<<"ADDRESS "<<ip_address<<"\nTYPE"<<type;
     return info;
 }
 QString p0f_info::get_value(QString field){

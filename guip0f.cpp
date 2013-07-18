@@ -67,7 +67,6 @@ void GUIp0f::create_list_interface(){
 }
 
 void GUIp0f::stop_p0f(){
-   // my.killTimer(0);
     timer_update->stop();
     network_db* data = network_db::get_istance();
     data->show_network();
@@ -145,7 +144,7 @@ QLabel* GUIp0f::get_image_host(host  *myhost){
 }
 
 void GUIp0f::see_info_host(QString host_ip){
-  /*  network_db* data = network_db::get_istance();
+    network_db* data = network_db::get_istance();
     for(int i=0;i<data->get_hosts().size();i++){
         if(data->get_hosts()[i]->get_ip().compare(host_ip)==0){
               QHostInfo *info_host =new QHostInfo(QHostInfo::fromName(data->get_hosts()[i]->get_ip()));
@@ -153,7 +152,7 @@ void GUIp0f::see_info_host(QString host_ip){
                         "\nDOMAIN NAME ="+info_host->hostName()+"\n";
               QMessageBox::information(NULL,"Host Information",info+"\n"+data->get_hosts()[i]->print_packets());
          }
-     }*/
+     }
 }
 
 void GUIp0f::search_host(){

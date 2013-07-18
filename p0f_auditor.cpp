@@ -50,8 +50,7 @@ void add_info(char *key, char *value){
 
 
 void end_packet(){
-    qDebug()<<"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-    qDebug()<<current_packet->get_info();
+
         nt->add_info_network(current_packet);
 
 
