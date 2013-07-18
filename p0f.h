@@ -1,3 +1,4 @@
+
 /*
    p0f - exports from the main routine
    -----------------------------------
@@ -27,9 +28,9 @@ void list_interfaces(void);
 
 void add_observation_field(char* key, u8* value);
 
+/*Add to communicate with GuiP0f*/
 void set_up_iface(char *iface_choose);
-
-/*add by me for testing*/
+void set_up_file(char* file_choose);
 void go();
 
 #define OBSERVF(_key, _fmt...) do { \
