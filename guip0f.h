@@ -12,6 +12,7 @@
 #include <QSignalMapper>
 #include <QTimeLine>
 #include <QtGui>
+#include <QFileSystemModel>
 
 
 namespace Ui {
@@ -45,7 +46,7 @@ private:
     Ui::GUIp0f *ui;
     QLabel *get_image_host(host *ip);
     QTimeLine* line;
-    QDirModel* model;
+    QFileSystemModel* model;
     void set_list_ip();
     void create_list_interface();
     void delete_item();

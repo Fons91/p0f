@@ -46,8 +46,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>789</width>
-        <height>579</height>
+        <width>787</width>
+        <height>577</height>
        </rect>
       </property>
       <widget class="QWidget" name="widget" native="true">
@@ -196,9 +196,9 @@
     <widget class="QTreeView" name="treeView">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>41</y>
-       <width>181</width>
+       <x>0</x>
+       <y>40</y>
+       <width>191</width>
        <height>281</height>
       </rect>
      </property>

@@ -42,10 +42,12 @@ GUIp0f::GUIp0f(QWidget *parent) :
     connect(this,SIGNAL(clicked(QString)),this,SLOT(see_info_host(QString)));
 
 
-    model = new QDirModel(this);
+    model = new QFileSystemModel(this);
     model->setReadOnly(true);
-
+    model->setRootPath("/home");
     ui->treeView->setModel(model);
+    ui->treeView->setRootIndex(model->index("/home"));
+    ui->treeView->setColumnWidth(0,300);
 }
 
 /*
