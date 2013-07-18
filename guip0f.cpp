@@ -9,7 +9,6 @@
 #include <QMessageBox>
 #include <QScrollArea>
 #include <QHostInfo>
-#include <QTimeLine>
 #include "host.h"
 extern "C" {
 #include "p0f.h"
@@ -23,14 +22,22 @@ GUIp0f::GUIp0f(QWidget *parent) :
 {
     searched=false;
     ui->setupUi(this);
+
     create_list_interface();
     ui->widget =new QWidget();
     ui->widget->setLayout(ui->gridLayout);
     ui->scrollArea->setWidget(ui->widget);
-    connect(this,SIGNAL(clicked(QString)),this,SLOT(see_info_host(QString)));
+    ui->stop_button->setEnabled(false);
+    ui->progressBar->setRange(0,100);
+
     timer_update = new QTimer(this);
     connect(timer_update,SIGNAL(timeout()),this,SLOT(update_gui()));
-    ui->stop_button->setEnabled(false);
+
+    line = new QTimeLine(10000,this);
+    line->setFrameRange(0,100);
+    connect(line,SIGNAL(frameChanged(int)),ui->progressBar,SLOT(setValue(int)));
+
+    connect(this,SIGNAL(clicked(QString)),this,SLOT(see_info_host(QString)));
 
 }
 
@@ -40,44 +47,55 @@ GUIp0f::GUIp0f(QWidget *parent) :
  */
 void GUIp0f::set_name_interface(){
 
-   qDebug()<< QString(ui->list_interface->currentText());
+
    QString  name_interface  =QString(ui->list_interface->currentText());
    ui->list_interface->setEnabled(false);
+   qDebug()<<name_interface;
+
    QByteArray ba = name_interface.toLatin1();
    char *char_interface = ba.data();
-   if(!timer_update->isActive()){
-       timer_update->start(10000);
-       ui->progressBar->setRange(0,100);
-       QTimeLine* line = new QTimeLine(10000,this);
-       line->setFrameRange(0,100);
-       connect(line,SIGNAL(frameChanged(int)),ui->progressBar,SLOT(setValue(int)));
-       line->start();
-    }
-   if(!my.isRunning()){
-       set_up_iface(char_interface);
-       qDebug()<<"start thread";
-       my.start();
-       qDebug()<<"dopo thread";
-   }
+   set_up_iface(char_interface);
+   my.start();
+   qDebug()<<"thread running...";
 
-   ui->start_button->setEnabled(false);
-   ui->stop_button->setEnabled(true);
+   start_timer();
+   line->start();
+
+   disconnect(ui->start_button,SIGNAL(clicked()),this,SLOT(set_name_interface()));
+   connect(ui->start_button,SIGNAL(clicked()),this,SLOT(start_timer()));
+
+}
+
+//Start timer in order to refresh the GUI informations
+void GUIp0f::start_timer(){
+
+    if(!timer_update->isActive()){
+        timer_update->start(10000);
+    }
+
+    ui->start_button->setEnabled(false);
+    ui->stop_button->setEnabled(true);
 }
 
 
 void GUIp0f::create_list_interface(){
+
     QNetworkInterface* network = new QNetworkInterface();
-    foreach(QNetworkInterface interface,network->allInterfaces())
+
+    foreach(QNetworkInterface interface,network->allInterfaces()){
         ui->list_interface->addItem(interface.humanReadableName());
+    }
 }
 
 //Stops update gui since start_buttun is pressed.
 void GUIp0f::stop_p0f(){
     timer_update->stop();
+
     network_db* data = network_db::get_istance();
     //print to debug
     data->show_network();
     set_list_ip();
+
     ui->start_button->setText("Restart");
     ui->start_button->setEnabled(true);
     ui->stop_button->setEnabled(false);
@@ -87,9 +105,11 @@ void GUIp0f::stop_p0f(){
 void GUIp0f::update_gui(){
     ui->progressBar->setVisible(false);
     qDebug()<<"timer running timeout";
+
     network_db* data = network_db::get_istance();
     //print to debug
     data->show_network();
+
     if (searched==true){
         search_host();
     }
@@ -101,7 +121,9 @@ void GUIp0f::update_gui(){
 
 //Adds and shows all hosts
 void GUIp0f::set_list_ip(){
+
     network_db* data = network_db::get_istance();
+
     if(data->get_hosts().size()>0){
         delete_item();
         signal_buttons = new QSignalMapper(this);
@@ -121,7 +143,9 @@ void GUIp0f::set_list_ip(){
 
 //Loads os image
 QLabel* GUIp0f::get_image_host(host  *myhost){
+
     QLabel* image = new QLabel(ui->widget);
+
     QString os = myhost->get_syn_packet()->get_os();
 
     if(os.indexOf("Linux")!=-1){
@@ -150,7 +174,9 @@ QLabel* GUIp0f::get_image_host(host  *myhost){
 }
 //Creates a popup containing all informations about host ip
 void GUIp0f::see_info_host(QString host_ip){
+
     network_db* data = network_db::get_istance();
+
     for(int i=0;i<data->get_hosts().size();i++){
         if(data->get_hosts()[i]->get_ip().compare(host_ip)==0){
               QHostInfo *info_host =new QHostInfo(QHostInfo::fromName(data->get_hosts()[i]->get_ip()));
@@ -165,6 +191,7 @@ void GUIp0f::see_info_host(QString host_ip){
 void GUIp0f::search_host(){
     searched=true;
     network_db* data = network_db::get_istance();
+
     if(data->get_hosts().size()>0){
         delete_item();
         signal_buttons = new QSignalMapper(this);
@@ -188,8 +215,11 @@ void GUIp0f::search_host(){
 
 //Deletes previous gui items
 void GUIp0f::delete_item(){
+
     ui->listWidget->clear();
+
     QLayoutItem* eliminate;
+
     while((eliminate = ui->gridLayout->takeAt(0))!=0){
         delete eliminate->widget();
     }
@@ -198,19 +228,25 @@ void GUIp0f::delete_item(){
 //Adds a groupbox with an image and a button corresponding
 //to the current host
 void GUIp0f::add_item_net(host *current_host, int row, int column){
+
     QString host_ip = current_host->get_ip();
     ui->listWidget->addItem(current_host->get_ip());
+
     QLabel *host_image=get_image_host(current_host);
     host_image->setFixedHeight(100);
     host_image->setFixedWidth(100);
+
     QPushButton *host_name=new QPushButton(host_ip);
     host_name->setFixedHeight(30);
     host_name->setFixedWidth(120);
+
     QFont font( "Arial", 11, QFont::Bold);
     host_name->setFont(font);
     connect(host_name, SIGNAL(clicked()), signal_buttons, SLOT(map()));
     signal_buttons->setMapping(host_name, host_ip);
+
     QGroupBox *my_group=new QGroupBox(ui->widget);
+
     QVBoxLayout *vbox = new QVBoxLayout;
     vbox->addWidget(host_image);
     vbox->addWidget(host_name);
@@ -218,6 +254,7 @@ void GUIp0f::add_item_net(host *current_host, int row, int column){
     my_group->show();
     my_group->setFixedHeight(130);
     my_group->setFixedWidth(130);
+
     ui->gridLayout->addWidget(my_group,row,column);
 }
 

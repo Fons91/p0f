@@ -10,6 +10,7 @@
 #include "host.h"
 #include <QString>
 #include <QSignalMapper>
+#include <QTimeLine>
 
 namespace Ui {
 class GUIp0f;
@@ -30,6 +31,7 @@ public slots:
     void update_gui();
     void see_info_host(QString host_ip);
     void search_host();
+    void start_timer();
 
 
 private:
@@ -39,6 +41,7 @@ private:
     QSignalMapper *signal_buttons;
     Ui::GUIp0f *ui;
     QLabel *get_image_host(host *ip);
+    QTimeLine* line;
     void set_list_ip();
     void create_list_interface();
     void delete_item();
