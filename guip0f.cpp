@@ -84,7 +84,7 @@ void GUIp0f::set_name_file(){
         QString name_file = model->fileInfo(index).absoluteFilePath();
         qDebug()<<name_file;
         int lenght = name_file.length();
-        if(name_file.indexOf(".pcap",lenght-4)){
+        if(name_file.indexOf(".pcap",lenght-5)!=-1){
             QByteArray ba = name_file.toLatin1();
             char *char_file = ba.data();
             set_up_file(char_file);
