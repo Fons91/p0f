@@ -110,15 +110,13 @@ static u8 obs_fields;                   /* No of pending observation fields   */
 char interface_char[10];
 
 
-/*Function called by  P0f to set up interface*/
+/*Function called by  Gui-P0f to set up interface*/
 
 
 
 void set_up_iface(char* iface_choose){
     strcpy(interface_char,iface_choose);
     use_iface=(u8*)interface_char;
-    printf("\nuse iface to string: %s",use_iface);
-    printf("\nuse iface u8: %u",*use_iface);
 }
 /* Memory allocator data: */
 
@@ -329,19 +327,7 @@ void start_observation(char* keyword, u8 field_cnt, u8 to_srv,
 
   if (obs_fields) FATAL("Premature end of observation.");
 
-  if (!daemon_mode) {
 
-    SAYF(".-[ %s/%u -> ", addr_to_str(f->client->addr, f->client->ip_ver),
-         f->cli_port);
-    SAYF("%s/%u (%s) ]-\n|\n", addr_to_str(f->server->addr, f->client->ip_ver),
-         f->srv_port, keyword);
-
-    SAYF("| %-8s = %s/%u\n", to_srv ? "client" : "server",
-         addr_to_str(to_srv ? f->client->addr :
-         f->server->addr, f->client->ip_ver),
-         to_srv ? f->cli_port : f->srv_port);
-
-  }
 
   char* host = addr_to_str(to_srv ? f->client->addr : f->server->addr, f->client->ip_ver);
 
@@ -374,8 +360,7 @@ void add_observation_field(char* key, u8* value) {
 
   if (!obs_fields) FATAL("Unexpected observation field ('%s').", key);
 
-  if (!daemon_mode)
-    SAYF("| %-8s = %s\n", key, value ? value : (u8*)"???");
+
 
   if (log_file) LOGF("|%s=%s", key, value ? value : (u8*)"???");
 
@@ -385,7 +370,6 @@ void add_observation_field(char* key, u8* value) {
 
   if (!obs_fields) {
     end_packet();
-    if (!daemon_mode) SAYF("|\n`----\n\n");
 
     if (log_file) LOGF("\n");
 

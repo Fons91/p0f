@@ -75,6 +75,7 @@ void GUIp0f::create_list_interface(){
 void GUIp0f::stop_p0f(){
     timer_update->stop();
     network_db* data = network_db::get_istance();
+    //print to debug
     data->show_network();
     set_list_ip();
     ui->start_button->setText("Restart");
@@ -87,6 +88,7 @@ void GUIp0f::update_gui(){
     ui->progressBar->setVisible(false);
     qDebug()<<"timer running timeout";
     network_db* data = network_db::get_istance();
+    //print to debug
     data->show_network();
     if (searched==true){
         search_host();
