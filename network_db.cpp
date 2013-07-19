@@ -5,11 +5,10 @@ network_db* network_db::istance =NULL;
 network_db::network_db()
 {   
 }
+
 host* network_db::find_host(QString addr){
     for(int i=0;i<network.size();i++){
-        qDebug()<<"Comparing "<<addr<<"   "<<network[i]->get_ip();
         if (addr.compare(network[i]->get_ip())==0){
-            qDebug()<<"is equal "<<addr<<"   "<<network[i]->get_ip();
             return network[i];
         }
     }

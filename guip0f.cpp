@@ -11,6 +11,7 @@
 #include <QHostInfo>
 #include "host.h"
 #include <unistd.h>
+#include "sys/types.h"
 extern "C" {
 #include "p0f.h"
 }
@@ -49,6 +50,14 @@ GUIp0f::GUIp0f(QWidget *parent) :
     ui->treeView->setRootIndex(model->index("/home"));
     ui->treeView->setColumnWidth(0,300);
     this->setFixedSize(this->size());
+
+
+}
+
+void GUIp0f::closeEvent(QCloseEvent *event){
+    my.exit(0);
+    timer_update->stop();
+    exit(0);
 }
 
 /*
@@ -56,7 +65,6 @@ GUIp0f::GUIp0f(QWidget *parent) :
  *and the refresh timer.
  */
 void GUIp0f::set_name_interface(){
-
 
    QString  name_interface  =QString(ui->list_interface->currentText());
    ui->list_interface->setEnabled(false);
@@ -80,13 +88,13 @@ void GUIp0f::set_name_interface(){
 }
 
 void GUIp0f::set_name_file(){
+
     QModelIndex index = ui->treeView->currentIndex();
     if(index.isValid()){
         QString name_file = model->fileInfo(index).absoluteFilePath();
         qDebug()<<name_file;
         int lenght = name_file.length();
-        if(name_file.indexOf(".pcap",lenght-5)!=-1
-                ){
+        if(name_file.indexOf(".pcap",lenght-5)!=-1){
             QByteArray ba = name_file.toLatin1();
             char *char_file = ba.data();
             set_up_file(char_file);
@@ -110,6 +118,7 @@ void GUIp0f::start_timer(){
 
     ui->start_button->setEnabled(false);
     ui->stop_button->setEnabled(true);
+
 }
 
 
@@ -124,6 +133,8 @@ void GUIp0f::create_list_interface(){
 
 //Stops update gui since start_buttun is pressed.
 void GUIp0f::stop_p0f(){
+
+
     timer_update->stop();
 
     network_db* data = network_db::get_istance();
@@ -299,6 +310,8 @@ void GUIp0f::add_item_net(host *current_host, int row, int column){
 
     ui->gridLayout->addWidget(my_group,row,column);
 }
+
+
 
 
 GUIp0f::~GUIp0f()

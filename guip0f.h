@@ -28,6 +28,8 @@ public:
     ~GUIp0f();
 signals:
     void clicked(const QString &ip_host);
+protected:
+    void closeEvent(QCloseEvent *event);
 public slots:
     void set_name_interface();
     void stop_p0f();
@@ -36,6 +38,7 @@ public slots:
     void search_host();
     void start_timer();
     void set_name_file();
+
 
 
 private:

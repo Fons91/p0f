@@ -1065,6 +1065,7 @@ void go(){
     prepare_pcap();
     prepare_bpf();
 
+
     if (log_file) open_log();
 
     if (api_sock) open_api();
