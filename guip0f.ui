@@ -14,13 +14,13 @@
    <string>P0F - QT</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QFrame" name="frame">
+   <widget class="QFrame" name="frame_image">
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>0</y>
+      <y>70</y>
       <width>711</width>
-      <height>591</height>
+      <height>521</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -35,7 +35,7 @@
        <x>0</x>
        <y>0</y>
        <width>711</width>
-       <height>591</height>
+       <height>521</height>
       </rect>
      </property>
      <property name="widgetResizable">
@@ -47,7 +47,7 @@
         <x>0</x>
         <y>0</y>
         <width>707</width>
-        <height>587</height>
+        <height>517</height>
        </rect>
       </property>
       <widget class="QWidget" name="widget" native="true">
@@ -56,7 +56,7 @@
          <x>-1</x>
          <y>-1</y>
          <width>711</width>
-         <height>571</height>
+         <height>521</height>
         </rect>
        </property>
        <widget class="QWidget" name="gridLayoutWidget">
@@ -65,7 +65,7 @@
           <x>0</x>
           <y>0</y>
           <width>711</width>
-          <height>581</height>
+          <height>521</height>
          </rect>
         </property>
         <layout class="QGridLayout" name="gridLayout"/>
@@ -74,13 +74,13 @@
      </widget>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_2">
+   <widget class="QFrame" name="frame_interface">
     <property name="geometry">
      <rect>
       <x>0</x>
       <y>0</y>
       <width>291</width>
-      <height>161</height>
+      <height>171</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -102,7 +102,7 @@
       <number>0</number>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -131,11 +131,11 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>20</y>
+       <y>40</y>
        <width>291</width>
        <height>21</height>
       </rect>
@@ -176,14 +176,67 @@
       </item>
      </layout>
     </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>291</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_4">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Select an interface or a pcap file</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
    </widget>
-   <widget class="QFrame" name="frame_3">
+   <widget class="QFrame" name="frame_file">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>230</y>
+      <y>170</y>
       <width>291</width>
-      <height>361</height>
+      <height>421</height>
      </rect>
     </property>
     <property name="frameShape">
@@ -198,15 +251,15 @@
        <x>10</x>
        <y>40</y>
        <width>271</width>
-       <height>281</height>
+       <height>301</height>
       </rect>
      </property>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>330</y>
+       <y>350</y>
        <width>271</width>
        <height>28</height>
       </rect>
@@ -247,7 +300,7 @@
       </item>
      </layout>
     </widget>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>0</x>
@@ -293,12 +346,12 @@
      </layout>
     </widget>
    </widget>
-   <widget class="QFrame" name="frame_4">
+   <widget class="QFrame" name="frame_search">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>160</y>
-      <width>291</width>
+      <x>289</x>
+      <y>0</y>
+      <width>711</width>
       <height>71</height>
      </rect>
     </property>
@@ -308,51 +361,16 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>30</y>
-       <width>271</width>
-       <height>28</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QLineEdit" name="lineEdit"/>
-      </item>
-      <item>
-       <widget class="QPushButton" name="search_button">
-        <property name="text">
-         <string>Search</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QWidget" name="">
-     <property name="geometry">
-      <rect>
-       <x>1</x>
-       <y>1</y>
-       <width>291</width>
+       <y>20</y>
+       <width>691</width>
        <height>31</height>
       </rect>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_5">
-      <item>
-       <spacer name="horizontalSpacer_5">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
       <item>
        <widget class="QLabel" name="label_3">
         <property name="text">
@@ -361,17 +379,100 @@
        </widget>
       </item>
       <item>
-       <spacer name="horizontalSpacer_6">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+       <widget class="QLineEdit" name="line_ip"/>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="check_ip">
+        <property name="text">
+         <string>ip</string>
         </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="combo_os">
+        <item>
+         <property name="text">
+          <string>Linux</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Windows</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Mac</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>OpenBSD</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>FreeBSD</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Solaris</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="check_os">
+        <property name="text">
+         <string>os</string>
         </property>
-       </spacer>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="combo_app">
+        <item>
+         <property name="text">
+          <string>Apache</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Opera</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Firefox</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Chrome</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="check_app">
+        <property name="text">
+         <string>app</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="check_nat">
+        <property name="text">
+         <string>nat</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="search_button">
+        <property name="text">
+         <string>Search</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

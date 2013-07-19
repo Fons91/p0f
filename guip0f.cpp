@@ -249,8 +249,7 @@ void GUIp0f::search_host(){
         delete_item();
         signal_buttons = new QSignalMapper(this);
         for(int i = 0,row = 0,column = 0;i<data->get_hosts().size();i++){
-            QString host_ip = data->get_hosts()[i]->get_ip();
-            if(host_ip.indexOf(ui->lineEdit->text())!=-1){
+            if(host_correspond(data->get_hosts()[i])){
                 add_item_net(data->get_hosts()[i],row,column);
                 if(column == 4){
                     row++;
@@ -264,6 +263,38 @@ void GUIp0f::search_host(){
                      this, SIGNAL(clicked(const QString &)));
     }
 
+}
+
+bool GUIp0f::host_correspond(host* current_host){
+    QString ip_searched;
+    QString os_searched;
+    QString app_searched;
+    bool app_correct = true;
+    bool os_correct = true;
+    bool nat_correct = true;
+    bool ip_correct = true;
+    qDebug()<<"prima di ip";
+    if(ui->check_ip->isChecked()){
+        ip_searched = ui->line_ip->text();
+        ip_correct = current_host->get_ip().indexOf(ip_searched)!=-1;
+    }
+    qDebug()<<"prima di app";
+    if(ui->check_app->isChecked()){
+        app_searched = ui->combo_app->currentText();
+        app_correct = current_host->get_app().indexOf(app_searched)!=-1;
+    }
+    qDebug()<<"prima di os";
+    if(ui->check_os->isChecked()){
+        os_searched = ui->combo_os->currentText();
+        os_correct = current_host->get_os().indexOf(os_searched)!=-1;
+    }
+    qDebug()<<"prima di nat";
+    if(ui->check_nat->isChecked()){
+        qDebug()<<"prima di nat";
+        nat_correct = current_host->host_with_nat();
+        qDebug()<<"prima di nat";
+    }
+    return ip_correct && app_correct && os_correct && nat_correct;
 }
 
 //Deletes previous gui items
@@ -283,7 +314,6 @@ void GUIp0f::delete_item(){
 void GUIp0f::add_item_net(host *current_host, int row, int column){
 
     QString host_ip = current_host->get_ip();
-    //ui->listWidget->addItem(current_host->get_ip());
 
     QLabel *host_image = get_image_host(current_host);
     host_image->setFixedHeight(100);

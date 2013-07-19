@@ -54,6 +54,7 @@ private:
     void create_list_interface();
     void delete_item();
     void add_item_net(host* current_host, int row, int column);
+    bool host_correspond(host* current_host);
 
 
 

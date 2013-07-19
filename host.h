@@ -12,7 +12,9 @@ public:
     QHash<info_type,p0f_info*> get_packets();
     p0f_info* get_packet(info_type type);
     void set_packet(p0f_info* info);
-
+    QString get_os();
+    QString get_app();
+    bool host_with_nat();
 
 private:
     QString ip_host;
