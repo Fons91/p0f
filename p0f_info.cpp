@@ -11,6 +11,7 @@ p0f_info::p0f_info(QString ip,info_type packet_type){
     type = packet_type;
 }
 
+//Return all informations about the packet
 QString p0f_info::get_info(){
     QString type_of_info = "";
     if (type == MTU_INFO){
@@ -42,6 +43,7 @@ QString p0f_info::get_info(){
     }
     return info;
 }
+
 
 QString p0f_info::get_value(QString field){
     return information.value(field);

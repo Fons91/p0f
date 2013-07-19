@@ -49,6 +49,7 @@ GUIp0f::GUIp0f(QWidget *parent) :
     ui->treeView->setModel(model);
     ui->treeView->setRootIndex(model->index("/home"));
     ui->treeView->setColumnWidth(0,300);
+
     this->setFixedSize(this->size());
 
 
@@ -61,7 +62,7 @@ void GUIp0f::closeEvent(QCloseEvent *event){
 }
 
 /*
- *Sets the name interface to listen to and starts the thread
+ *Set the name interface to listen to and start the thread
  *and the refresh timer.
  */
 void GUIp0f::set_name_interface(){
@@ -87,6 +88,9 @@ void GUIp0f::set_name_interface(){
 
 }
 
+/*
+ *Set the name of the pcap file to read and load the informations
+ */
 void GUIp0f::set_name_file(){
 
     QModelIndex index = ui->treeView->currentIndex();
@@ -265,6 +269,9 @@ void GUIp0f::search_host(){
 
 }
 
+/*
+ *Decide if the current host satisfies the search params
+ */
 bool GUIp0f::host_correspond(host* current_host){
     QString ip_searched;
     QString os_searched;
@@ -323,8 +330,9 @@ void GUIp0f::add_item_net(host *current_host, int row, int column){
     host_name->setFixedHeight(30);
     host_name->setFixedWidth(120);
 
+    //if there is the possibility that host is behind nat
     if(current_host->get_packet(HOST_CHANGE)!=NULL){
-        host_name->setStyleSheet("background-color: rgb(255, 0, 0); color: rgb(0, 0, 0)");
+        host_name->setStyleSheet("background-color: rgb(255, 0, 0); color: rgb(0, 0, 0); font-size: 10pt;font-weight: bold");
     }
 
     QFont font( "Arial", 11, QFont::Bold);

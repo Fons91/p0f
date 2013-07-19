@@ -22,6 +22,7 @@ void  network_db::add_packet_host(p0f_info *packet, host* new_host){
     new_host->set_packet(packet);
 }
 
+//Add a packet to an existing host or to a new one
 void  network_db::add_info_network(p0f_info *packet){
     qDebug()<<"NETwork recived packed"<<packet->get_address();
 

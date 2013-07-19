@@ -54,7 +54,9 @@ void add_info(char *key, char *value){
 }
 
 
-
+/*
+ *Add packet to network database
+ */
 void end_packet(){
 
     nt->add_info_network(current_packet);

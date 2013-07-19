@@ -17,10 +17,12 @@ QString host::get_os(){
     return os;
 }
 
+//Return all packets link to host
 QHash<info_type,p0f_info*> host::get_packets(){
     return host_packets;
 }
 
+//Return a specific packet
 p0f_info* host::get_packet(info_type type){
     return host_packets.value(type);
 }
@@ -29,10 +31,13 @@ void host::set_packet(p0f_info* info){
     host_packets.insert(info->get_type(),info);
 }
 
+
+//Chech if an host is probably behind nat
 bool host::host_with_nat(){
     return this->get_packet(HOST_CHANGE)!=NULL;
 }
 
+//Return the app field value
 QString host::get_app(){
     QString app = "";
     if(host_packets.value(HTTP_INFO)!=NULL){
@@ -41,7 +46,7 @@ QString host::get_app(){
     return app;
 }
 
-
+//Return all the host's informations
 QString host::print_packets(){
     QString info;
     if(this->get_packet(HOST_CHANGE)!=NULL){

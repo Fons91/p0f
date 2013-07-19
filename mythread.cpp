@@ -9,6 +9,7 @@ MyThread::MyThread()
 {
 }
 
+//Start p0f
 void MyThread::run(){
     go();
 }
