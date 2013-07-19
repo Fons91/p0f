@@ -104,6 +104,8 @@ void GUIp0f::set_name_file(){
             ui->list_interface->setEnabled(false);
             sleep(1);
             set_list_ip();
+        }else{
+            QMessageBox::warning(NULL,"Error","Choose a file with .pcap extension!");
         }
     }
 
