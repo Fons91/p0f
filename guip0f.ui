@@ -433,12 +433,22 @@
        <widget class="QComboBox" name="combo_app">
         <item>
          <property name="text">
+          <string>Android</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
           <string>Apache</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Opera</string>
+          <string>BaiduSpider</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Chrome</string>
          </property>
         </item>
         <item>
@@ -448,7 +458,42 @@
         </item>
         <item>
          <property name="text">
-          <string>Chrome</string>
+          <string>Facebook</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Google</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Googlebot</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Konqueror</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Opera</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Safari</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Twitter</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Yahoo</string>
          </property>
         </item>
        </widget>

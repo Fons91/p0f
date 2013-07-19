@@ -10,7 +10,11 @@ QString host::get_ip(){
 }
 
 QString host::get_os(){
-    return host_packets.value(SYN_INFO)->get_value("os");
+    QString os = "";
+    if(host_packets.value(SYN_INFO)!=NULL){
+        os = host_packets.value(SYN_INFO)->get_value("os");
+    }
+    return os;
 }
 
 QHash<info_type,p0f_info*> host::get_packets(){
@@ -31,8 +35,8 @@ bool host::host_with_nat(){
 
 QString host::get_app(){
     QString app = "";
-    if(this->get_packet(HTTP_INFO)!=NULL){
-        app = this->get_packet(HTTP_INFO)->get_value("app");
+    if(host_packets.value(HTTP_INFO)!=NULL){
+        app = host_packets.value(HTTP_INFO)->get_value("app");
     }
     return app;
 }
