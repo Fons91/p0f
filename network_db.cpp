@@ -7,8 +7,8 @@ network_db::network_db()
 }
 
 host* network_db::find_host(QString addr){
-    for(int i=0;i<network.size();i++){
-        if (addr.compare(network[i]->get_ip())==0){
+    for(int i = 0;i<network.size();i++){
+        if (addr.compare(network[i]->get_ip()) == 0){
             return network[i];
         }
     }
@@ -25,8 +25,8 @@ void  network_db::add_packet_host(p0f_info *packet, host* new_host){
 void  network_db::add_info_network(p0f_info *packet){
     qDebug()<<"NETwork recived packed"<<packet->get_address();
 
-    host* old_host=network_db::find_host(packet->get_address());
-    if (old_host==0){
+    host* old_host = network_db::find_host(packet->get_address());
+    if (old_host == 0){
         qDebug()<<"CREATING HOST WITH IP"<<packet->get_address();
         host *new_host = new host(packet->get_address());
         network_db::add_packet_host(packet,new_host);
@@ -43,7 +43,7 @@ void  network_db::add_info_network(p0f_info *packet){
 void  network_db::show_network(){
     qDebug()<<"SHOWING NETWORK"<<network.size();
 
-    for (int i=0;i<network.size();i++){
+    for (int i = 0;i<network.size();i++){
         qDebug()<<"<--------------------------------------------------------------------------->";
         qDebug()<<"host n "<<i<<" ip "<<network[i]->get_ip();
         network[i]->print_packets();

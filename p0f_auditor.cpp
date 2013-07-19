@@ -10,7 +10,7 @@ p0f_info *current_packet;
 
 
 
-network_db* nt=network_db::get_istance();
+network_db* nt = network_db::get_istance();
 
 
 
@@ -22,37 +22,37 @@ void create_packet(char* host, int to_srv, char *keyword){
 
     QString qClient = QString::fromUtf8(host);
     if(strcmp(keyword,"mtu") == 0){
-            current_packet = new p0f_info(qClient,MTU_INFO);
-        }
-        else if(strcmp(keyword,"syn") == 0 || strcmp(keyword,"syn+ack") == 0){
+        current_packet = new p0f_info(qClient,MTU_INFO);
+    }
+    else if(strcmp(keyword,"syn") == 0 || strcmp(keyword,"syn+ack") == 0){
         current_packet = new p0f_info(qClient,SYN_INFO);
-
-        }
-        else if(strcmp(keyword,"http response") == 0||strcmp(keyword,"http request")==0){
+    }
+    else if(strcmp(keyword,"http response") == 0||strcmp(keyword,"http request")==0){
         current_packet = new p0f_info(qClient,HTTP_INFO);
 
-        }
-        else if(strcmp(keyword,"uptime") == 0){
+    }
+    else if(strcmp(keyword,"uptime") == 0){
         current_packet = new p0f_info(qClient,UPTIME_INFO);
 
-        }
+    }
 
 
 }
 
 //add information to packet
 void add_info(char *key, char *value){
+
     QString qKey = QString::fromUtf8(key);
     QString qValue = QString::fromUtf8(value);
     current_packet->set_info_field(qKey,qValue);
+
 }
 
 
 
 void end_packet(){
 
-        nt->add_info_network(current_packet);
-
+    nt->add_info_network(current_packet);
 
 }
 

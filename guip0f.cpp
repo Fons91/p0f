@@ -23,11 +23,11 @@ GUIp0f::GUIp0f(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::GUIp0f)
 {
-    searched=false;
+    searched = false;
     ui->setupUi(this);
 
     create_list_interface();
-    ui->widget =new QWidget();
+    ui->widget = new QWidget();
     ui->widget->setLayout(ui->gridLayout);
     ui->scrollArea->setWidget(ui->widget);
     ui->stop_button->setEnabled(false);
@@ -66,7 +66,7 @@ void GUIp0f::closeEvent(QCloseEvent *event){
  */
 void GUIp0f::set_name_interface(){
 
-   QString  name_interface  =QString(ui->list_interface->currentText());
+   QString  name_interface = QString(ui->list_interface->currentText());
    ui->list_interface->setEnabled(false);
    qDebug()<<name_interface;
 
@@ -158,7 +158,7 @@ void GUIp0f::update_gui(){
     //print to debug
     data->show_network();
 
-    if (searched==true){
+    if (searched == true){
         search_host();
     }
     else{
@@ -175,17 +175,17 @@ void GUIp0f::set_list_ip(){
     if(data->get_hosts().size()>0){
         delete_item();
         signal_buttons = new QSignalMapper(this);
-        for(int i=0,row=0,column=0;i<data->get_hosts().size();i++){
+        for(int i = 0,row = 0,column = 0;i<data->get_hosts().size();i++){
             add_item_net(data->get_hosts()[i],row,column);
-            if(column==4){
+            if(column == 4){
                 row++;
-                column=0;
+                column = 0;
             }else{
                 column++;
             }
         }
         connect(signal_buttons, SIGNAL(mapped(const QString &)),
-                     this, SIGNAL(clicked(const QString &)));
+                this, SIGNAL(clicked(const QString &)));
     }
 }
 
@@ -195,30 +195,26 @@ QLabel* GUIp0f::get_image_host(host  *myhost){
     QLabel* image = new QLabel(ui->widget);
 
     p0f_info* os1 = myhost->get_packet(SYN_INFO);
-    qDebug()<<"dopo di get os";
     qDebug()<<os1->get_info();
-    qDebug()<<"dopo get info";
-
 
     QString os = myhost->get_packet(SYN_INFO)->get_value("os");
-    qDebug()<<"fine";
 
-    if(os.indexOf("Linux")!=-1){
+    if(os.indexOf("Linux") != -1){
         image->setStyleSheet("border-image:url(images/linux.png);");
     }
-    else if(os.indexOf("Windows")!=-1){
+    else if(os.indexOf("Windows") != -1){
          image->setStyleSheet("border-image:url(images/windows.png);");
     }
-    else if(os.indexOf("Mac")!=-1) {
+    else if(os.indexOf("Mac") != -1) {
         image->setStyleSheet("border-image:url(images/mac.png);");
     }
-    else if(os.indexOf("FreeBSD")!=-1) {
+    else if(os.indexOf("FreeBSD") != -1) {
         image->setStyleSheet("border-image:url(images/freebsd.png);");
     }
-    else if(os.indexOf("OpenBSD")!=-1) {
+    else if(os.indexOf("OpenBSD") != -1) {
         image->setStyleSheet("border-image:url(images/openbsd.png);");
     }
-    else if(os.indexOf("Solaris")!=-1) {
+    else if(os.indexOf("Solaris") != -1) {
         image->setStyleSheet("border-image:url(images/solaris.png);");
     }
     else{
@@ -234,29 +230,30 @@ void GUIp0f::see_info_host(QString host_ip){
 
     for(int i=0;i<data->get_hosts().size();i++){
         if(data->get_hosts()[i]->get_ip().compare(host_ip)==0){
-              QHostInfo *info_host =new QHostInfo(QHostInfo::fromName(data->get_hosts()[i]->get_ip()));
+              QHostInfo *info_host = new QHostInfo(QHostInfo::fromName(data->get_hosts()[i]->get_ip()));
               QString info = "IP HOST = "+data->get_hosts()[i]->get_ip()+
                         "\nDOMAIN NAME ="+info_host->hostName()+"\n";
-              QMessageBox::information(NULL,"Host Information",info+"\n"+data->get_hosts()[i]->print_packets());
+              QMessageBox::information(NULL,"Host Information",info+"\n"+
+                                       data->get_hosts()[i]->print_packets());
          }
      }
 }
 
 //Searchs and shows host ips corresponding with the user selection
 void GUIp0f::search_host(){
-    searched=true;
+    searched = true;
     network_db* data = network_db::get_istance();
 
     if(data->get_hosts().size()>0){
         delete_item();
         signal_buttons = new QSignalMapper(this);
-        for(int i=0,row=0,column=0;i<data->get_hosts().size();i++){
+        for(int i = 0,row = 0,column = 0;i<data->get_hosts().size();i++){
             QString host_ip = data->get_hosts()[i]->get_ip();
             if(host_ip.indexOf(ui->lineEdit->text())!=-1){
                 add_item_net(data->get_hosts()[i],row,column);
-                if(column==4){
+                if(column == 4){
                     row++;
-                    column=0;
+                    column = 0;
                 }else{
                     column++;
                 }
@@ -275,7 +272,7 @@ void GUIp0f::delete_item(){
 
     QLayoutItem* eliminate;
 
-    while((eliminate = ui->gridLayout->takeAt(0))!=0){
+    while((eliminate = ui->gridLayout->takeAt(0)) != 0){
         delete eliminate->widget();
     }
 }
@@ -287,11 +284,11 @@ void GUIp0f::add_item_net(host *current_host, int row, int column){
     QString host_ip = current_host->get_ip();
     //ui->listWidget->addItem(current_host->get_ip());
 
-    QLabel *host_image=get_image_host(current_host);
+    QLabel *host_image = get_image_host(current_host);
     host_image->setFixedHeight(100);
     host_image->setFixedWidth(100);
 
-    QPushButton *host_name=new QPushButton(host_ip);
+    QPushButton *host_name = new QPushButton(host_ip);
     host_name->setFixedHeight(30);
     host_name->setFixedWidth(120);
 
@@ -300,7 +297,7 @@ void GUIp0f::add_item_net(host *current_host, int row, int column){
     connect(host_name, SIGNAL(clicked()), signal_buttons, SLOT(map()));
     signal_buttons->setMapping(host_name, host_ip);
 
-    QGroupBox *my_group=new QGroupBox(ui->widget);
+    QGroupBox *my_group = new QGroupBox(ui->widget);
 
     QVBoxLayout *vbox = new QVBoxLayout;
     vbox->addWidget(host_image);
