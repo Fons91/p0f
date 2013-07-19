@@ -104,11 +104,12 @@ void GUIp0f::set_name_file(){
             ui->list_interface->setEnabled(false);
             sleep(1);
             set_list_ip();
+            ui->analyze_button->setEnabled(false);
         }else{
             QMessageBox::warning(NULL,"Error","Choose a file with .pcap extension!");
         }
     }
-    ui->analyze_button->setEnabled(false);
+
 }
 
 //Start timer in order to refresh the GUI informations

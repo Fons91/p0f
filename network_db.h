@@ -10,7 +10,7 @@ private:
     network_db();
 
      void add_packet_host(p0f_info *packet,host* new_host);
-     host*  find_host(QString addr);
+     host* find_host(QString addr);
      QVector<host*> network;
      static network_db* istance;
 
@@ -18,7 +18,7 @@ public:
      static network_db* get_istance();
 
      void  show_network();
-     void   add_info_network(p0f_info *packet);
+     void  add_info_network(p0f_info *packet);
      QVector<host*> get_hosts(){
          return network;
      }
