@@ -25,6 +25,12 @@ QString p0f_info::get_info(){
     else if (type == UPTIME_INFO){
         type_of_info = " UPTIME";
     }
+    else if (type == IP_SHARING){
+        type_of_info = " IP SHARING";
+    }
+    else if (type == HOST_CHANGE){
+        type_of_info = " HOST CHANGE";
+    }
     QString info = "\n\nPACKET" + type_of_info;
     foreach (QString key,information.keys()){
         if (information.value(key) != "" && information.value(key) != "none"){

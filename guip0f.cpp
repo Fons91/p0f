@@ -108,7 +108,7 @@ void GUIp0f::set_name_file(){
             QMessageBox::warning(NULL,"Error","Choose a file with .pcap extension!");
         }
     }
-
+    ui->analyze_button->setEnabled(false);
 }
 
 //Start timer in order to refresh the GUI informations
@@ -291,6 +291,10 @@ void GUIp0f::add_item_net(host *current_host, int row, int column){
     QPushButton *host_name = new QPushButton(host_ip);
     host_name->setFixedHeight(30);
     host_name->setFixedWidth(120);
+
+    if(current_host->get_packet(HOST_CHANGE)!=NULL){
+        host_name->setStyleSheet("background-color: rgb(255, 0, 0); color: rgb(0, 0, 0)");
+    }
 
     QFont font( "Arial", 11, QFont::Bold);
     host_name->setFont(font);

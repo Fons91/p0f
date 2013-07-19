@@ -24,6 +24,9 @@ void host::set_packet(p0f_info* info){
 
 QString host::print_packets(){
     QString info;
+    if(this->get_packet(HOST_CHANGE)!=NULL){
+        info.append("PAY ATTENTION\nHOST MAY BE RUNNING BEHIND NAT\nINFORMATIONS CAN BE INCORRECT");
+    }
     foreach(p0f_info* packet, host_packets){
         info.append(packet->get_info());
 

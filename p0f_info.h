@@ -12,7 +12,9 @@ enum info_type{
     MTU_INFO,
     HTTP_INFO,
     SYN_INFO,
-    UPTIME_INFO
+    UPTIME_INFO,
+    HOST_CHANGE,
+    IP_SHARING
 };
 
 class p0f_info

@@ -34,6 +34,11 @@ void create_packet(char* host, int to_srv, char *keyword){
     else if(strcmp(keyword,"uptime") == 0){
         current_packet = new p0f_info(qClient,UPTIME_INFO);
 
+    }else if(strcmp(keyword,"host change") == 0){
+        current_packet = new p0f_info(qClient,HOST_CHANGE);
+
+    }else if(strcmp(keyword,"ip sharing") == 0){
+        current_packet = new p0f_info(qClient,IP_SHARING);
     }
 
 
