@@ -20,8 +20,11 @@ QString p0f_info::get_info(){
     else if (type == SYN_INFO){
         type_of_info = " SYN";
     }
-    else if (type == HTTP_INFO){
-        type_of_info = " HTTP";
+    else if (type == HTTP_REQUEST){
+        type_of_info = " HTTP REQUEST";
+    }
+    else if (type == HTTP_RESPONSE){
+        type_of_info = " HTTP RESPONSE";
     }
     else if (type == UPTIME_INFO){
         type_of_info = " UPTIME";

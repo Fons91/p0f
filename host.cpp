@@ -20,8 +20,8 @@ QString host::get_os(){
 //Return the app field value
 QString host::get_app(){
     QString app = "";
-    if(host_packets.value(HTTP_INFO)!=NULL){
-        app = host_packets.value(HTTP_INFO)->get_value("app");
+    if(host_packets.value(HTTP_RESPONSE)!=NULL){
+        app = host_packets.value(HTTP_RESPONSE)->get_value("app");
     }
     return app;
 }

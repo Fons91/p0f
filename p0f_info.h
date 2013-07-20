@@ -10,7 +10,8 @@
 
 enum info_type{
     MTU_INFO,
-    HTTP_INFO,
+    HTTP_REQUEST,
+    HTTP_RESPONSE,
     SYN_INFO,
     UPTIME_INFO,
     HOST_CHANGE,

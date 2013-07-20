@@ -340,8 +340,6 @@ bool GUIp0f::host_correspond(host* current_host){
 //Deletes previous gui items
 void GUIp0f::delete_item(){
 
-    //ui->listWidget->clear();
-
     QLayoutItem* eliminate;
 
     while((eliminate = ui->gridLayout->takeAt(0)) != 0){

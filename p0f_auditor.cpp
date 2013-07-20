@@ -27,8 +27,12 @@ void create_packet(char* host, int to_srv, char *keyword){
     else if(strcmp(keyword,"syn") == 0 || strcmp(keyword,"syn+ack") == 0){
         current_packet = new p0f_info(qClient,SYN_INFO);
     }
-    else if(strcmp(keyword,"http response") == 0||strcmp(keyword,"http request")==0){
-        current_packet = new p0f_info(qClient,HTTP_INFO);
+    else if(strcmp(keyword,"http request") == 0){
+        current_packet = new p0f_info(qClient,HTTP_REQUEST);
+
+    }
+    else if(strcmp(keyword,"http response") == 0){
+        current_packet = new p0f_info(qClient,HTTP_RESPONSE);
 
     }
     else if(strcmp(keyword,"uptime") == 0){
