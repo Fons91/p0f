@@ -55,11 +55,7 @@ GUIp0f::GUIp0f(QWidget *parent) :
 
 }
 
-void GUIp0f::closeEvent(QCloseEvent *event){
-    my.exit(0);
-    timer_update->stop();
-    exit(0);
-}
+
 
 /*
  *Set the name interface to listen to and start the thread
@@ -194,6 +190,43 @@ void GUIp0f::set_list_ip(){
     }
 }
 
+//Adds a groupbox with an image and a button corresponding
+//to the current host
+void GUIp0f::add_item_net(host *current_host, int row, int column){
+
+    QString host_ip = current_host->get_ip();
+
+    QLabel *host_image = get_image_host(current_host);
+    host_image->setFixedHeight(100);
+    host_image->setFixedWidth(100);
+
+    QPushButton *host_name = new QPushButton(host_ip);
+    host_name->setFixedHeight(30);
+    host_name->setFixedWidth(120);
+
+    //if there is the possibility that host is behind nat
+    if(current_host->get_packet(HOST_CHANGE)!=NULL){
+        host_name->setStyleSheet("background-color: rgb(255, 0, 0); color: rgb(0, 0, 0); font-size: 10pt;font-weight: bold");
+    }
+
+    QFont font( "Arial", 11, QFont::Bold);
+    host_name->setFont(font);
+    connect(host_name, SIGNAL(clicked()), signal_buttons, SLOT(map()));
+    signal_buttons->setMapping(host_name, host_ip);
+
+    QGroupBox *my_group = new QGroupBox(ui->widget);
+
+    QVBoxLayout *vbox = new QVBoxLayout;
+    vbox->addWidget(host_image);
+    vbox->addWidget(host_name);
+    my_group->setLayout(vbox);
+    my_group->show();
+    my_group->setFixedHeight(130);
+    my_group->setFixedWidth(130);
+
+    ui->gridLayout->addWidget(my_group,row,column);
+}
+
 //Loads os image
 QLabel* GUIp0f::get_image_host(host  *myhost){
 
@@ -316,44 +349,13 @@ void GUIp0f::delete_item(){
     }
 }
 
-//Adds a groupbox with an image and a button corresponding
-//to the current host
-void GUIp0f::add_item_net(host *current_host, int row, int column){
 
-    QString host_ip = current_host->get_ip();
 
-    QLabel *host_image = get_image_host(current_host);
-    host_image->setFixedHeight(100);
-    host_image->setFixedWidth(100);
-
-    QPushButton *host_name = new QPushButton(host_ip);
-    host_name->setFixedHeight(30);
-    host_name->setFixedWidth(120);
-
-    //if there is the possibility that host is behind nat
-    if(current_host->get_packet(HOST_CHANGE)!=NULL){
-        host_name->setStyleSheet("background-color: rgb(255, 0, 0); color: rgb(0, 0, 0); font-size: 10pt;font-weight: bold");
-    }
-
-    QFont font( "Arial", 11, QFont::Bold);
-    host_name->setFont(font);
-    connect(host_name, SIGNAL(clicked()), signal_buttons, SLOT(map()));
-    signal_buttons->setMapping(host_name, host_ip);
-
-    QGroupBox *my_group = new QGroupBox(ui->widget);
-
-    QVBoxLayout *vbox = new QVBoxLayout;
-    vbox->addWidget(host_image);
-    vbox->addWidget(host_name);
-    my_group->setLayout(vbox);
-    my_group->show();
-    my_group->setFixedHeight(130);
-    my_group->setFixedWidth(130);
-
-    ui->gridLayout->addWidget(my_group,row,column);
+void GUIp0f::closeEvent(QCloseEvent *event){
+    my.exit(0);
+    timer_update->stop();
+    exit(0);
 }
-
-
 
 
 GUIp0f::~GUIp0f()
