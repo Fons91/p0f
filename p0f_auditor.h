@@ -4,12 +4,12 @@
 
 #ifdef  __cplusplus
 extern "C"{
-void create_packet(char* host, int to_srv, char *keyword);
+void create_packet(char* host, char *keyword);
 void add_info(char* key, char* value);
 void end_packet();
 }
 #else
-void create_packet(char* host, int to_srv, char *keyword);
+void create_packet(char* host, char *keyword);
 void add_info(char* key, char* value);
 void end_packet();
 #endif

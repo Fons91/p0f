@@ -40,7 +40,6 @@ QString p0f_info::get_info(){
         if (information.value(key) != "" && information.value(key) != "none"){
             info.append("\n" + key + ": " + information.value(key));
 
-            qDebug()<<key<<"  "<<information.value(key);
         }
 
     }

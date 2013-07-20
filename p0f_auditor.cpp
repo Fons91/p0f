@@ -15,10 +15,7 @@ network_db* nt = network_db::get_istance();
 
 
 //the method creates a new packet looking at the keyword that identifies the packet's type
-void create_packet(char* host, int to_srv, char *keyword){
-    qDebug()<<host;
-
-    qDebug()<<keyword;
+void create_packet(char* host, char *keyword){
 
     QString qClient = QString::fromUtf8(host);
     if(strcmp(keyword,"mtu") == 0){

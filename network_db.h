@@ -16,8 +16,6 @@ private:
 
 public:
      static network_db* get_istance();
-
-     void  show_network();
      void  add_info_network(p0f_info *packet);
      QVector<host*> get_hosts(){
          return network;

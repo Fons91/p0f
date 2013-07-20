@@ -92,7 +92,6 @@ void GUIp0f::set_name_file(){
     QModelIndex index = ui->treeView->currentIndex();
     if(index.isValid()){
         QString name_file = model->fileInfo(index).absoluteFilePath();
-        qDebug()<<name_file;
         int lenght = name_file.length();
         if(name_file.indexOf(".pcap",lenght-5)!=-1){
             QByteArray ba = name_file.toLatin1();
@@ -136,28 +135,16 @@ void GUIp0f::create_list_interface(){
 
 //Stops update gui since start_buttun is pressed.
 void GUIp0f::stop_p0f(){
-
-
     timer_update->stop();
-
-    network_db* data = network_db::get_istance();
-    //print to debug
-    data->show_network();
     set_list_ip();
 
     ui->start_button->setText("Restart");
     ui->start_button->setEnabled(true);
     ui->stop_button->setEnabled(false);
-    qDebug()<<data->get_hosts().size()<<" in gui";
 }
 
 void GUIp0f::update_gui(){
     ui->progressBar->setVisible(false);
-    qDebug()<<"timer running timeout";
-
-    network_db* data = network_db::get_istance();
-    //print to debug
-    data->show_network();
 
     if (searched == true){
         search_host();
@@ -231,9 +218,6 @@ void GUIp0f::add_item_net(host *current_host, int row, int column){
 QLabel* GUIp0f::get_image_host(host  *myhost){
 
     QLabel* image = new QLabel(ui->widget);
-
-    p0f_info* os1 = myhost->get_packet(SYN_INFO);
-    qDebug()<<os1->get_info();
 
     QString os = myhost->get_packet(SYN_INFO)->get_value("os");
 
@@ -313,26 +297,20 @@ bool GUIp0f::host_correspond(host* current_host){
     bool os_correct = true;
     bool nat_correct = true;
     bool ip_correct = true;
-    qDebug()<<"prima di ip";
     if(ui->check_ip->isChecked()){
         ip_searched = ui->line_ip->text();
         ip_correct = current_host->get_ip().indexOf(ip_searched)!=-1;
     }
-    qDebug()<<"prima di app";
     if(ui->check_app->isChecked()){
         app_searched = ui->combo_app->currentText();
         app_correct = current_host->get_app().indexOf(app_searched)!=-1;
     }
-    qDebug()<<"prima di os";
     if(ui->check_os->isChecked()){
         os_searched = ui->combo_os->currentText();
         os_correct = current_host->get_os().indexOf(os_searched)!=-1;
     }
-    qDebug()<<"prima di nat";
     if(ui->check_nat->isChecked()){
-        qDebug()<<"prima di nat";
         nat_correct = current_host->host_with_nat();
-        qDebug()<<"prima di nat";
     }
     return ip_correct && app_correct && os_correct && nat_correct;
 }

@@ -340,7 +340,7 @@ void start_observation(char* keyword, u8 field_cnt, u8 to_srv,
 
   char* host = addr_to_str(to_srv ? f->client->addr : f->server->addr, f->client->ip_ver);
 
-  create_packet(host, to_srv, keyword);
+  create_packet(host, keyword);
   if (log_file) {
 
     u8 tmp[64];
