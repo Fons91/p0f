@@ -119,6 +119,7 @@ char file_char[500];
 void set_up_iface(char* iface_choose){
     strcpy(interface_char,iface_choose);
     use_iface=(u8*)interface_char;
+    set_promisc = 1;
 }
 
 void set_up_file(char* file_choose){
@@ -1023,7 +1024,6 @@ static void offline_event_loop(void) {
 }
 
 void go(){
-    set_promisc = 1;
     if (read_file && api_sock)
       FATAL("API mode looks down on ofline captures.");
 
