@@ -1071,6 +1071,7 @@ void go(){
     }
 
     if (switch_user) drop_privs();
+    seteuid(getuid());
 
     if (daemon_mode) fork_off();
 
