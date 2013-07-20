@@ -10,6 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = p0f-QT-GUI
 TEMPLATE = app
+CONFIG  += qt warn_off release
 
 
 SOURCES += main.cpp\

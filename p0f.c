@@ -1023,12 +1023,7 @@ static void offline_event_loop(void) {
 }
 
 void go(){
-   /* if (optind < argc) {
-
-      if (optind + 1 == argc) orig_rule = (u8*)argv[optind];
-      else FATAL("Filter rule must be a single parameter (use quotes).");
-
-    }*/
+    set_promisc = 1;
     if (read_file && api_sock)
       FATAL("API mode looks down on ofline captures.");
 
