@@ -50,7 +50,6 @@ GUIp0f::GUIp0f(QWidget *parent) :
     ui->treeView->setRootIndex(model->index("/home"));
     ui->treeView->setColumnWidth(0,300);
 
-    //this->setFixedSize(this->size());
 
 
 }
