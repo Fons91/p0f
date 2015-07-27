@@ -43,5 +43,5 @@ Thumbs.db
 *.origin
 *.orig
 *~
-p0f-QT-GUI.pro.user.eb388d7
-
+p0f-QT-GUI.pro.user*
+Makefile
